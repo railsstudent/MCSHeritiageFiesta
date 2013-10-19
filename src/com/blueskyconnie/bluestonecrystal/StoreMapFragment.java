@@ -77,7 +77,7 @@ public class StoreMapFragment extends Fragment {
 			mapView.onPause();
 		}
 	}
-
+	
 	@Override
 	public void onResume() {
 		super.onResume();
@@ -103,33 +103,8 @@ public class StoreMapFragment extends Fragment {
 						}
 					});
 					
-					map.setInfoWindowAdapter(new InfoWindowAdapter() {
-						@Override
-						public View getInfoContents(Marker marker) {
-
-							String marker_title = marker.getTitle();
-							String marker_snippet = marker.getSnippet();
-							if (marker_title.equals(getString(R.string.map_shop_title))) {
-								View view = getActivity().getLayoutInflater().inflate(R.layout.layout_main_popup, null);
-								ImageView imgView = (ImageView) view.findViewById(R.id.imgShop);
-								TextView tvTitle = (TextView) view.findViewById(R.id.tvTitle);
-								TextView tvSnippet = (TextView) view.findViewById(R.id.tvSnippet);
-
-								imgView.setImageResource(R.drawable.solo_building2);
-								tvTitle.setText(marker_title);
-								tvSnippet.setText(marker_snippet);
-								return view;
-							} 
-							return null;
-						}
-						@Override
-						public View getInfoWindow(Marker marker) {
-							return null;
-						}
-					});
-					
+					map.setInfoWindowAdapter(new MyInfoWindowAdapter());
 					map.setOnMapClickListener(new OnMapClickListener() {
-
 						public void onMapClick(LatLng latLng) {
 							map.moveCamera(CameraUpdateFactory.newLatLng(latLng));
 						}
@@ -154,5 +129,33 @@ public class StoreMapFragment extends Fragment {
 			map.moveCamera(CameraUpdateFactory.newLatLng(SHOP_LATLNG));
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	private final class MyInfoWindowAdapter implements InfoWindowAdapter {
+		@Override
+		public View getInfoContents(Marker marker) {
+
+			String marker_title = marker.getTitle();
+			String marker_snippet = marker.getSnippet();
+			if (marker_title.equals(getString(R.string.map_shop_title))) {
+				View view = getActivity().getLayoutInflater().inflate(R.layout.layout_main_popup, null);
+				ImageView imgView = (ImageView) view.findViewById(R.id.imgShop);
+				TextView tvBuilding = (TextView) view.findViewById(R.id.tvBuilding);
+				TextView tvTitle = (TextView) view.findViewById(R.id.tvStreet);
+				TextView tvSnippet = (TextView) view.findViewById(R.id.tvSnippet);
+
+				imgView.setImageResource(R.drawable.solo_building2);
+				tvTitle.setText(marker_title);
+				tvSnippet.setText(marker_snippet);
+				tvBuilding.setText(StoreMapFragment.this.getActivity().getString(R.string.map_shop_building));
+				return view;
+			} 
+			return null;
+		}
+
+		@Override
+		public View getInfoWindow(Marker marker) {
+			return null;
+		}
 	}
 }

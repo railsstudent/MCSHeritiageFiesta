@@ -197,11 +197,11 @@ containing a value of this type.
     }
     public static final class id {
         public static final int RelativeLayout1=0x7f050006;
-        public static final int action_settings=0x7f050011;
+        public static final int action_settings=0x7f050012;
         public static final int hybrid=0x7f050004;
         public static final int imgShop=0x7f05000e;
         public static final int imgSplash=0x7f050007;
-        public static final int item_shop=0x7f050012;
+        public static final int item_shop=0x7f050013;
         public static final int mapView=0x7f05000b;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
@@ -211,9 +211,10 @@ containing a value of this type.
         public static final int textView1=0x7f05000d;
         public static final int tv2=0x7f05000c;
         public static final int tv5=0x7f050009;
-        public static final int tvSnippet=0x7f050010;
+        public static final int tvBuilding=0x7f05000f;
+        public static final int tvSnippet=0x7f050011;
         public static final int tvSplash=0x7f050008;
-        public static final int tvTitle=0x7f05000f;
+        public static final int tvStreet=0x7f050010;
         public static final int wvFacbook=0x7f05000a;
     }
     public static final class layout {
@@ -256,7 +257,7 @@ containing a value of this type.
         [CHAR LIMIT=70] 
          */
         public static final int auth_client_using_bad_version_title=0x7f060013;
-        public static final int back_to_shop=0x7f060026;
+        public static final int back_to_shop=0x7f060027;
         public static final int bluestone_crystal=0x7f06001b;
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
         will direct user to application settings of Google Play services where they
@@ -325,11 +326,12 @@ containing a value of this type.
         /**  Long form sign-in button text [CHAR LIMIT=30] 
          */
         public static final int common_signin_button_text_long=0x7f060012;
-        public static final int email=0x7f060025;
+        public static final int email=0x7f060026;
         public static final int facebook_url=0x7f060021;
-        public static final int map_shop_address=0x7f060023;
+        public static final int map_shop_address=0x7f060024;
+        public static final int map_shop_building=0x7f060023;
         public static final int map_shop_title=0x7f060022;
-        public static final int shop_address=0x7f060024;
+        public static final int shop_address=0x7f060025;
         public static final int tab_contact=0x7f06001e;
         public static final int tab_facebook=0x7f06001c;
         public static final int tab_map=0x7f06001d;

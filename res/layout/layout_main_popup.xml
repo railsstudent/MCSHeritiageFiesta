@@ -11,8 +11,17 @@
         android:layout_gravity="center_horizontal"
         android:src="@drawable/solo_building2" />
 
+     <TextView
+        android:id="@+id/tvBuilding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/green" />
+    
     <TextView
-        android:id="@+id/tvTitle"
+        android:id="@+id/tvStreet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
