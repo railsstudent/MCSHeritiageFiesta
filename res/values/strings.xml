@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Bluestone Crystal</string>
+    <string name="action_settings">Settings</string>
+	<string name="bluestone_crystal">Bluestone Crystal Accessories</string>
+	<string name="tab_facebook">Facebook</string>
+	<string name="tab_map">位置</string>
+	<string name="tab_contact">聯絡</string>
+	<string name="tab_product">產品</string>
+	<string name="tab_news">消息</string>
+	<string name="facebook_url">http://www.facebook.com/bluestonecrystal</string>
+	<string name="map_shop_title">Bluestone Crystal</string>
+	<string name="map_shop_address">尖沙咀加拿芬道41&#8211;43號</string>
+	<string name="shop_address">尖沙咀加拿芬道41&#8211;43號Solo Building 220室</string>
+	<string name="email">crystal.bluestone@yahoo.com.hk</string>
+	<string name="back_to_shop">返回店鋪</string>
+</resources>
