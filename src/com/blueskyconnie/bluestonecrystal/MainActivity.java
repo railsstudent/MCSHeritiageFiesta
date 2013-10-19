@@ -12,7 +12,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
-import android.view.KeyEvent;
 import android.view.Window;
 
 import com.blueskyconnie.bluestonecrystal.adapter.TabspagerAdapter;
@@ -23,11 +22,11 @@ public class MainActivity extends FragmentActivity implements
 	/**
 	 * 
 	 */
-	private static final int[] TAB_NAMES = { R.string.tab_product, R.string.tab_news, 
-		R.string.tab_facebook, R.string.tab_map, R.string.tab_contact };
+	private static final int[] TAB_NAMES = { R.string.tab_product, R.string.tab_facebook
+		, R.string.tab_map, R.string.tab_contact };
 
-	private static final int[] TAB_ICONS = { -1, -1, R.drawable.facebook_ic, R.drawable.location_ic, 
-				R.drawable.contact_ic };
+	private static final int[] TAB_ICONS = { -1, R.drawable.facebook_ic
+		, R.drawable.location_ic, R.drawable.contact_ic };
 
 	private ActionBar actionBar;
 	private ViewPager viewPager;
@@ -47,7 +46,6 @@ public class MainActivity extends FragmentActivity implements
 		viewPager = (ViewPager) findViewById(R.id.pager);
 		// initializs fragmentpageradapter
 		lstFragment.add(new ProductFragment());
-		lstFragment.add(new NewsFragment());
 		lstFragment.add(new FacebookFragment());
 		lstFragment.add(new StoreMapFragment());
 		lstFragment.add(new ContactFragment());
@@ -87,10 +85,6 @@ public class MainActivity extends FragmentActivity implements
 			tab.setTabListener(this);
 			actionBar.addTab(tab);
 		}
-		
-		actionBar.getTabAt(2).setIcon(R.drawable.facebook_ic);
-		actionBar.getTabAt(3).setIcon(R.drawable.location_ic);
-		actionBar.getTabAt(4).setIcon(R.drawable.location_ic);
 	}
 
 	@Override
@@ -106,17 +100,5 @@ public class MainActivity extends FragmentActivity implements
 
 	@Override
 	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
-	}
-
-	@Override
-	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		
-		if (keyCode == KeyEvent.KEYCODE_BACK) {
-			Fragment currFragment = lstFragment.get(viewPager.getCurrentItem());
-			if (currFragment instanceof FacebookFragment) {
-				return ((FacebookFragment) currFragment).customOnKeyDown(keyCode, event);
-			}
-	    }
-		return super.onKeyDown(keyCode, event);
 	}
 }

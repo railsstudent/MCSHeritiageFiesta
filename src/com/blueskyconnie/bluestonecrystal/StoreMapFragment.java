@@ -38,7 +38,8 @@ public class StoreMapFragment extends Fragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		try {
-		     MapsInitializer.initialize(this.getActivity());
+		    MapsInitializer.initialize(this.getActivity());
+ 			setHasOptionsMenu(true);
 		 } catch (GooglePlayServicesNotAvailableException e) {
 		     e.printStackTrace();
 		 }
@@ -141,7 +142,7 @@ public class StoreMapFragment extends Fragment {
 				View view = getActivity().getLayoutInflater().inflate(R.layout.layout_main_popup, null);
 				ImageView imgView = (ImageView) view.findViewById(R.id.imgShop);
 				TextView tvBuilding = (TextView) view.findViewById(R.id.tvBuilding);
-				TextView tvTitle = (TextView) view.findViewById(R.id.tvStreet);
+				TextView tvTitle = (TextView) view.findViewById(R.id.tvTitle);
 				TextView tvSnippet = (TextView) view.findViewById(R.id.tvSnippet);
 
 				imgView.setImageResource(R.drawable.solo_building2);

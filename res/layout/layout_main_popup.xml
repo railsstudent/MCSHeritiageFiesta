@@ -11,17 +11,8 @@
         android:layout_gravity="center_horizontal"
         android:src="@drawable/solo_building2" />
 
-     <TextView
-        android:id="@+id/tvBuilding"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="Large Text"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/green" />
-    
     <TextView
-        android:id="@+id/tvStreet"
+        android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -29,6 +20,15 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/green" />
 
+    <TextView
+        android:id="@+id/tvBuilding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Medium Text"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/silver" />
+    
     <TextView
         android:id="@+id/tvSnippet"
         android:layout_width="wrap_content"

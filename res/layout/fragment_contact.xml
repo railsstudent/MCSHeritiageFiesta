@@ -1,15 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/RelativeLayout1"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="5dp"
+    android:orientation="vertical" >
+    
+<TableLayout
+    android:id="@+id/tableLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
     android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/tv5"
-        android:layout_width="wrap_content"
+   <TableRow
+       android:id="@+id/tableRow1"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:paddingBottom="10dp" >
+       <ImageView
+           android:id="@+id/imgAddress"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:src="@drawable/img_globe" />
+       <TextView
+           android:id="@+id/tvAddress"
+           android:layout_width="0dp"
+           android:layout_height="wrap_content"
+           android:layout_marginLeft="3dp"
+           android:text="@string/shop_address"
+           android:layout_weight="1"
+           android:textAppearance="?android:attr/textAppearanceLarge" />
+   </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow2"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Contact Fragment" />
+        android:paddingBottom="10dp" >
+
+        <ImageView
+            android:id="@+id/imgEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_email" />
+
+        <TextView
+            android:id="@+id/tvEmail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:text="@string/shop_email"
+            android:layout_weight="3"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="30dp" >
+
+        <Button
+            android:id="@+id/btnSendMail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="2dp"
+            android:drawableTop="@drawable/img_send_email"
+            android:text="@string/send_email" />
+
+        <Button
+            android:id="@+id/btnTellAFriend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="2dp"
+            android:drawableTop="@drawable/img_share"
+            android:text="@string/tell_a_friend" />
+
+    </TableRow>
+</TableLayout>
+  <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
     
-</RelativeLayout>
+    <ImageView  android:id="@+id/imgBuilding"
+	     android:layout_width="wrap_content"
+	     android:layout_height="wrap_content"
+	     android:layout_centerInParent="true"
+	     android:src="@drawable/solo_building" />
+  </RelativeLayout>
+</LinearLayout>
