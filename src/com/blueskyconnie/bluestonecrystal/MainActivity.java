@@ -7,6 +7,8 @@ import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.ActionBar.TabListener;
 import android.app.FragmentTransaction;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -19,14 +21,20 @@ import com.blueskyconnie.bluestonecrystal.adapter.TabspagerAdapter;
 public class MainActivity extends FragmentActivity implements
 	TabListener {
 	
+
 	/**
 	 * 
 	 */
 	private static final int[] TAB_NAMES = { R.string.tab_product, R.string.tab_facebook
 		, R.string.tab_map, R.string.tab_contact };
 
+	private static final String[] TAB_TAGS = { "product_tag", "facebook_tag", 
+			"map_tag", "contact_tag" };
+	
 	private static final int[] TAB_ICONS = { -1, R.drawable.facebook_ic
 		, R.drawable.location_ic, R.drawable.contact_ic };
+
+	private static final String CURRENT_TAG_KEY = "current_tag";
 
 	private ActionBar actionBar;
 	private ViewPager viewPager;
@@ -78,7 +86,10 @@ public class MainActivity extends FragmentActivity implements
 		for (int i = 0; i < TAB_NAMES.length; i++) {
 			int tab_id = TAB_NAMES[i];
 			int icon_id = TAB_ICONS[i];
-			Tab tab = actionBar.newTab().setText(this.getString(tab_id));
+			String tab_tag = TAB_TAGS[i];
+			Tab tab = actionBar.newTab()
+					.setText(this.getString(tab_id))
+					.setTag(tab_tag);
 			if (icon_id >= 0) {
 				tab.setIcon(TAB_ICONS[i]);
 			}
@@ -101,4 +112,26 @@ public class MainActivity extends FragmentActivity implements
 	@Override
 	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
 	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		// save last visit tab in shared preference
+		int current_tab = actionBar.getSelectedNavigationIndex();
+		Editor editor = this.getPreferences(MODE_PRIVATE).edit();
+		editor.putInt(CURRENT_TAG_KEY, current_tab);
+		editor.commit();
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		// restore last visit tab from shared preference
+		SharedPreferences preferences = this.getPreferences(MODE_PRIVATE);
+		int current_tab = preferences.getInt(CURRENT_TAG_KEY, 0);
+		actionBar.setSelectedNavigationItem(current_tab);
+	}
+	
+	
+	
 }
