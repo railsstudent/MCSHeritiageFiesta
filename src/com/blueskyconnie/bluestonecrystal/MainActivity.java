@@ -6,7 +6,9 @@ import java.util.List;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.ActionBar.TabListener;
+import android.app.AlertDialog;
 import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
@@ -46,17 +48,18 @@ public class MainActivity extends FragmentActivity implements
 		super.onCreate(savedBundle);
 		
 		requestWindowFeature(Window.FEATURE_PROGRESS);
-		
 		setContentView(R.layout.activity_main);
 		actionBar = this.getActionBar();
 		
 		// initialize viewpager
 		viewPager = (ViewPager) findViewById(R.id.pager);
+		viewPager.setId(R.id.pager);
 		// initializs fragmentpageradapter
 		lstFragment.add(new ProductFragment());
 		lstFragment.add(new FacebookFragment());
 		lstFragment.add(new StoreMapFragment());
 		lstFragment.add(new ContactFragment());
+		//lstFragment.add(new DetailFragment());
 		pageAdapter = new TabspagerAdapter(getSupportFragmentManager(), lstFragment);
 		viewPager.setAdapter(pageAdapter);
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -77,7 +80,7 @@ public class MainActivity extends FragmentActivity implements
 
 			@Override
 			public void onPageSelected(int position) {
-				 actionBar.setSelectedNavigationItem(position);
+					actionBar.setSelectedNavigationItem(position);
 			}
 			
 		});
@@ -131,7 +134,30 @@ public class MainActivity extends FragmentActivity implements
 		int current_tab = preferences.getInt(CURRENT_TAG_KEY, 0);
 		actionBar.setSelectedNavigationItem(current_tab);
 	}
-	
-	
-	
+
+	@Override
+	public void onBackPressed() {
+		// prompt confirmation dialog before exit
+		DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				switch (which) {
+					case DialogInterface.BUTTON_NEGATIVE:   // confirm to exit
+						// close dialog and do nothing
+						finish();
+						break;
+					case DialogInterface.BUTTON_POSITIVE:   // cancel
+						dialog.dismiss();
+						break;
+				}
+			}
+		};
+		
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setTitle(R.string.title_confirm_exit);
+		builder.setPositiveButton(R.string.cancel_exit, listener);
+		builder.setNegativeButton(R.string.confirm_exit, listener);
+		AlertDialog quitDialog = builder.create();
+		quitDialog.show();
+	}
 }

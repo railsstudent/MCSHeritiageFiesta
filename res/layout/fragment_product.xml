@@ -1,12 +1,26 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout1"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/tvAddress"
+    <ImageButton
+        android:id="@+id/imgRefresh"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Product Fragment" />
+        android:layout_gravity="top|right"
+        android:src="@drawable/img_refresh" />
 
-</RelativeLayout>
+    <ListView
+        android:id="@id/android:list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+    </ListView>
+    
+    <TextView
+        android:id="@id/android:empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/no_data" />
+
+</LinearLayout>

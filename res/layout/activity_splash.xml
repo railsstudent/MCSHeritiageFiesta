@@ -26,6 +26,6 @@
         android:layout_below="@+id/imgSplash"
         android:gravity="center"
         android:text="@string/bluestone_crystal"
-        android:textColor="@color/green" />
+        android:textColor="@color/blue" />
 
 </RelativeLayout>

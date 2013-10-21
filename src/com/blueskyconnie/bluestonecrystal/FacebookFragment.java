@@ -51,20 +51,6 @@ public class FacebookFragment extends Fragment implements OnKeyListener {
 		return rootView;
 	}
 	
-//	public boolean customOnKeyDown(int keyCode, KeyEvent event) {
-//		if (keyCode == KeyEvent.KEYCODE_BACK) {
-//			if (webView.canGoBack()) {
-//				webView.goBack();
-//				return true;
-//			} else {
-//				// From stackoverflow, move the activity down the activity stack()
-//				getActivity().finish();
-//				return true;
-//			}
-//		}
-//		return getActivity().onKeyDown(keyCode, event);
-//	}
-
 	@Override
 	public boolean onKey(View view, int keyCode, KeyEvent event) {
 		if (event.getAction() == KeyEvent.ACTION_DOWN) {

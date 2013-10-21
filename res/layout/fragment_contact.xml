@@ -23,14 +23,17 @@
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:src="@drawable/img_globe" />
+
        <TextView
            android:id="@+id/tvAddress"
            android:layout_width="0dp"
            android:layout_height="wrap_content"
            android:layout_marginLeft="3dp"
-           android:text="@string/shop_address"
            android:layout_weight="1"
-           android:textAppearance="?android:attr/textAppearanceLarge" />
+           android:text="@string/shop_address"
+           android:textAppearance="?android:attr/textAppearanceLarge"
+           android:textColor="@color/blue" />
+
    </TableRow>
 
     <TableRow
@@ -50,9 +53,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="3dp"
-            android:text="@string/shop_email"
             android:layout_weight="3"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:text="@string/shop_email"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/blue" />
+
     </TableRow>
 
     <TableRow
@@ -85,10 +90,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
     
-    <ImageView  android:id="@+id/imgBuilding"
-	     android:layout_width="wrap_content"
-	     android:layout_height="wrap_content"
-	     android:layout_centerInParent="true"
-	     android:src="@drawable/solo_building" />
+    <ImageView
+        android:id="@+id/imgBuilding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:scaleType="fitCenter"
+        android:src="@drawable/bluestone_full" />
+
   </RelativeLayout>
 </LinearLayout>

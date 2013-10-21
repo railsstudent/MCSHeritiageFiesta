@@ -17,7 +17,10 @@ public class TabspagerAdapter extends FragmentPagerAdapter {
 
 	@Override
 	public Fragment getItem(int index) {
-		return lstFragment.get(index);
+		if (index < getCount())  {
+			return lstFragment.get(index);
+		}
+		return null;
 	}
 
 	@Override
