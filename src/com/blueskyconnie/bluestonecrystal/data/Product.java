@@ -1,23 +1,30 @@
 package com.blueskyconnie.bluestonecrystal.data;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 
 import android.graphics.Bitmap;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-public class Product implements Serializable {
+public class Product implements Parcelable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 5895528495225852543L;
-	
 	private int id;
 	private String name;
 	private String description;
 	private BigDecimal price;
 	private Bitmap image;
 	private String imageUrl;
+	
+	public Product() {}
+	
+	 public Product (Parcel in){
+		  this.id = in.readInt();
+		  this.name = in.readString();
+		  this.description = in.readString();
+		  this.imageUrl = in.readString();
+		  this.image = in.readParcelable(Bitmap.class.getClassLoader());
+		  this.price = new BigDecimal(in.readString());
+	 }
 	
 	public int getId() {
 		return id;
@@ -83,4 +90,27 @@ public class Product implements Serializable {
 		}
 		return true;
 	}
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeInt(this.id);
+		dest.writeString(this.name);
+		dest.writeString(this.description);
+		dest.writeString(this.imageUrl);
+		dest.writeParcelable(this.image, Parcelable.PARCELABLE_WRITE_RETURN_VALUE);
+		dest.writeString(this.price.toPlainString());
+	}
+	
+	public static final Parcelable.Creator<Product> CREATOR = new Parcelable.Creator<Product>() {
+        public Product createFromParcel(Parcel in) {
+            return new Product(in); 
+        }
+
+        public Product[] newArray(int size) {
+            return new Product[size];
+        }
+    };
 }

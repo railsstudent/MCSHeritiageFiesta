@@ -27,7 +27,8 @@ public class DetailActivity extends Activity {
 		setContentView(R.layout.fragment_detail);
 		
 		if (getIntent() != null)  {
-			Product product = (Product) getIntent().getSerializableExtra("currentProduct");
+//			Product product = (Product) getIntent().getSerializableExtra("currentProduct");
+			Product product = (Product) getIntent().getParcelableExtra("currentProduct");
 			if (product != null) { 
 				// retrieve image
 				startNewAsyncTask(product);

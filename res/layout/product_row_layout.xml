@@ -19,5 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/imgProductThumbnail"
         android:singleLine="false"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/blue" />
+
 </RelativeLayout>

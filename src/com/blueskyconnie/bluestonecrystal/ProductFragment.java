@@ -1,13 +1,10 @@
 package com.blueskyconnie.bluestonecrystal;
 
 import java.lang.ref.WeakReference;
-import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
@@ -20,6 +17,7 @@ import android.widget.ListView;
 
 import com.blueskyconnie.bluestonecrystal.adapter.ProductAdapter;
 import com.blueskyconnie.bluestonecrystal.data.Product;
+import com.blueskyconnie.bluestonecrystal.helper.HttpClientHelper;
 
 public class ProductFragment extends ListFragment {
 
@@ -93,24 +91,7 @@ public class ProductFragment extends ListFragment {
 
 		@Override
 		protected List<Product> doInBackground(String... params) {
-//			String url = params[0];
-			// create thousand products
-			List<Product> lstProduct = new ArrayList<Product>();
-			BitmapFactory.Options op = new BitmapFactory.Options();
-		    op.inPurgeable = true;
-			for (int i = 0; i < 1000; i++) {
-				Product prod = new Product();
-				prod.setId(i);
-				prod.setName("Super Very Long, Long, Long, Long, Long, Long Name " + i);
-				prod.setPrice(new BigDecimal(i + 0.25));
-				prod.setDescription("Description " + i);
-				prod.setImageUrl("http://103.11.100.49/~connie/bluestone/images/necklace1.jpg");
-				if (prod.getImageUrl() != null && prod.getImageUrl().length() > 0) {
-					// get image stream
-					//HttpClient client = new DefaultHttpClient();
-				}
-				lstProduct.add(prod);
-			}
+			List<Product> lstProduct = HttpClientHelper.retrieveProducts(params[0]);
 			return lstProduct;
 		}
 		
