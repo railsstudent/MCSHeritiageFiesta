@@ -17,7 +17,6 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.blueskyconnie.bluestonecrystal.adapter.ProductAdapter;
 import com.blueskyconnie.bluestonecrystal.data.Product;
@@ -105,8 +104,7 @@ public class ProductFragment extends ListFragment {
 				prod.setName("Super Very Long, Long, Long, Long, Long, Long Name " + i);
 				prod.setPrice(new BigDecimal(i + 0.25));
 				prod.setDescription("Description " + i);
-				prod.setImageUrl(i % 2 == 0 ? "http://192.168.1.138/bluestone/images/wish_bracelet.jpg" : 
-					"http://192.168.1.138/bluestone/images/necklace1.jpg");
+				prod.setImageUrl("http://www.blueskyconnie.com/bluestone/images/necklace1.jpg");
 				if (prod.getImageUrl() != null && prod.getImageUrl().length() > 0) {
 					// get image stream
 					//HttpClient client = new DefaultHttpClient();
