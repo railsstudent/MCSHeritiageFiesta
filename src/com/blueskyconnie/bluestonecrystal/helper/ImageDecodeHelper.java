@@ -1,8 +1,10 @@
 package com.blueskyconnie.bluestonecrystal.helper;
 
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
@@ -14,52 +16,119 @@ public final class ImageDecodeHelper {
 	    final int height = options.outHeight;
 	    final int width = options.outWidth;
 	    int inSampleSize = 1;
-	
+
 	    if (height > reqHeight || width > reqWidth) {
-	
-	        // Calculate ratios of height and width to requested height and width
-	        final int heightRatio = Math.round((float) height / (float) reqHeight);
-	        final int widthRatio = Math.round((float) width / (float) reqWidth);
-	
-	        // Choose the smallest ratio as inSampleSize value, this will guarantee
-	        // a final image with both dimensions larger than or equal to the
-	        // requested height and width.
-	        inSampleSize = heightRatio < widthRatio ? heightRatio : widthRatio;
-	    }
-	
+	        if (width > height) {
+	        	inSampleSize = Math.round((float)height / (float)reqHeight);   
+	        } else {
+	        	inSampleSize = Math.round((float)width / (float)reqWidth);   
+	        }   
+       }
 	    return inSampleSize;
 	}
 	
-	public static Bitmap decodeSampledBitmapFromResource(Resources res, int resId,
-	        int reqWidth, int reqHeight) {
+	public static Bitmap decodeSampledBitmapFromStream (String strUrl,
+	        int reqWidth, int reqHeight)  {
 
 	    // First decode with inJustDecodeBounds=true to check dimensions
-	    final BitmapFactory.Options options = new BitmapFactory.Options();
-	    options.inJustDecodeBounds = true;
-	    BitmapFactory.decodeResource(res, resId, options);
+	    InputStream is = null;
+	    InputStream decodeStream = null;
+	    
+	    try  {
+	    
+	    	final BitmapFactory.Options options = new BitmapFactory.Options();
+		    options.inJustDecodeBounds = true;
+		    
+		    is = HttpClientHelper.retrieveImage(strUrl);
+		    BitmapFactory.decodeStream (is, null, options);
 
-	    // Calculate inSampleSize
-	    options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
+		    // Calculate inSampleSize
+		    options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
 
-	    // Decode bitmap with inSampleSize set
-	    options.inJustDecodeBounds = false;
-	    return BitmapFactory.decodeResource(res, resId, options);
+		    // Decode bitmap with inSampleSize set
+		    options.inJustDecodeBounds = false;
+	    
+		    // according to http://stackoverflow.com/questions/2503628/bitmapfactory-decodestream-returning-null-when-options-are-set/2505357#2505357
+		    is.close();
+		    is = null;
+		    decodeStream = HttpClientHelper.retrieveImage(strUrl); 
+		    Bitmap scaleBitmap =  BitmapFactory.decodeStream(decodeStream, null, options);
+		    return scaleBitmap;
+	    } catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+	    	if (decodeStream != null) {
+	    		try {
+	    			decodeStream.close();
+	    		} catch (IOException ex) {
+	    			ex.printStackTrace();
+	    		}
+	    	}
+	    	
+	    	try {
+ 	    	  if (is != null) {
+	    		  is.close();
+	    	  }
+	    	} catch (IOException ex) {
+	    		ex.printStackTrace();
+	    	}
+	    }
+	    return null;
 	}
-
 	
-	public static Bitmap decodeSampledBitmapFromStream(InputStream stream,
+	public static Bitmap decodeSampledBitmapFromByteArray(String strUrl,
 	        int reqWidth, int reqHeight) {
 
 	    // First decode with inJustDecodeBounds=true to check dimensions
-	    final BitmapFactory.Options options = new BitmapFactory.Options();
-	    options.inJustDecodeBounds = true;
-	    BitmapFactory.decodeStream(stream, null, options);
+	    InputStream is = null;
+	    
+	    try  {
+		    // First decode with inJustDecodeBounds=true to check dimensions
+	    	final BitmapFactory.Options options = new BitmapFactory.Options();
+		    options.inJustDecodeBounds = true;
+		    
+		    is = HttpClientHelper.retrieveImage(strUrl);
+		    
+		    byte[] buf = new byte[1024];
+		    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		    int byteRead = 0;
 
-	    // Calculate inSampleSize
-	    options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
+		    byteRead = is.read(buf, 0, 1024);
+		    while (byteRead != -1) {
+		    	baos.write(buf, 0, byteRead);
+			    byteRead = is.read(buf, 0, 1024);
+		    }
 
-	    // Decode bitmap with inSampleSize set
-	    options.inJustDecodeBounds = false;
-	    return BitmapFactory.decodeStream(stream, null, options);
+		    is.close();
+		    is = null;
+		    
+		    byte[] data = new byte[baos.size()];
+		    byte[] data2 = new byte[baos.size()];
+		    
+		    System.arraycopy(baos.toByteArray(), 0, data, 0, data.length);
+		    System.arraycopy(data , 0, data2, 0, data2.length);
+
+		    BitmapFactory.decodeByteArray (data, 0, data.length, options);
+		    
+		    // Calculate inSampleSize
+		    options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
+
+		    // Decode bitmap with inSampleSize set
+		    options.inJustDecodeBounds = false;
+	    
+		    Bitmap scaleBitmap =  BitmapFactory.decodeByteArray(data2, 0, data2.length, options);
+		    return scaleBitmap;
+	    } catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+	    	try {
+ 	    	  if (is != null) {
+	    		  is.close();
+	    	  }
+	    	} catch (IOException ex) {
+	    		ex.printStackTrace();
+	    	}
+	    }
+	    return null;
 	}
 }

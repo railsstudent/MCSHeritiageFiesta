@@ -207,7 +207,6 @@ containing a value of this type.
         public static final int LinearLayout1=0x7f050009;
         public static final int RelativeLayout1=0x7f050006;
         public static final int ScrollLayout=0x7f050015;
-        public static final int action_settings=0x7f050023;
         public static final int btnSendMail=0x7f050012;
         public static final int btnTellAFriend=0x7f050013;
         public static final int hybrid=0x7f050004;
@@ -219,7 +218,7 @@ containing a value of this type.
         public static final int imgRefresh=0x7f05001c;
         public static final int imgShop=0x7f05001d;
         public static final int imgSplash=0x7f050007;
-        public static final int item_shop=0x7f050024;
+        public static final int item_shop=0x7f050023;
         public static final int mapView=0x7f05001b;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
@@ -254,9 +253,7 @@ containing a value of this type.
         public static final int product_row_layout=0x7f030008;
     }
     public static final class menu {
-        public static final int detail=0x7f090000;
-        public static final int main=0x7f090001;
-        public static final int menu_shop=0x7f090002;
+        public static final int menu_shop=0x7f090000;
     }
     public static final class string {
         public static final int action_settings=0x7f06001a;

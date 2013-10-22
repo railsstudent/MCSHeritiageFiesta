@@ -47,6 +47,7 @@
 
         <activity android:name="com.blueskyconnie.bluestonecrystal.MainActivity" >
         </activity>
-    </application>
-
+        <activity android:name="com.blueskyconnie.bluestonecrystal.DetailActivity" >
+        </activity>
+   </application>
 </manifest>

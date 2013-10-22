@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,7 +25,7 @@ import com.blueskyconnie.bluestonecrystal.data.Product;
 public class ProductFragment extends ListFragment {
 
 	private WeakReference<RetrieveProductTask> asyncTaskWeakRef;
-
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -48,24 +48,28 @@ public class ProductFragment extends ListFragment {
 		return rootView;
 	}
 	
+	private boolean hasClickedItem = false;
+	
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
-		Toast.makeText(getActivity(), "List item clicked", Toast.LENGTH_SHORT).show();
 		
-		// go to detail fragment
-		Product product = (Product) l.getItemAtPosition(position);
-		DetailFragment detailFragment = new DetailFragment();
-		Bundle bundle = new Bundle();
-	    bundle.putSerializable("currentProduct", product);
-	    detailFragment.setArguments(bundle);
-	    FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-	    // replace product fragment with detail fragment
-	    fragmentTransaction.replace(R.layout.fragment_product, detailFragment);
-	    fragmentTransaction.addToBackStack(null);
-	    fragmentTransaction.commit();
+		if (!hasClickedItem) {
+			// go to detail fragment
+			Product product = (Product) l.getItemAtPosition(position);
+		    Intent intent = new Intent(this.getActivity(), DetailActivity.class);
+		    intent.putExtra("currentProduct", product);
+		    hasClickedItem = true;
+		    this.startActivityForResult(intent, 1);
+		}
 	}
 	
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		hasClickedItem = false;
+	}
+
 	private void startNewAsyncTask() {
 		RetrieveProductTask asyncTask = new RetrieveProductTask(this);
 	    this.asyncTaskWeakRef = new WeakReference<RetrieveProductTask >(asyncTask);
@@ -101,11 +105,11 @@ public class ProductFragment extends ListFragment {
 				prod.setName("Super Very Long, Long, Long, Long, Long, Long Name " + i);
 				prod.setPrice(new BigDecimal(i + 0.25));
 				prod.setDescription("Description " + i);
-				prod.setImageUrl("");
+				prod.setImageUrl(i % 2 == 0 ? "http://192.168.1.138/bluestone/images/wish_bracelet.jpg" : 
+					"http://192.168.1.138/bluestone/images/necklace1.jpg");
 				if (prod.getImageUrl() != null && prod.getImageUrl().length() > 0) {
 					// get image stream
 					//HttpClient client = new DefaultHttpClient();
-					
 				}
 				lstProduct.add(prod);
 			}

@@ -59,7 +59,6 @@ public class MainActivity extends FragmentActivity implements
 		lstFragment.add(new FacebookFragment());
 		lstFragment.add(new StoreMapFragment());
 		lstFragment.add(new ContactFragment());
-		//lstFragment.add(new DetailFragment());
 		pageAdapter = new TabspagerAdapter(getSupportFragmentManager(), lstFragment);
 		viewPager.setAdapter(pageAdapter);
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -80,7 +79,7 @@ public class MainActivity extends FragmentActivity implements
 
 			@Override
 			public void onPageSelected(int position) {
-					actionBar.setSelectedNavigationItem(position);
+				actionBar.setSelectedNavigationItem(position);
 			}
 			
 		});
