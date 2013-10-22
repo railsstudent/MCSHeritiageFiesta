@@ -6,6 +6,9 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.List;
+
+import com.blueskyconnie.bluestonecrystal.data.Product;
 
 public final class HttpClientHelper {
 
@@ -39,8 +42,8 @@ public final class HttpClientHelper {
 		 return null;
 	}
 	
-//	public static String retrieveProductXml(String url) {
-//		
+	public List<Product> retrieveProducts(String url) {
+		
 //		HttpClient client = new DefaultHttpClient();
 //		HttpGet getMethod = new HttpGet(url);
 //		InputStream is = null;
@@ -80,6 +83,7 @@ public final class HttpClientHelper {
 //	    	}
 //	    }  
 //		return data;
-//	}
+		return null;
+	}
 	
 }

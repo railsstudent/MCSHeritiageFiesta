@@ -87,6 +87,9 @@ public final class ImageDecodeHelper {
 		    options.inJustDecodeBounds = true;
 		    
 		    is = HttpClientHelper.retrieveImage(strUrl);
+		    if (is == null) {
+		    	return null;
+		    }
 		    
 		    byte[] buf = new byte[1024];
 		    ByteArrayOutputStream baos = new ByteArrayOutputStream();

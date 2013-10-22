@@ -104,7 +104,7 @@ public class ProductFragment extends ListFragment {
 				prod.setName("Super Very Long, Long, Long, Long, Long, Long Name " + i);
 				prod.setPrice(new BigDecimal(i + 0.25));
 				prod.setDescription("Description " + i);
-				prod.setImageUrl("http://www.blueskyconnie.com/bluestone/images/necklace1.jpg");
+				prod.setImageUrl("http://103.11.100.49/~connie/bluestone/images/necklace1.jpg");
 				if (prod.getImageUrl() != null && prod.getImageUrl().length() > 0) {
 					// get image stream
 					//HttpClient client = new DefaultHttpClient();
