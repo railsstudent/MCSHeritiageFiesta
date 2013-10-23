@@ -21,12 +21,15 @@ import com.blueskyconnie.bluestonecrystal.helper.HttpClientHelper;
 
 public class ProductFragment extends ListFragment {
 
+	private ProgressDialog dialog;
 	private WeakReference<RetrieveProductTask> asyncTaskWeakRef;
+	private boolean hasClickedItem = false;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setRetainInstance(true);
+		dialog = new ProgressDialog(ProductFragment.this.getActivity()); 
 	    startNewAsyncTask();
 	}
 	
@@ -45,8 +48,26 @@ public class ProductFragment extends ListFragment {
 		return rootView;
 	}
 	
-	private boolean hasClickedItem = false;
-	
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		if (dialog != null) {
+			if (dialog.isShowing()) {
+				dialog.cancel();
+			}
+		}
+	}
+
+	@Override
+	public void onStop() {
+		super.onStop();
+		if (dialog != null) {
+			if (dialog.isShowing()) {
+				dialog.cancel();
+			}
+		}
+	}
+
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
@@ -75,7 +96,6 @@ public class ProductFragment extends ListFragment {
 	
 	private class RetrieveProductTask extends AsyncTask<String,Void, List<Product>> {
 
-		private final ProgressDialog dialog = new ProgressDialog(ProductFragment.this.getActivity()); 
 		private WeakReference<ProductFragment> fragmentWeakRef;
 
         private RetrieveProductTask (ProductFragment fragment) {
@@ -85,8 +105,10 @@ public class ProductFragment extends ListFragment {
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
-			dialog.setMessage(ProductFragment.this.getString(R.string.dowloading));
-			dialog.show();
+			if (dialog != null) {
+				dialog.setMessage(ProductFragment.this.getString(R.string.dowloading));
+				dialog.show();
+			}
 		}
 
 		@Override
@@ -99,14 +121,12 @@ public class ProductFragment extends ListFragment {
 		protected void onPostExecute(List<Product> lstProducts) {
 			super.onPostExecute(lstProducts);
 			if (this.fragmentWeakRef.get() != null) {
-//				ProductAdapter adapter = new ProductAdapter(ProductFragment.this.getActivity(),
-//						R.layout.product_row_layout, lstProducts);
-				//ProductFragment.this.setListAdapter(adapter);
-				//Toast.makeText(ProductFragment.this.getActivity(), "onPostExecute", Toast.LENGTH_SHORT).show();
 				ProductAdapter adapter = new ProductAdapter(fragmentWeakRef.get().getActivity(),
 						R.layout.product_row_layout, lstProducts);
 				fragmentWeakRef.get().setListAdapter(adapter);
-				dialog.dismiss();
+				if (dialog != null) {
+					dialog.dismiss();
+				}
 			}
 		}
 	}

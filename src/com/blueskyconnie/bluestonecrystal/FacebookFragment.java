@@ -1,6 +1,7 @@
 package com.blueskyconnie.bluestonecrystal;
 
 import android.annotation.SuppressLint;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.KeyEvent;
@@ -17,6 +18,12 @@ import android.widget.Toast;
 public class FacebookFragment extends Fragment implements OnKeyListener {
 
 	private WebView webView;
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setRetainInstance(true);
+	}
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,11 +53,17 @@ public class FacebookFragment extends Fragment implements OnKeyListener {
 			}
 		});
 		webView.setOnKeyListener(this);
-		
-		webView.loadUrl(this.getString(R.string.facebook_url));
 		return rootView;
 	}
-	
+
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+		if (webView != null) {
+			webView.loadUrl(getString(R.string.facebook_url));
+		}
+	}
+
 	@Override
 	public boolean onKey(View view, int keyCode, KeyEvent event) {
 		if (event.getAction() == KeyEvent.ACTION_DOWN) {
@@ -61,5 +74,21 @@ public class FacebookFragment extends Fragment implements OnKeyListener {
 			}
 		}
 		return false;
+	}
+
+	@Override
+	public void onPause() {
+		super.onPause();
+		if (webView != null) {
+			webView.onPause();
+		}
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		if (webView != null) {
+			webView.onResume();
+		}
 	}
 }

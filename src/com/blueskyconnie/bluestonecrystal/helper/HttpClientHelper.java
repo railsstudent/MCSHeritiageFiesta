@@ -14,9 +14,6 @@ import com.blueskyconnie.bluestonecrystal.data.Product;
 
 public final class HttpClientHelper {
 
-	private static final int THUMBNAIL_WIDTH = 50;
-	private static final int THUMBNAIL_HEIGHT = 50;
-
 	public static InputStream retrieveImage(String strUrl) {
 		
 		if (strUrl == null || strUrl.length() == 0) {
@@ -87,18 +84,22 @@ public final class HttpClientHelper {
 //	    	}
 //	    }  
 //		return data;
+		
+		StringBuffer sb = new StringBuffer();
+		
+		
 		List<Product> lstProduct = new ArrayList<Product>();
-		for (int i = 0; i < 50; i++) {
+		for (int i = 0; i < 1000; i++) {
 			Product prod = new Product();
 			prod.setId(i);
 			prod.setName("Super Very Long, Long, Long, Long, Long, Long Name " + i);
 			prod.setPrice(new BigDecimal(i + 0.25));
 			prod.setDescription("Description " + i);
 			prod.setImageUrl("http://103.11.100.49/~connie/bluestone/images/necklace1.jpg");
-			if (prod.getImageUrl() != null && prod.getImageUrl().length() > 0) {
-				prod.setImage(ImageDecodeHelper.decodeSampledBitmapFromByteArray(prod.getImageUrl(), 
-						THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT));
-			}
+//			if (prod.getImageUrl() != null && prod.getImageUrl().length() > 0) {
+//				prod.setImage(ImageDecodeHelper.decodeSampledBitmapFromByteArray(prod.getImageUrl(), 
+//						THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT));
+//			}
 			lstProduct.add(prod);
 		}
 		return lstProduct;

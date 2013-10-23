@@ -19,23 +19,45 @@ public class DetailActivity extends Activity {
 	private static final int REQ_WIDTH = 320;
 	private static final int REQ_HEIGHT = 320;
 
+	private ProgressDialog dialog; 
 	private WeakReference<DownloadImageTask> asyncTaskWeakRef;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.fragment_detail);
-		
 		if (getIntent() != null)  {
-//			Product product = (Product) getIntent().getSerializableExtra("currentProduct");
 			Product product = (Product) getIntent().getParcelableExtra("currentProduct");
 			if (product != null) { 
 				// retrieve image
 				startNewAsyncTask(product);
 			}
 		}
+		dialog = new ProgressDialog(this);
 	}
 	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		// http://stackoverflow.com/questions/3378102/error-view-not-attached-to-window-manager/11448457#11448457
+		if (dialog != null) {
+			if (dialog.isShowing()) {
+				dialog.cancel();
+			}
+		}
+	}
+
+	@Override
+	protected void onStop() {
+		super.onStop();
+		// http://stackoverflow.com/questions/3378102/error-view-not-attached-to-window-manager/11448457#11448457
+		if (dialog != null) {
+			if (dialog.isShowing()) {
+				dialog.cancel();
+			}
+		}
+	}
+
 	@Override
 	public void onBackPressed() {
 		super.onBackPressed();
@@ -52,7 +74,6 @@ public class DetailActivity extends Activity {
 
 	private class DownloadImageTask extends AsyncTask<String, Void, Product> {
 
-		private final ProgressDialog dialog = new ProgressDialog(DetailActivity.this); 
 		private WeakReference<DetailActivity> fragmentWeakRef;
 		
 		private DownloadImageTask (DetailActivity fragment) {
@@ -62,8 +83,10 @@ public class DetailActivity extends Activity {
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
-			dialog.setMessage(DetailActivity.this.getString(R.string.dowloading));
-			dialog.show();
+			if (dialog != null) {
+				dialog.setMessage(DetailActivity.this.getString(R.string.dowloading));
+				dialog.show();
+			}
 		}
 
 		@Override
@@ -75,7 +98,6 @@ public class DetailActivity extends Activity {
 			product.setPrice(new BigDecimal(params[3]));
 			product.setImageUrl(params[0]);
 
-//			Bitmap bitmapProduct = ImageDecodeHelper.decodeSampledBitmapFromStream(params[0], REQ_WIDTH, REQ_HEIGHT);
 			Bitmap bitmapProduct = ImageDecodeHelper.decodeSampledBitmapFromByteArray(params[0], REQ_WIDTH, REQ_HEIGHT);
 			if (bitmapProduct != null) {
 				product.setImage(bitmapProduct);
@@ -102,7 +124,9 @@ public class DetailActivity extends Activity {
 					ImageView imgView = (ImageView) fragmentWeakRef.get().findViewById(R.id.imgItem);
 					imgView.setImageBitmap(result.getImage());
 				}
-				dialog.dismiss();
+				if (dialog != null) {
+					dialog.dismiss();
+				}
 			}
 		}
 	}
