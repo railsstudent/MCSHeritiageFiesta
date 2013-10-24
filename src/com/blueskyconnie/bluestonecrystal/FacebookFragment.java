@@ -1,7 +1,6 @@
 package com.blueskyconnie.bluestonecrystal;
 
 import android.annotation.SuppressLint;
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.KeyEvent;
@@ -13,6 +12,8 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
+
+import com.blueskyconnie.bluestonecrystal.helper.ConnectionDetector;
 
 @SuppressLint("SetJavaScriptEnabled")
 public class FacebookFragment extends Fragment implements OnKeyListener {
@@ -57,13 +58,29 @@ public class FacebookFragment extends Fragment implements OnKeyListener {
 	}
 
 	@Override
-	public void onActivityCreated(Bundle savedInstanceState) {
-		super.onActivityCreated(savedInstanceState);
-		if (webView != null) {
-			webView.loadUrl(getString(R.string.facebook_url));
-		}
+	public void onResume() {
+		super.onResume();
+		Toast.makeText(getActivity(), "FacebookFragment OnResume", Toast.LENGTH_SHORT).show();
+		ConnectionDetector detector = new ConnectionDetector(getActivity());
+		if (detector.isConnectingToInternet()) {
+			if (webView != null) {
+				webView.loadUrl(getString(R.string.facebook_url));
+			}		
+		} //else {
+//			AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+//			builder.setTitle(getString(R.string.info_title));
+//			builder.setIcon(android.R.drawable.ic_dialog_alert);
+//			builder.setMessage(getString(R.string.no_internect_error));
+//			builder.setNeutralButton(getString(R.string.confirm_exit), new DialogInterface.OnClickListener() {
+//				@Override
+//				public void onClick(DialogInterface dialog, int which) {
+//				}
+//			});
+//			AlertDialog alertDialog = builder.create();
+//			alertDialog.show();
+//		}
 	}
-
+	
 	@Override
 	public boolean onKey(View view, int keyCode, KeyEvent event) {
 		if (event.getAction() == KeyEvent.ACTION_DOWN) {
@@ -80,15 +97,17 @@ public class FacebookFragment extends Fragment implements OnKeyListener {
 	public void onPause() {
 		super.onPause();
 		if (webView != null) {
+			Toast.makeText(getActivity(), "FaceFragment onpause", Toast.LENGTH_SHORT).show();
 			webView.onPause();
 		}
 	}
 
 	@Override
-	public void onResume() {
-		super.onResume();
-		if (webView != null) {
-			webView.onResume();
-		}
+	public void onStop() {
+		super.onStop();
+		Toast.makeText(getActivity(), "FaceFragment OnStop", Toast.LENGTH_SHORT).show();
 	}
+	
+	
+	
 }

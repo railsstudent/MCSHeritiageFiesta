@@ -287,6 +287,7 @@ containing a value of this type.
         public static final int cancel_exit=0x7f060034;
         public static final int choose_email_app=0x7f06002c;
         public static final int choose_share_app=0x7f06002b;
+        public static final int cms_url=0x7f06003b;
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
         will direct user to application settings of Google Play services where they
         can enable it [CHAR LIMIT=40] 
@@ -355,16 +356,19 @@ containing a value of this type.
          */
         public static final int common_signin_button_text_long=0x7f060012;
         public static final int confirm_exit=0x7f060033;
-        public static final int dowloading=0x7f060037;
+        public static final int dowloading=0x7f060038;
         public static final int email=0x7f060027;
         public static final int email_app_not_installed=0x7f06002e;
         public static final int email_subject=0x7f06002f;
         public static final int email_text=0x7f060031;
         public static final int facebook_url=0x7f060020;
+        public static final int info_title=0x7f06003a;
         public static final int map_shop_address=0x7f060023;
         public static final int map_shop_building=0x7f060022;
         public static final int map_shop_title=0x7f060021;
+        public static final int no_accessories=0x7f060037;
         public static final int no_data=0x7f060036;
+        public static final int no_internet_error=0x7f060039;
         public static final int send_email=0x7f060029;
         public static final int share_app_not_installed=0x7f06002d;
         public static final int share_subject=0x7f060030;

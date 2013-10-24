@@ -4,7 +4,9 @@ import java.lang.ref.WeakReference;
 import java.math.BigDecimal;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -12,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.blueskyconnie.bluestonecrystal.data.Product;
+import com.blueskyconnie.bluestonecrystal.helper.ConnectionDetector;
 import com.blueskyconnie.bluestonecrystal.helper.ImageDecodeHelper;
 
 public class DetailActivity extends Activity {
@@ -26,14 +29,29 @@ public class DetailActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.fragment_detail);
+		dialog = new ProgressDialog(this);
 		if (getIntent() != null)  {
 			Product product = (Product) getIntent().getParcelableExtra("currentProduct");
 			if (product != null) { 
-				// retrieve image
-				startNewAsyncTask(product);
+				ConnectionDetector detector = new ConnectionDetector(this);
+				if (detector.isConnectingToInternet()) {
+					// retrieve image
+					startNewAsyncTask(product);
+				} else {
+					AlertDialog.Builder builder = new AlertDialog.Builder(this);
+					builder.setTitle(getString(R.string.info_title));
+					builder.setIcon(android.R.drawable.ic_dialog_alert);
+					builder.setMessage(getString(R.string.no_internet_error));
+					builder.setNeutralButton(getString(R.string.confirm_exit), new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+						}
+					});
+					AlertDialog alertDialog = builder.create();
+					alertDialog.show();
+				}
 			}
 		}
-		dialog = new ProgressDialog(this);
 	}
 	
 	@Override
@@ -83,6 +101,13 @@ public class DetailActivity extends Activity {
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
+			if (fragmentWeakRef.get() != null) {
+				TextView tv = (TextView) fragmentWeakRef.get().findViewById(R.id.imgItem);
+				if (tv != null) {
+					tv.setVisibility(TextView.GONE);
+				}
+			}
+			
 			if (dialog != null) {
 				dialog.setMessage(DetailActivity.this.getString(R.string.dowloading));
 				dialog.show();
@@ -123,6 +148,7 @@ public class DetailActivity extends Activity {
 				if (result.getImage() != null) {
 					ImageView imgView = (ImageView) fragmentWeakRef.get().findViewById(R.id.imgItem);
 					imgView.setImageBitmap(result.getImage());
+					imgView.setVisibility(TextView.VISIBLE);
 				}
 				if (dialog != null) {
 					dialog.dismiss();
