@@ -60,25 +60,12 @@ public class FacebookFragment extends Fragment implements OnKeyListener {
 	@Override
 	public void onResume() {
 		super.onResume();
-		Toast.makeText(getActivity(), "FacebookFragment OnResume", Toast.LENGTH_SHORT).show();
 		ConnectionDetector detector = new ConnectionDetector(getActivity());
 		if (detector.isConnectingToInternet()) {
 			if (webView != null) {
 				webView.loadUrl(getString(R.string.facebook_url));
 			}		
-		} //else {
-//			AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-//			builder.setTitle(getString(R.string.info_title));
-//			builder.setIcon(android.R.drawable.ic_dialog_alert);
-//			builder.setMessage(getString(R.string.no_internect_error));
-//			builder.setNeutralButton(getString(R.string.confirm_exit), new DialogInterface.OnClickListener() {
-//				@Override
-//				public void onClick(DialogInterface dialog, int which) {
-//				}
-//			});
-//			AlertDialog alertDialog = builder.create();
-//			alertDialog.show();
-//		}
+		} 
 	}
 	
 	@Override
@@ -97,17 +84,7 @@ public class FacebookFragment extends Fragment implements OnKeyListener {
 	public void onPause() {
 		super.onPause();
 		if (webView != null) {
-			Toast.makeText(getActivity(), "FaceFragment onpause", Toast.LENGTH_SHORT).show();
 			webView.onPause();
 		}
 	}
-
-	@Override
-	public void onStop() {
-		super.onStop();
-		Toast.makeText(getActivity(), "FaceFragment OnStop", Toast.LENGTH_SHORT).show();
-	}
-	
-	
-	
 }

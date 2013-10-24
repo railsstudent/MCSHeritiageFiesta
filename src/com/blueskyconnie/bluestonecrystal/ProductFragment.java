@@ -16,7 +16,6 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.blueskyconnie.bluestonecrystal.adapter.ProductAdapter;
 import com.blueskyconnie.bluestonecrystal.data.Product;
@@ -59,7 +58,6 @@ public class ProductFragment extends ListFragment {
 	@Override
 	public void onResume() {
 		super.onResume();
-		Toast.makeText(getActivity(), "ProductFragment OnResume", Toast.LENGTH_SHORT).show();
 		ConnectionDetector detector = new ConnectionDetector(getActivity());
 		if (detector.isConnectingToInternet()) {
 			startNewAsyncTask();
