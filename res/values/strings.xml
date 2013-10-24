@@ -35,5 +35,5 @@
     <string name="dowloading">下載進行中&#8230;</string>
     <string name="no_internet_error">互聯網網路連接失敗。</string>
     <string name="info_title">資訊</string>
-    <string name="cms_url">http://localhost/bluestone/</string>
+    <string name="cms_url">http://192.168.1.138/bluestone/</string>
 </resources>

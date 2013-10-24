@@ -1,7 +1,6 @@
 package com.blueskyconnie.bluestonecrystal;
 
 import java.lang.ref.WeakReference;
-import java.math.BigDecimal;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -83,28 +82,29 @@ public class DetailActivity extends Activity {
 	}
 
 	private void startNewAsyncTask(Product product) {
-		DownloadImageTask asyncTask = new DownloadImageTask(this);
+		DownloadImageTask asyncTask = new DownloadImageTask(this, product);
 	    this.asyncTaskWeakRef = new WeakReference<DownloadImageTask >(asyncTask);
 	    // image url
-	    asyncTaskWeakRef.get().execute(product.getImageUrl(), product.getName(), 
-	    		product.getDescription(), product.getPrice().toPlainString());
+	    asyncTaskWeakRef.get().execute();
 	}
 
 	private class DownloadImageTask extends AsyncTask<String, Void, Product> {
 
 		private WeakReference<DetailActivity> fragmentWeakRef;
+		private Product product;
 		
-		private DownloadImageTask (DetailActivity fragment) {
+		private DownloadImageTask (DetailActivity fragment, Product product) {
             this.fragmentWeakRef = new WeakReference<DetailActivity>(fragment);
+            this.product = product;
         }
 		
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
 			if (fragmentWeakRef.get() != null) {
-				TextView tv = (TextView) fragmentWeakRef.get().findViewById(R.id.imgItem);
-				if (tv != null) {
-					tv.setVisibility(TextView.GONE);
+				ImageView imgView = (ImageView) fragmentWeakRef.get().findViewById(R.id.imgItem);
+				if (imgView != null) {
+					imgView.setVisibility(ImageView.GONE);
 				}
 			}
 			
@@ -118,12 +118,12 @@ public class DetailActivity extends Activity {
 		protected Product doInBackground(String... params) {
 
 			Product product = new Product();
-			product.setName(params[1]);
-			product.setDescription(params[2]);
-			product.setPrice(new BigDecimal(params[3]));
-			product.setImageUrl(params[0]);
+			product.setName(this.product.getName());
+			product.setDescription(this.product.getDescription());
+			product.setPrice(this.product.getPrice());
+			product.setImageUrl(this.product.getImageUrl());
 
-			Bitmap bitmapProduct = ImageDecodeHelper.decodeSampledBitmapFromByteArray(params[0], REQ_WIDTH, REQ_HEIGHT);
+			Bitmap bitmapProduct = ImageDecodeHelper.decodeSampledBitmapFromByteArray(product.getImageUrl(), REQ_WIDTH, REQ_HEIGHT);
 			if (bitmapProduct != null) {
 				product.setImage(bitmapProduct);
 			} else {
@@ -145,11 +145,11 @@ public class DetailActivity extends Activity {
 				TextView tvItemPrice = (TextView) fragmentWeakRef.get().findViewById(R.id.tvItemPrice);
 				tvItemPrice.setText(result.getPrice().toPlainString());
 				
+				ImageView imgView = (ImageView) fragmentWeakRef.get().findViewById(R.id.imgItem);
 				if (result.getImage() != null) {
-					ImageView imgView = (ImageView) fragmentWeakRef.get().findViewById(R.id.imgItem);
 					imgView.setImageBitmap(result.getImage());
-					imgView.setVisibility(TextView.VISIBLE);
-				}
+				} 
+				imgView.setVisibility(ImageView.VISIBLE);
 				if (dialog != null) {
 					dialog.dismiss();
 				}

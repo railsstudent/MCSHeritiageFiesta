@@ -1,6 +1,7 @@
 package com.blueskyconnie.bluestonecrystal;
 
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 import java.util.List;
 
 import android.app.AlertDialog;
@@ -16,9 +17,11 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.blueskyconnie.bluestonecrystal.adapter.ProductAdapter;
 import com.blueskyconnie.bluestonecrystal.data.Product;
+import com.blueskyconnie.bluestonecrystal.exception.BusinessException;
 import com.blueskyconnie.bluestonecrystal.helper.ConnectionDetector;
 import com.blueskyconnie.bluestonecrystal.helper.HttpClientHelper;
 
@@ -27,12 +30,15 @@ public class ProductFragment extends ListFragment {
 	private ProgressDialog dialog;
 	private WeakReference<RetrieveProductTask> asyncTaskWeakRef;
 	private boolean hasClickedItem = false;
-	
+	private String cmsUrl;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setRetainInstance(true);
 		dialog = new ProgressDialog(ProductFragment.this.getActivity()); 
+		cmsUrl = getString(R.string.cms_url);
+		Toast.makeText(getActivity(), cmsUrl, Toast.LENGTH_SHORT).show();
 	}
 	
 	@Override
@@ -58,6 +64,7 @@ public class ProductFragment extends ListFragment {
 	@Override
 	public void onResume() {
 		super.onResume();
+		Toast.makeText(getActivity(), "Product: onResume", Toast.LENGTH_SHORT).show();
 		ConnectionDetector detector = new ConnectionDetector(getActivity());
 		if (detector.isConnectingToInternet()) {
 			startNewAsyncTask();
@@ -96,7 +103,7 @@ public class ProductFragment extends ListFragment {
 		    Intent intent = new Intent(this.getActivity(), DetailActivity.class);
 		    intent.putExtra("currentProduct", product);
 		    hasClickedItem = true;
-		    this.startActivityForResult(intent, 1);
+		    startActivityForResult(intent, 1);
 		}
 	}
 	
@@ -109,7 +116,8 @@ public class ProductFragment extends ListFragment {
 	private void startNewAsyncTask() {
 		RetrieveProductTask asyncTask = new RetrieveProductTask(this);
 	    this.asyncTaskWeakRef = new WeakReference<RetrieveProductTask >(asyncTask);
-	    asyncTaskWeakRef.get().execute("");
+	    Toast.makeText(getActivity(), cmsUrl + "products_android.php?id=1", Toast.LENGTH_SHORT).show();
+	    asyncTaskWeakRef.get().execute(cmsUrl + "products_android.php?id=1");
 	}
 	
 	private void showNoInternetDialog() {
@@ -142,12 +150,18 @@ public class ProductFragment extends ListFragment {
 				dialog.setMessage(ProductFragment.this.getString(R.string.dowloading));
 				dialog.show();
 			}
+			Toast.makeText(ProductFragment.this.getActivity(), "onPreExecute", Toast.LENGTH_SHORT).show();
 		}
 
 		@Override
 		protected List<Product> doInBackground(String... params) {
-			List<Product> lstProduct = HttpClientHelper.retrieveProducts(params[0]);
-			return lstProduct;
+			try {
+				List<Product> lstProduct = HttpClientHelper.retrieveProducts(params[0], cmsUrl);
+				return lstProduct;
+			} catch (BusinessException ex) {
+				ex.printStackTrace();
+			}
+			return new ArrayList<Product>();
 		}
 		
 		@Override
@@ -157,10 +171,14 @@ public class ProductFragment extends ListFragment {
 				ProductAdapter adapter = new ProductAdapter(fragmentWeakRef.get().getActivity(),
 						R.layout.product_row_layout, lstProducts);
 				fragmentWeakRef.get().setListAdapter(adapter);
+				// update list adapter
+				Toast.makeText(ProductFragment.this.getActivity(), "onPostExecute if - " + lstProducts.size(),
+						Toast.LENGTH_SHORT).show();
 				if (dialog != null) {
 					dialog.dismiss();
 				}
 			}
+			Toast.makeText(ProductFragment.this.getActivity(), "onPostExecute", Toast.LENGTH_SHORT).show();
 		}
 	}
 	

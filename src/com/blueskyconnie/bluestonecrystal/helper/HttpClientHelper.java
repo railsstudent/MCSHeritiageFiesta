@@ -21,6 +21,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import com.blueskyconnie.bluestonecrystal.data.Product;
+import com.blueskyconnie.bluestonecrystal.exception.BusinessException;
 
 public final class HttpClientHelper {
 
@@ -53,8 +54,9 @@ public final class HttpClientHelper {
 		 return null;
 	}
 	
-	public static List<Product> retrieveProducts(String strUrl) {
-		
+	public static List<Product> retrieveProducts(String strUrl, String cms_url) 
+		throws BusinessException {
+
 		if (strUrl == null || strUrl.length() == 0) {
 			return new ArrayList<Product>();
 		}
@@ -83,19 +85,29 @@ public final class HttpClientHelper {
 							NamedNodeMap attrs = node.getAttributes();
 
 							Node attrNode = attrs.getNamedItem("name");
-							prod.setName(attrNode.getTextContent());
+							if (attrNode != null) {
+								prod.setName(attrNode.getTextContent());
+							}
 							
 							attrNode = attrs.getNamedItem("description");
-							prod.setDescription(attrNode.getTextContent());
+							if (attrNode != null) {
+								prod.setDescription(attrNode.getTextContent());
+							}
 							
 							attrNode = attrs.getNamedItem("price");
-							prod.setPrice(new BigDecimal(attrNode.getTextContent()));
-
+							if (attrNode != null) {
+								prod.setPrice(new BigDecimal(attrNode.getTextContent()));
+							}
+							
 							attrNode = attrs.getNamedItem("id");
-							prod.setId(Integer.valueOf(attrNode.getTextContent()));
+							if (attrNode != null) {
+								prod.setId(Integer.valueOf(attrNode.getTextContent()));
+							}
 
 							attrNode = attrs.getNamedItem("url");
-							prod.setImageUrl(attrNode.getTextContent());
+							if (attrNode != null) {
+								prod.setImageUrl(cms_url + attrNode.getTextContent());
+							}
 							lstProduct.add(prod);
 						}
 					}
@@ -104,6 +116,7 @@ public final class HttpClientHelper {
 			  } 
 		 } catch (IOException ex){
 			 ex.printStackTrace();
+			 throw new BusinessException(ex.getMessage(), ex);
 		 } catch (ParserConfigurationException e) {
 			e.printStackTrace();
 		 } catch (SAXException e) {
