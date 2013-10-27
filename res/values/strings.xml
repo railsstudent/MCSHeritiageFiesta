@@ -36,4 +36,5 @@
     <string name="no_internet_error">互聯網網路連接失敗。</string>
     <string name="info_title">資訊</string>
     <string name="cms_url">http://192.168.1.138/bluestone/</string>
+    <string name="last_update_time">更新時間：</string>
 </resources>

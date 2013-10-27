@@ -20,16 +20,16 @@
        android:paddingBottom="10dp" >
        <ImageView
            android:id="@+id/imgAddress"
-           android:layout_width="wrap_content"
+           android:layout_width="0dp"
            android:layout_height="wrap_content"
+           android:layout_weight="1"
            android:src="@drawable/img_globe" />
 
        <TextView
            android:id="@+id/tvAddress"
            android:layout_width="0dp"
            android:layout_height="wrap_content"
-           android:layout_marginLeft="3dp"
-           android:layout_weight="1"
+           android:layout_weight="5"
            android:text="@string/shop_address"
            android:textAppearance="?android:attr/textAppearanceLarge"
            android:textColor="@color/blue" />
@@ -44,16 +44,16 @@
 
         <ImageView
             android:id="@+id/imgEmail"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:src="@drawable/img_email" />
 
         <TextView
             android:id="@+id/tvEmail"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="3dp"
-            android:layout_weight="3"
+            android:layout_weight="5"
             android:text="@string/shop_email"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/blue" />

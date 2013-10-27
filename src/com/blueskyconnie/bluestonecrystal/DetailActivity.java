@@ -43,8 +43,7 @@ public class DetailActivity extends Activity {
 					builder.setMessage(getString(R.string.no_internet_error));
 					builder.setNeutralButton(getString(R.string.confirm_exit), new DialogInterface.OnClickListener() {
 						@Override
-						public void onClick(DialogInterface dialog, int which) {
-						}
+						public void onClick(DialogInterface dialog, int which) {}
 					});
 					AlertDialog alertDialog = builder.create();
 					alertDialog.show();
@@ -123,7 +122,8 @@ public class DetailActivity extends Activity {
 			product.setPrice(this.product.getPrice());
 			product.setImageUrl(this.product.getImageUrl());
 
-			Bitmap bitmapProduct = ImageDecodeHelper.decodeSampledBitmapFromByteArray(product.getImageUrl(), REQ_WIDTH, REQ_HEIGHT);
+			Bitmap bitmapProduct = ImageDecodeHelper.decodeSampledBitmapFromByteArray(
+					product.getImageUrl(), REQ_WIDTH, REQ_HEIGHT);
 			if (bitmapProduct != null) {
 				product.setImage(bitmapProduct);
 			} else {

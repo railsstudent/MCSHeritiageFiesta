@@ -17,6 +17,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.Window;
+import android.widget.Toast;
 
 import com.blueskyconnie.bluestonecrystal.adapter.TabspagerAdapter;
 
@@ -42,6 +43,7 @@ public class MainActivity extends FragmentActivity implements
 	private ViewPager viewPager;
 	private TabspagerAdapter pageAdapter;
 	private List<Fragment> lstFragment = new ArrayList<Fragment>();
+	private int currentPosition;
 
 	@Override
 	protected void onCreate(Bundle savedBundle) {
@@ -80,6 +82,9 @@ public class MainActivity extends FragmentActivity implements
 			@Override
 			public void onPageSelected(int position) {
 				actionBar.setSelectedNavigationItem(position);
+//			    Toast.makeText(MainActivity.this, "onPageSelected, old position = " + currentPosition, Toast.LENGTH_LONG).show();
+//				Toast.makeText(MainActivity.this, "onPageSelected, new position = " + position, Toast.LENGTH_LONG).show();
+//				currentPosition = position;
 			}
 			
 		});
@@ -107,13 +112,17 @@ public class MainActivity extends FragmentActivity implements
 	@Override
 	public void onTabSelected(Tab tab, FragmentTransaction ft) {
 		// on tab selected
-        // show respected fragment view
+        // show selected fragment view
 		viewPager.setCurrentItem(tab.getPosition());
+		// http://stackoverflow.com/questions/10853611/viewpager-with-fragments-onpause-onresume
+	    Toast.makeText(MainActivity.this, "OnTabSelected, old position = " + currentPosition, Toast.LENGTH_LONG).show();
+		Toast.makeText(MainActivity.this, "OnTabSelected, new position = " + tab.getPosition(), Toast.LENGTH_LONG).show();
+		currentPosition = tab.getPosition();
 	}
 
 	@Override
 	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
-	}
+	} 
 
 	@Override
 	protected void onPause() {
