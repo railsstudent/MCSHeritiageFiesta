@@ -14,10 +14,10 @@ import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.Window;
-import android.widget.Toast;
 
 import com.blueskyconnie.bluestonecrystal.adapter.TabspagerAdapter;
 
@@ -28,14 +28,14 @@ public class MainActivity extends FragmentActivity implements
 	/**
 	 * 
 	 */
-	private static final int[] TAB_NAMES = { R.string.tab_product, R.string.tab_facebook
-		, R.string.tab_map, R.string.tab_contact };
+	private static final int[] TAB_NAMES = { R.string.tab_product, R.string.tab_news
+		, R.string.tab_facebook, R.string.tab_map, R.string.tab_contact };
 
-	private static final String[] TAB_TAGS = { "product_tag", "facebook_tag", 
+	private static final String[] TAB_TAGS = { "product_tag", "news_tag", "facebook_tag", 
 			"map_tag", "contact_tag" };
 	
-	private static final int[] TAB_ICONS = { -1, R.drawable.facebook_ic
-		, R.drawable.location_ic, R.drawable.contact_ic };
+	private static final int[] TAB_ICONS = { R.drawable.img_product, R.drawable.img_news
+		, R.drawable.facebook_ic, R.drawable.location_ic, R.drawable.contact_ic };
 
 	private static final String CURRENT_TAG_KEY = "current_tag";
 
@@ -58,6 +58,7 @@ public class MainActivity extends FragmentActivity implements
 		viewPager.setId(R.id.pager);
 		// initializs fragmentpageradapter
 		lstFragment.add(new ProductFragment());
+		lstFragment.add(new NewsFragment());
 		lstFragment.add(new FacebookFragment());
 		lstFragment.add(new StoreMapFragment());
 		lstFragment.add(new ContactFragment());
@@ -82,11 +83,16 @@ public class MainActivity extends FragmentActivity implements
 			@Override
 			public void onPageSelected(int position) {
 				actionBar.setSelectedNavigationItem(position);
-//			    Toast.makeText(MainActivity.this, "onPageSelected, old position = " + currentPosition, Toast.LENGTH_LONG).show();
-//				Toast.makeText(MainActivity.this, "onPageSelected, new position = " + position, Toast.LENGTH_LONG).show();
-//				currentPosition = position;
+				// http://stackoverflow.com/questions/10853611/viewpager-with-fragments-onpause-onresume
+				FragmentManager fragment_manager = MainActivity.this.getSupportFragmentManager();
+				Fragment new_fragment = MainActivity.this.getActiveFragment(fragment_manager, viewPager.getId(), position);
+				Fragment old_fragment = MainActivity.this.getActiveFragment(fragment_manager, viewPager.getId(), currentPosition);
+				old_fragment.setUserVisibleHint(false);
+				old_fragment.onPause();
+				new_fragment.setUserVisibleHint(true);
+				new_fragment.onResume();
+				currentPosition = position;
 			}
-			
 		});
 		
 		// add tabs
@@ -105,6 +111,10 @@ public class MainActivity extends FragmentActivity implements
 		}
 	}
 
+	private Fragment getActiveFragment(FragmentManager fragmentManager, int viewPagerId, int position) {
+		return fragmentManager.findFragmentByTag("android:switcher:" + viewPagerId + ":" + position);
+	}
+	
 	@Override
 	public void onTabReselected(Tab tab, FragmentTransaction ft) {
 	}
@@ -114,9 +124,6 @@ public class MainActivity extends FragmentActivity implements
 		// on tab selected
         // show selected fragment view
 		viewPager.setCurrentItem(tab.getPosition());
-		// http://stackoverflow.com/questions/10853611/viewpager-with-fragments-onpause-onresume
-	    Toast.makeText(MainActivity.this, "OnTabSelected, old position = " + currentPosition, Toast.LENGTH_LONG).show();
-		Toast.makeText(MainActivity.this, "OnTabSelected, new position = " + tab.getPosition(), Toast.LENGTH_LONG).show();
 		currentPosition = tab.getPosition();
 	}
 

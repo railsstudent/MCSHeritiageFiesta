@@ -50,5 +50,8 @@
         </activity>
         <activity android:name="com.blueskyconnie.bluestonecrystal.DetailActivity" >
         </activity>
-   </application>
+        <activity android:name="com.blueskyconnie.bluestonecrystal.NewsFragment" >
+        </activity>
+    </application>
+
 </manifest>

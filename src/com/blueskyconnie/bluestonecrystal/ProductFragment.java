@@ -9,7 +9,6 @@ import java.util.Locale;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -46,7 +45,6 @@ public class ProductFragment extends ListFragment {
 		setRetainInstance(true);
 		dialog = new ProgressDialog(ProductFragment.this.getActivity()); 
 		cmsUrl = getString(R.string.cms_url);
-		Toast.makeText(getActivity(), cmsUrl, Toast.LENGTH_SHORT).show();
 	}
 	
 	@Override
@@ -73,12 +71,22 @@ public class ProductFragment extends ListFragment {
 	@Override
 	public void onResume() {
 		super.onResume();
-		Toast.makeText(getActivity(), "Product: onResume", Toast.LENGTH_SHORT).show();
-		ConnectionDetector detector = new ConnectionDetector(getActivity());
-		if (detector.isConnectingToInternet()) {
-			startNewAsyncTask(tvUpdateTime);
-		} else {
-			showNoInternetDialog();
+		if (getUserVisibleHint()) {
+			Toast.makeText(getActivity(), "ProductFragment: onResume", Toast.LENGTH_SHORT).show();
+			ConnectionDetector detector = new ConnectionDetector(getActivity());
+			if (detector.isConnectingToInternet()) {
+				startNewAsyncTask(tvUpdateTime);
+			} else {
+				showNoInternetDialog();
+			}
+		}
+	}
+	
+	@Override
+	public void onPause() {
+		super.onPause();
+		if (!getUserVisibleHint()) {
+			Toast.makeText(getActivity(), "ProductFragment: onPause", Toast.LENGTH_SHORT).show();
 		}
 	}
 
@@ -123,9 +131,8 @@ public class ProductFragment extends ListFragment {
 	}
 
 	private void startNewAsyncTask(TextView tvUpdateTime) {
-		RetrieveProductTask asyncTask = new RetrieveProductTask(getActivity(), this, tvUpdateTime);
+		RetrieveProductTask asyncTask = new RetrieveProductTask(this, tvUpdateTime);
 	    this.asyncTaskWeakRef = new WeakReference<RetrieveProductTask >(asyncTask);
-	    Toast.makeText(getActivity(), cmsUrl + "products_android.php?id=1", Toast.LENGTH_SHORT).show();
 	    asyncTaskWeakRef.get().execute(cmsUrl + "products_android.php?id=1");
 	}
 	
@@ -148,12 +155,10 @@ public class ProductFragment extends ListFragment {
 
 		private WeakReference<ProductFragment> fragmentWeakRef;
 		private TextView tvLastUpdate;
-		private Context context;
 
-        private RetrieveProductTask (Context context, ProductFragment fragment, TextView lblUpdate) {
+        private RetrieveProductTask (ProductFragment fragment, TextView lblUpdate) {
             this.fragmentWeakRef = new WeakReference<ProductFragment>(fragment);
             this.tvLastUpdate = lblUpdate;
-            this.context = context;
         }
 
 		@Override
@@ -163,7 +168,6 @@ public class ProductFragment extends ListFragment {
 				dialog.setMessage(ProductFragment.this.getString(R.string.dowloading));
 				dialog.show();
 			}
-			Toast.makeText(ProductFragment.this.getActivity(), "onPreExecute", Toast.LENGTH_SHORT).show();
 		}
 
 		@Override
@@ -190,19 +194,6 @@ public class ProductFragment extends ListFragment {
 				}
 				// display current time
 				if (tvLastUpdate != null) {
-					Calendar cal = Calendar.getInstance();
-					int year = cal.get(Calendar.YEAR);
-					int month = cal.get(Calendar.MONTH) + 1;
-					int day = cal.get(Calendar.DATE);
-					int hh = cal.get(Calendar.HOUR);
-					int min = cal.get(Calendar.MINUTE);
-					int sec = cal.get(Calendar.SECOND);
-					int am_pm = cal.get(Calendar.AM_PM);
-//					Toast.makeText(context, year + "-" + month + "-" + day + " " + hh
-//							+ ":" + min + ":" + sec + " " + (am_pm == 1 ? "PM" : "AM")
-// 							, Toast.LENGTH_LONG).show();
-					//Toast.makeText(context, "month = " + month, Toast.LENGTH_LONG).show();
-					Toast.makeText(context, sdf.format(Calendar.getInstance().getTime()), Toast.LENGTH_LONG).show();
 					tvLastUpdate.setText(sdf.format(Calendar.getInstance().getTime()));
 				}
 			}

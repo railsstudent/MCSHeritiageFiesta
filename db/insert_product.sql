@@ -1,0 +1,2 @@
+INSERT INTO `PRODUCT`(`CAT_ID`, `ITEMID`, `NAME`, `DESCRIPTION`, `IMAGEURL`, `PRICE`, `CREATED_AT`, `CREATED_BY`, `UPDATED_AT`, `UPDATED_BY`, `IS_DELETED`) VALUES 
+(1,5,'瑪瑙，白晶頸鏈。','有助於平定情緒，保平安。','images/necklace2.jpg', 350,current_timestamp(), 1, current_timestamp(), 1, false)

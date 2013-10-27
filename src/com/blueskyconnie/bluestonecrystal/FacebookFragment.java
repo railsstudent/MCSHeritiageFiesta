@@ -60,12 +60,15 @@ public class FacebookFragment extends Fragment implements OnKeyListener {
 	@Override
 	public void onResume() {
 		super.onResume();
-		ConnectionDetector detector = new ConnectionDetector(getActivity());
-		if (detector.isConnectingToInternet()) {
-			if (webView != null) {
-				webView.loadUrl(getString(R.string.facebook_url));
-			}		
-		} 
+		if (getUserVisibleHint()) {
+			Toast.makeText(getActivity(), "FacebookFragment: onResume", Toast.LENGTH_SHORT).show();
+			ConnectionDetector detector = new ConnectionDetector(getActivity());
+			if (detector.isConnectingToInternet()) {
+				if (webView != null) {
+					webView.loadUrl(getString(R.string.facebook_url));
+				}		
+			} 
+		}
 	}
 	
 	@Override
@@ -83,8 +86,11 @@ public class FacebookFragment extends Fragment implements OnKeyListener {
 	@Override
 	public void onPause() {
 		super.onPause();
-		if (webView != null) {
-			webView.onPause();
+		if (!getUserVisibleHint()) {
+			Toast.makeText(getActivity(), "FacebookFragment: onPause", Toast.LENGTH_SHORT).show();
+			if (webView != null) {
+				webView.onPause();
+			}
 		}
 	}
 }

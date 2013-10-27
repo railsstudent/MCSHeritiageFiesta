@@ -102,8 +102,39 @@ public class DetailActivity extends Activity {
 			super.onPreExecute();
 			if (fragmentWeakRef.get() != null) {
 				ImageView imgView = (ImageView) fragmentWeakRef.get().findViewById(R.id.imgItem);
+				TextView tv1 = (TextView) fragmentWeakRef.get().findViewById(R.id.tvItemName);
+				TextView tv2 = (TextView) fragmentWeakRef.get().findViewById(R.id.tvItemDescription);
+				TextView tv3 = (TextView) fragmentWeakRef.get().findViewById(R.id.tvItemPrice);
+				TextView lbl1 = (TextView) fragmentWeakRef.get().findViewById(R.id.lblItemName);
+				TextView lbl2 = (TextView) fragmentWeakRef.get().findViewById(R.id.lblDescription);
+				TextView lbl3 = (TextView) fragmentWeakRef.get().findViewById(R.id.lblPrice);
+
 				if (imgView != null) {
 					imgView.setVisibility(ImageView.GONE);
+				}
+				
+				if (tv1 != null) {
+					tv1.setVisibility(TextView.GONE);
+				}
+				
+				if (tv2 != null) {
+					tv2.setVisibility(TextView.GONE);
+				}
+				
+				if (tv3 != null) {
+					tv3.setVisibility(TextView.GONE);
+				}
+				
+				if (lbl1 != null) {
+					lbl1.setVisibility(TextView.GONE);
+				}
+				
+				if (lbl2 != null) {
+					lbl2.setVisibility(TextView.GONE);
+				}
+				
+				if (lbl3 != null) {
+					lbl3.setVisibility(TextView.GONE);
 				}
 			}
 			
@@ -137,13 +168,22 @@ public class DetailActivity extends Activity {
 			super.onPostExecute(result);
 			if (this.fragmentWeakRef.get() != null) {
 				TextView tvItemName = (TextView) fragmentWeakRef.get().findViewById(R.id.tvItemName);
-				tvItemName.setText(result.getName());
+				if (tvItemName != null) {
+					tvItemName.setText(result.getName());
+					tvItemName.setVisibility(TextView.VISIBLE);
+				}
 				
 				TextView tvItemDesc = (TextView) fragmentWeakRef.get().findViewById(R.id.tvItemDescription);
-				tvItemDesc.setText(result.getDescription());
+				if (tvItemDesc != null) {
+					tvItemDesc.setText(result.getDescription());
+					tvItemDesc.setVisibility(TextView.VISIBLE);
+				}
 				
 				TextView tvItemPrice = (TextView) fragmentWeakRef.get().findViewById(R.id.tvItemPrice);
-				tvItemPrice.setText(result.getPrice().toPlainString());
+				if (tvItemPrice != null) {
+					tvItemPrice.setText(result.getPrice().toPlainString());
+					tvItemPrice.setVisibility(TextView.VISIBLE);
+				}
 				
 				ImageView imgView = (ImageView) fragmentWeakRef.get().findViewById(R.id.imgItem);
 				if (result.getImage() != null) {
@@ -152,6 +192,19 @@ public class DetailActivity extends Activity {
 				imgView.setVisibility(ImageView.VISIBLE);
 				if (dialog != null) {
 					dialog.dismiss();
+				}
+				
+				TextView lbl1 = (TextView) fragmentWeakRef.get().findViewById(R.id.lblItemName);
+				TextView lbl2 = (TextView) fragmentWeakRef.get().findViewById(R.id.lblDescription);
+				TextView lbl3 = (TextView) fragmentWeakRef.get().findViewById(R.id.lblPrice);
+				if (lbl1 != null) {
+					lbl1.setVisibility(TextView.VISIBLE);
+				}
+				if (lbl2 != null) {
+					lbl2.setVisibility(TextView.VISIBLE);
+				}
+				if (lbl3 != null) {
+					lbl3.setVisibility(TextView.VISIBLE);
 				}
 			}
 		}
