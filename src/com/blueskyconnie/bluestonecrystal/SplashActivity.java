@@ -80,7 +80,8 @@ public class SplashActivity extends Activity {
 			super.onPostExecute(result);
 			Intent intent = new Intent(SplashActivity.this, MainActivity.class);
 			// put product
-			// 
+			// put shop information
+			// put 
 			SplashActivity.this.startActivity(intent);
 			finish();
 		}

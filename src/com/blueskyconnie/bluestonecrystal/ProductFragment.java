@@ -165,6 +165,7 @@ public class ProductFragment extends ListFragment {
 				if (tvLastUpdate != null) {
 					tvLastUpdate.setText(sdf.format(Calendar.getInstance().getTime()));
 				}
+				
 				if (dialog != null) {
 					dialog.dismiss();
 				}

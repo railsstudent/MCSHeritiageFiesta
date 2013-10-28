@@ -209,7 +209,7 @@ containing a value of this type.
         public static final int LinearLayout1=0x7f05000a;
         public static final int RelativeLayout1=0x7f050006;
         public static final int ScrollLayout=0x7f050016;
-        public static final int action_settings=0x7f05002a;
+        public static final int action_settings=0x7f05002b;
         public static final int btnSendMail=0x7f050013;
         public static final int btnTellAFriend=0x7f050014;
         public static final int hybrid=0x7f050004;
@@ -217,11 +217,12 @@ containing a value of this type.
         public static final int imgBuilding=0x7f050015;
         public static final int imgEmail=0x7f050010;
         public static final int imgItem=0x7f050017;
-        public static final int imgProductThumbnail=0x7f050027;
-        public static final int imgRefresh=0x7f050022;
-        public static final int imgShop=0x7f050023;
+        public static final int imgProductThumbnail=0x7f050028;
+        public static final int imgRefresh=0x7f050023;
+        public static final int imgRefreshNews=0x7f050021;
+        public static final int imgShop=0x7f050024;
         public static final int imgSplash=0x7f050007;
-        public static final int item_shop=0x7f050029;
+        public static final int item_shop=0x7f05002a;
         public static final int lblDescription=0x7f05001a;
         public static final int lblItemName=0x7f050018;
         public static final int lblPrice=0x7f05001c;
@@ -235,19 +236,19 @@ containing a value of this type.
         public static final int tableRow2=0x7f05000f;
         public static final int tableRow3=0x7f050012;
         public static final int terrain=0x7f050003;
-        public static final int textView1=0x7f050020;
         public static final int tvAddress=0x7f05000e;
-        public static final int tvBuilding=0x7f050025;
+        public static final int tvBuilding=0x7f050026;
         public static final int tvEmail=0x7f050011;
         public static final int tvItemDescription=0x7f05001b;
         public static final int tvItemName=0x7f050019;
         public static final int tvItemPrice=0x7f05001d;
-        public static final int tvLastUpdate=0x7f050021;
+        public static final int tvLastUpdate=0x7f050022;
         public static final int tvLoading=0x7f050009;
-        public static final int tvProductName=0x7f050028;
-        public static final int tvSnippet=0x7f050026;
+        public static final int tvNewsLastUpdate=0x7f050020;
+        public static final int tvProductName=0x7f050029;
+        public static final int tvSnippet=0x7f050027;
         public static final int tvSplash=0x7f050008;
-        public static final int tvTitle=0x7f050024;
+        public static final int tvTitle=0x7f050025;
         public static final int wvFacbook=0x7f05001e;
     }
     public static final class layout {
