@@ -1,10 +1,6 @@
 package com.blueskyconnie.bluestonecrystal;
 
-import com.blueskyconnie.bluestonecrystal.helper.ConnectionDetector;
-
-import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,6 +11,9 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.blueskyconnie.bluestonecrystal.helper.AlertDialogHelper;
+import com.blueskyconnie.bluestonecrystal.helper.ConnectionDetector;
 
 public class ContactFragment extends Fragment {
 
@@ -28,13 +27,12 @@ public class ContactFragment extends Fragment {
 		
 		btnSendMail = (Button) rootView.findViewById(R.id.btnSendMail);
 		btnTellAFriend = (Button) rootView.findViewById(R.id.btnTellAFriend);
-		
 		OnClickListener listener = new MyOnClickListener();
 		btnSendMail.setOnClickListener(listener);
 		btnTellAFriend.setOnClickListener(listener);
 		return rootView;
 	}
-	
+
 	private final class MyOnClickListener implements
 		OnClickListener {
 		@Override
@@ -42,18 +40,7 @@ public class ContactFragment extends Fragment {
 			
 			ConnectionDetector detector = new ConnectionDetector(getActivity());
 			if (!detector.isConnectingToInternet()) {
-				AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-				builder.setTitle(getString(R.string.info_title));
-				builder.setIcon(android.R.drawable.ic_dialog_alert);
-				builder.setMessage(getString(R.string.no_internet_error));
-				builder.setNeutralButton(getString(R.string.confirm_exit), 
-					new DialogInterface.OnClickListener() {
-						@Override
-						public void onClick(DialogInterface dialog, int which) {
-						}
-					});
-				AlertDialog alertDialog = builder.create();
-				alertDialog.show();
+				AlertDialogHelper.showNoInternetDialog(getActivity());
 			} else {
 				switch (view.getId()) {
 					case R.id.btnSendMail:

@@ -93,6 +93,9 @@ public class ProductAdapter extends ArrayAdapter<Product> {
 
         private ImageDownloaderTask (ImageView imageView) {
             this.imageViewReference = new WeakReference<ImageView>(imageView);
+            if (imageViewReference.get() != null) {
+            	imageViewReference.get().setVisibility(ImageView.INVISIBLE);
+            }
         }
         
 		@Override
@@ -111,6 +114,7 @@ public class ProductAdapter extends ArrayAdapter<Product> {
 				} else {
 					imgView.setImageResource(R.id.imgProductThumbnail);
 				}
+				imgView.setVisibility(ImageView.VISIBLE);
 			}
 		}
 	}

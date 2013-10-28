@@ -87,10 +87,14 @@ public class MainActivity extends FragmentActivity implements
 				FragmentManager fragment_manager = MainActivity.this.getSupportFragmentManager();
 				Fragment new_fragment = MainActivity.this.getActiveFragment(fragment_manager, viewPager.getId(), position);
 				Fragment old_fragment = MainActivity.this.getActiveFragment(fragment_manager, viewPager.getId(), currentPosition);
-				old_fragment.setUserVisibleHint(false);
-				old_fragment.onPause();
-				new_fragment.setUserVisibleHint(true);
-				new_fragment.onResume();
+				if (old_fragment != null) {
+					old_fragment.setUserVisibleHint(false);
+					old_fragment.onPause();
+				}
+				if (new_fragment != null) {
+					new_fragment.setUserVisibleHint(true);
+					new_fragment.onResume();
+				}
 				currentPosition = position;
 			}
 		});

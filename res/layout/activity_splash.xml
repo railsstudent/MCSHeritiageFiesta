@@ -28,4 +28,15 @@
         android:text="@string/bluestone_crystal"
         android:textColor="@color/blue" />
 
+    <TextView
+        android:id="@+id/tvLoading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvSplash"
+        android:layout_alignRight="@+id/tvSplash"
+        android:layout_below="@+id/tvSplash"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="@string/loading"
+        android:textColor="@color/blue" />
 </RelativeLayout>

@@ -206,48 +206,49 @@ containing a value of this type.
         public static final int splash=0x7f02002c;
     }
     public static final class id {
-        public static final int LinearLayout1=0x7f050009;
+        public static final int LinearLayout1=0x7f05000a;
         public static final int RelativeLayout1=0x7f050006;
-        public static final int ScrollLayout=0x7f050015;
-        public static final int action_settings=0x7f050029;
-        public static final int btnSendMail=0x7f050012;
-        public static final int btnTellAFriend=0x7f050013;
+        public static final int ScrollLayout=0x7f050016;
+        public static final int action_settings=0x7f05002a;
+        public static final int btnSendMail=0x7f050013;
+        public static final int btnTellAFriend=0x7f050014;
         public static final int hybrid=0x7f050004;
-        public static final int imgAddress=0x7f05000c;
-        public static final int imgBuilding=0x7f050014;
-        public static final int imgEmail=0x7f05000f;
-        public static final int imgItem=0x7f050016;
-        public static final int imgProductThumbnail=0x7f050026;
-        public static final int imgRefresh=0x7f050021;
-        public static final int imgShop=0x7f050022;
+        public static final int imgAddress=0x7f05000d;
+        public static final int imgBuilding=0x7f050015;
+        public static final int imgEmail=0x7f050010;
+        public static final int imgItem=0x7f050017;
+        public static final int imgProductThumbnail=0x7f050027;
+        public static final int imgRefresh=0x7f050022;
+        public static final int imgShop=0x7f050023;
         public static final int imgSplash=0x7f050007;
-        public static final int item_shop=0x7f050028;
-        public static final int lblDescription=0x7f050019;
-        public static final int lblItemName=0x7f050017;
-        public static final int lblPrice=0x7f05001b;
-        public static final int mapView=0x7f05001e;
+        public static final int item_shop=0x7f050029;
+        public static final int lblDescription=0x7f05001a;
+        public static final int lblItemName=0x7f050018;
+        public static final int lblPrice=0x7f05001c;
+        public static final int mapView=0x7f05001f;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
         public static final int pager=0x7f050005;
         public static final int satellite=0x7f050002;
-        public static final int tableLayout=0x7f05000a;
-        public static final int tableRow1=0x7f05000b;
-        public static final int tableRow2=0x7f05000e;
-        public static final int tableRow3=0x7f050011;
+        public static final int tableLayout=0x7f05000b;
+        public static final int tableRow1=0x7f05000c;
+        public static final int tableRow2=0x7f05000f;
+        public static final int tableRow3=0x7f050012;
         public static final int terrain=0x7f050003;
-        public static final int textView1=0x7f05001f;
-        public static final int tvAddress=0x7f05000d;
-        public static final int tvBuilding=0x7f050024;
-        public static final int tvEmail=0x7f050010;
-        public static final int tvItemDescription=0x7f05001a;
-        public static final int tvItemName=0x7f050018;
-        public static final int tvItemPrice=0x7f05001c;
-        public static final int tvLastUpdate=0x7f050020;
-        public static final int tvProductName=0x7f050027;
-        public static final int tvSnippet=0x7f050025;
+        public static final int textView1=0x7f050020;
+        public static final int tvAddress=0x7f05000e;
+        public static final int tvBuilding=0x7f050025;
+        public static final int tvEmail=0x7f050011;
+        public static final int tvItemDescription=0x7f05001b;
+        public static final int tvItemName=0x7f050019;
+        public static final int tvItemPrice=0x7f05001d;
+        public static final int tvLastUpdate=0x7f050021;
+        public static final int tvLoading=0x7f050009;
+        public static final int tvProductName=0x7f050028;
+        public static final int tvSnippet=0x7f050026;
         public static final int tvSplash=0x7f050008;
-        public static final int tvTitle=0x7f050023;
-        public static final int wvFacbook=0x7f05001d;
+        public static final int tvTitle=0x7f050024;
+        public static final int wvFacbook=0x7f05001e;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -296,7 +297,7 @@ containing a value of this type.
         public static final int cancel_exit=0x7f060033;
         public static final int choose_email_app=0x7f06002b;
         public static final int choose_share_app=0x7f06002a;
-        public static final int cms_url=0x7f06003a;
+        public static final int cms_url=0x7f06003b;
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
         will direct user to application settings of Google Play services where they
         can enable it [CHAR LIMIT=40] 
@@ -370,18 +371,18 @@ containing a value of this type.
         public static final int email_subject=0x7f06002e;
         public static final int email_text=0x7f060030;
         public static final int facebook_url=0x7f060021;
-        public static final int hello_world=0x7f060040;
-        public static final int info_title=0x7f060039;
-        public static final int itemDesc=0x7f06003c;
-        public static final int itemName=0x7f06003d;
-        public static final int itemPrice=0x7f06003e;
-        public static final int last_update_time=0x7f06003b;
+        public static final int info_title=0x7f06003a;
+        public static final int itemDesc=0x7f06003d;
+        public static final int itemName=0x7f06003e;
+        public static final int itemPrice=0x7f06003f;
+        public static final int last_update_time=0x7f06003c;
+        public static final int loading=0x7f060038;
         public static final int map_shop_address=0x7f060024;
         public static final int map_shop_building=0x7f060023;
         public static final int map_shop_title=0x7f060022;
         public static final int no_accessories=0x7f060036;
         public static final int no_data=0x7f060035;
-        public static final int no_internet_error=0x7f060038;
+        public static final int no_internet_error=0x7f060039;
         public static final int send_email=0x7f060028;
         public static final int share_app_not_installed=0x7f06002c;
         public static final int share_subject=0x7f06002f;
@@ -394,7 +395,6 @@ containing a value of this type.
         public static final int tab_news=0x7f060020;
         public static final int tab_product=0x7f06001f;
         public static final int tell_a_friend=0x7f060029;
-        public static final int title_activity_news_fragment=0x7f06003f;
         public static final int title_confirm_exit=0x7f060034;
     }
     public static final class style {

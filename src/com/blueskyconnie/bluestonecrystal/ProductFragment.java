@@ -7,9 +7,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -21,11 +19,11 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.blueskyconnie.bluestonecrystal.adapter.ProductAdapter;
 import com.blueskyconnie.bluestonecrystal.data.Product;
 import com.blueskyconnie.bluestonecrystal.exception.BusinessException;
+import com.blueskyconnie.bluestonecrystal.helper.AlertDialogHelper;
 import com.blueskyconnie.bluestonecrystal.helper.ConnectionDetector;
 import com.blueskyconnie.bluestonecrystal.helper.HttpClientHelper;
 
@@ -43,8 +41,6 @@ public class ProductFragment extends ListFragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setRetainInstance(true);
-		dialog = new ProgressDialog(ProductFragment.this.getActivity()); 
-		cmsUrl = getString(R.string.cms_url);
 	}
 	
 	@Override
@@ -61,7 +57,7 @@ public class ProductFragment extends ListFragment {
 				if (detector.isConnectingToInternet()) {
 					startNewAsyncTask(tvUpdateTime);
 				} else {
-					showNoInternetDialog();
+					AlertDialogHelper.showNoInternetDialog(getActivity());
 				}
 			}
 		});
@@ -69,24 +65,15 @@ public class ProductFragment extends ListFragment {
 	}
 	
 	@Override
-	public void onResume() {
-		super.onResume();
-		if (getUserVisibleHint()) {
-			Toast.makeText(getActivity(), "ProductFragment: onResume", Toast.LENGTH_SHORT).show();
-			ConnectionDetector detector = new ConnectionDetector(getActivity());
-			if (detector.isConnectingToInternet()) {
-				startNewAsyncTask(tvUpdateTime);
-			} else {
-				showNoInternetDialog();
-			}
-		}
-	}
-	
-	@Override
-	public void onPause() {
-		super.onPause();
-		if (!getUserVisibleHint()) {
-			Toast.makeText(getActivity(), "ProductFragment: onPause", Toast.LENGTH_SHORT).show();
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+		dialog = new ProgressDialog(getActivity()); 
+		cmsUrl = getString(R.string.cms_url);
+		ConnectionDetector detector = new ConnectionDetector(getActivity());
+		if (detector.isConnectingToInternet()) {
+			startNewAsyncTask(tvUpdateTime);
+		} else {
+			AlertDialogHelper.showNoInternetDialog(getActivity());
 		}
 	}
 
@@ -136,21 +123,6 @@ public class ProductFragment extends ListFragment {
 	    asyncTaskWeakRef.get().execute(cmsUrl + "products_android.php?id=1");
 	}
 	
-	private void showNoInternetDialog() {
-		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-		builder.setTitle(getString(R.string.info_title));
-		builder.setIcon(android.R.drawable.ic_dialog_alert);
-		builder.setMessage(getString(R.string.no_internet_error));
-		builder.setNeutralButton(getString(R.string.confirm_exit), 
-			new DialogInterface.OnClickListener() {
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-				}
-			});
-		AlertDialog alertDialog = builder.create();
-		alertDialog.show();
-	}
-	
 	private class RetrieveProductTask extends AsyncTask<String,Void, List<Product>> {
 
 		private WeakReference<ProductFragment> fragmentWeakRef;
@@ -189,12 +161,12 @@ public class ProductFragment extends ListFragment {
 						R.layout.product_row_layout, lstProducts);
 				// update list adapter
 				fragmentWeakRef.get().setListAdapter(adapter);
-				if (dialog != null) {
-					dialog.dismiss();
-				}
 				// display current time
 				if (tvLastUpdate != null) {
 					tvLastUpdate.setText(sdf.format(Calendar.getInstance().getTime()));
+				}
+				if (dialog != null) {
+					dialog.dismiss();
 				}
 			}
 		}
