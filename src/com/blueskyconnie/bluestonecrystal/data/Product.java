@@ -17,7 +17,7 @@ public class Product implements Parcelable {
 	
 	public Product() {}
 	
-	 public Product (Parcel in){
+	public Product (Parcel in){
 		  this.id = in.readInt();
 		  this.name = in.readString();
 		  this.description = in.readString();

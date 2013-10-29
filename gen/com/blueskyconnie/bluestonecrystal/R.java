@@ -298,7 +298,7 @@ containing a value of this type.
         public static final int cancel_exit=0x7f060033;
         public static final int choose_email_app=0x7f06002b;
         public static final int choose_share_app=0x7f06002a;
-        public static final int cms_url=0x7f06003b;
+        public static final int cms_url=0x7f06003f;
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
         will direct user to application settings of Google Play services where they
         can enable it [CHAR LIMIT=40] 
@@ -367,23 +367,27 @@ containing a value of this type.
          */
         public static final int common_signin_button_text_long=0x7f060012;
         public static final int confirm_exit=0x7f060032;
-        public static final int dowloading=0x7f060037;
+        public static final int dowloading=0x7f060038;
         public static final int email_app_not_installed=0x7f06002d;
         public static final int email_subject=0x7f06002e;
         public static final int email_text=0x7f060030;
         public static final int facebook_url=0x7f060021;
-        public static final int info_title=0x7f06003a;
-        public static final int itemDesc=0x7f06003d;
-        public static final int itemName=0x7f06003e;
-        public static final int itemPrice=0x7f06003f;
-        public static final int last_update_time=0x7f06003c;
-        public static final int loading=0x7f060038;
+        public static final int info_title=0x7f06003e;
+        public static final int itemDesc=0x7f060041;
+        public static final int itemName=0x7f060042;
+        public static final int itemPrice=0x7f060043;
+        public static final int last_update_time=0x7f060040;
+        public static final int loading=0x7f060039;
+        public static final int loading_news=0x7f06003b;
+        public static final int loading_products=0x7f06003a;
+        public static final int loading_shopInfo=0x7f06003c;
         public static final int map_shop_address=0x7f060024;
         public static final int map_shop_building=0x7f060023;
         public static final int map_shop_title=0x7f060022;
         public static final int no_accessories=0x7f060036;
         public static final int no_data=0x7f060035;
-        public static final int no_internet_error=0x7f060039;
+        public static final int no_internet_error=0x7f06003d;
+        public static final int no_news=0x7f060037;
         public static final int send_email=0x7f060028;
         public static final int share_app_not_installed=0x7f06002c;
         public static final int share_subject=0x7f06002f;

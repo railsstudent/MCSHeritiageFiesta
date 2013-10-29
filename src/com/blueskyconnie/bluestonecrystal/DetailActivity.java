@@ -3,9 +3,7 @@ package com.blueskyconnie.bluestonecrystal;
 import java.lang.ref.WeakReference;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -13,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.blueskyconnie.bluestonecrystal.data.Product;
+import com.blueskyconnie.bluestonecrystal.helper.AlertDialogHelper;
 import com.blueskyconnie.bluestonecrystal.helper.ConnectionDetector;
 import com.blueskyconnie.bluestonecrystal.helper.ImageDecodeHelper;
 
@@ -37,16 +36,7 @@ public class DetailActivity extends Activity {
 					// retrieve image
 					startNewAsyncTask(product);
 				} else {
-					AlertDialog.Builder builder = new AlertDialog.Builder(this);
-					builder.setTitle(getString(R.string.info_title));
-					builder.setIcon(android.R.drawable.ic_dialog_alert);
-					builder.setMessage(getString(R.string.no_internet_error));
-					builder.setNeutralButton(getString(R.string.confirm_exit), new DialogInterface.OnClickListener() {
-						@Override
-						public void onClick(DialogInterface dialog, int which) {}
-					});
-					AlertDialog alertDialog = builder.create();
-					alertDialog.show();
+					AlertDialogHelper.showNoInternetDialog(this);
 				}
 			}
 		}

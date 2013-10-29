@@ -35,8 +35,9 @@
         android:layout_alignLeft="@+id/tvSplash"
         android:layout_alignRight="@+id/tvSplash"
         android:layout_below="@+id/tvSplash"
+        android:layout_marginTop="15dp"
         android:gravity="center"
-        android:layout_marginTop="10dp"
         android:text="@string/loading"
         android:textColor="@color/blue" />
+
 </RelativeLayout>

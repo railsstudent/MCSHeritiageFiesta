@@ -31,8 +31,12 @@
     <string name="title_confirm_exit">離開</string>
     <string name="no_data">沒有數據</string>
     <string name="no_accessories">沒有配飾</string>
+    <string name="no_news">沒有消息</string>
     <string name="dowloading">下載進行中&#8230;</string>
-    <string name="loading">載入中&#8230;</string>
+    <string name="loading">載入&#8230;</string>
+    <string name="loading_products">載入產品</string>
+    <string name="loading_news">載入消息</string>
+    <string name="loading_shopInfo">載入店鋪</string>
     <string name="no_internet_error">互聯網網路連接失敗。</string>
     <string name="info_title">資訊</string>
     <string name="cms_url">http://192.168.1.138/bluestone/</string>

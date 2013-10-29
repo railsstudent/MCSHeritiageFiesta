@@ -1,7 +1,9 @@
 package com.blueskyconnie.bluestonecrystal;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
@@ -9,6 +11,7 @@ import android.app.ActionBar.TabListener;
 import android.app.AlertDialog;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
@@ -20,10 +23,16 @@ import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.Window;
 
 import com.blueskyconnie.bluestonecrystal.adapter.TabspagerAdapter;
+import com.blueskyconnie.bluestonecrystal.data.BatchData;
+import com.blueskyconnie.bluestonecrystal.data.News;
+import com.blueskyconnie.bluestonecrystal.data.Product;
 
 public class MainActivity extends FragmentActivity implements
 	TabListener {
 	
+	public static final String BATCH_DATA = "batchData";
+	public static final int SHOP_ID = 1;
+	public static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MMM-dd hh:mm:ss aa", Locale.US);
 
 	/**
 	 * 
@@ -44,6 +53,11 @@ public class MainActivity extends FragmentActivity implements
 	private TabspagerAdapter pageAdapter;
 	private List<Fragment> lstFragment = new ArrayList<Fragment>();
 	private int currentPosition;
+	
+	private List<Product> lstProducts;
+	private List<News> lstNews;
+	private long lastProductUpdateTime;
+	private long lastNewsUpdateTime;
 
 	@Override
 	protected void onCreate(Bundle savedBundle) {
@@ -113,6 +127,15 @@ public class MainActivity extends FragmentActivity implements
 			tab.setTabListener(this);
 			actionBar.addTab(tab);
 		}
+		
+		Intent intent = getIntent();
+		if (intent != null) {
+			BatchData data = (BatchData) intent.getParcelableExtra(BATCH_DATA);
+			this.setLstProducts(data.getLstProduct());
+			this.setLstNews(data.getLstNews());
+			this.setLastProductUpdateTime(data.getLastProductUpdateTime());
+			this.setLastNewsUpdateTime(data.getLastNewsUpdateTime());
+		}
 	}
 
 	private Fragment getActiveFragment(FragmentManager fragmentManager, int viewPagerId, int position) {
@@ -178,5 +201,37 @@ public class MainActivity extends FragmentActivity implements
 		builder.setNegativeButton(R.string.confirm_exit, listener);
 		AlertDialog quitDialog = builder.create();
 		quitDialog.show();
+	}
+
+	public List<Product> getLstProducts() {
+		return lstProducts;
+	}
+
+	public void setLstProducts(List<Product> lstProducts) {
+		this.lstProducts = lstProducts;
+	}
+
+	public List<News> getLstNews() {
+		return lstNews;
+	}
+
+	public void setLstNews(List<News> lstNews) {
+		this.lstNews = lstNews;
+	}
+
+	public long getLastProductUpdateTime() {
+		return lastProductUpdateTime;
+	}
+
+	public void setLastProductUpdateTime(long lastProductUpdateTime) {
+		this.lastProductUpdateTime = lastProductUpdateTime;
+	}
+
+	public long getLastNewsUpdateTime() {
+		return lastNewsUpdateTime;
+	}
+
+	public void setLastNewsUpdateTime(long lastNewsUpdateTime) {
+		this.lastNewsUpdateTime = lastNewsUpdateTime;
 	}
 }

@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +21,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import com.blueskyconnie.bluestonecrystal.data.News;
 import com.blueskyconnie.bluestonecrystal.data.Product;
 import com.blueskyconnie.bluestonecrystal.exception.BusinessException;
 
@@ -132,5 +134,74 @@ public final class HttpClientHelper {
 		 }
    	     return new ArrayList<Product>();
 	}
+	
+	
+	public static List<News> retrieveNews(String strUrl) 
+			throws BusinessException {
+
+			if (strUrl == null || strUrl.length() == 0) {
+				return new ArrayList<News>();
+			}
+			
+			InputStream is = null;
+	   	    try{
+			 	 URL url = new URL(strUrl);
+				 URLConnection conn = url.openConnection();
+				 HttpURLConnection httpConn = (HttpURLConnection)conn;
+				 httpConn.setRequestMethod("GET");
+				 httpConn.connect();
+			 
+				 if (httpConn.getResponseCode() == HttpURLConnection.HTTP_OK) {
+					  is = httpConn.getInputStream();
+					  
+					  DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+					  DocumentBuilder builder = factory.newDocumentBuilder();
+					  Document doc = builder.parse(is);
+					  List<News> lstNews = new ArrayList<News>();
+
+					  NodeList nodes = doc.getElementsByTagName("new");
+					  if (nodes != null) {
+							for (int i = 0; i < nodes.getLength(); i++) {
+								News news = new News();
+								Node node = nodes.item(i);
+								NamedNodeMap attrs = node.getAttributes();
+
+								Node attrNode = attrs.getNamedItem("subject");
+								if (attrNode != null) {
+									news.setSubject(attrNode.getTextContent());
+								}
+								
+								attrNode = attrs.getNamedItem("description");
+								if (attrNode != null) {
+									news.setDescription(attrNode.getTextContent());
+								}
+								
+								attrNode = attrs.getNamedItem("updated_at");
+								if (attrNode != null) {
+									news.setUpdateAt(new Timestamp(Long.valueOf(attrNode.getTextContent())));
+								}
+								lstNews.add(news);
+							}
+					  }
+					  return lstNews;
+				  } 
+			 } catch (IOException ex){
+				 ex.printStackTrace();
+				 throw new BusinessException(ex.getMessage(), ex);
+			 } catch (ParserConfigurationException e) {
+				e.printStackTrace();
+			 } catch (SAXException e) {
+				e.printStackTrace();
+			} finally {
+				 try {
+					 if (is != null) {
+						 is.close();
+					 }
+				 } catch (IOException ex) {
+					 ex.printStackTrace();
+				 }
+			 }
+	   	     return new ArrayList<News>();
+		}
 	
 }

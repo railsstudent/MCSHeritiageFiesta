@@ -1,11 +1,10 @@
 package com.blueskyconnie.bluestonecrystal;
 
 import java.lang.ref.WeakReference;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -28,8 +27,6 @@ import com.blueskyconnie.bluestonecrystal.helper.ConnectionDetector;
 import com.blueskyconnie.bluestonecrystal.helper.HttpClientHelper;
 
 public class ProductFragment extends ListFragment {
-
-	private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MMM-dd hh:mm:ss aa", Locale.US);
 	
 	private ProgressDialog dialog;
 	private WeakReference<RetrieveProductTask> asyncTaskWeakRef;
@@ -69,12 +66,13 @@ public class ProductFragment extends ListFragment {
 		super.onActivityCreated(savedInstanceState);
 		dialog = new ProgressDialog(getActivity()); 
 		cmsUrl = getString(R.string.cms_url);
-		ConnectionDetector detector = new ConnectionDetector(getActivity());
-		if (detector.isConnectingToInternet()) {
-			startNewAsyncTask(tvUpdateTime);
-		} else {
-			AlertDialogHelper.showNoInternetDialog(getActivity());
-		}
+		
+		MainActivity activity = (MainActivity) this.getActivity();
+		List<Product> lstProducts = activity.getLstProducts();
+		ProductAdapter adapter = new ProductAdapter(getActivity(),
+				R.layout.product_row_layout, lstProducts);
+		getListView().setAdapter(adapter);
+		tvUpdateTime.setText(MainActivity.sdf.format(new Date(activity.getLastProductUpdateTime())));
 	}
 
 	@Override
@@ -120,24 +118,24 @@ public class ProductFragment extends ListFragment {
 	private void startNewAsyncTask(TextView tvUpdateTime) {
 		RetrieveProductTask asyncTask = new RetrieveProductTask(this, tvUpdateTime);
 	    this.asyncTaskWeakRef = new WeakReference<RetrieveProductTask >(asyncTask);
-	    asyncTaskWeakRef.get().execute(cmsUrl + "products_android.php?id=1");
+	    asyncTaskWeakRef.get().execute(cmsUrl + "products_android.php?id=" + MainActivity.SHOP_ID);
 	}
 	
 	private class RetrieveProductTask extends AsyncTask<String,Void, List<Product>> {
 
 		private WeakReference<ProductFragment> fragmentWeakRef;
-		private TextView tvLastUpdate;
+		private WeakReference<TextView> tvLastUpdate;
 
         private RetrieveProductTask (ProductFragment fragment, TextView lblUpdate) {
             this.fragmentWeakRef = new WeakReference<ProductFragment>(fragment);
-            this.tvLastUpdate = lblUpdate;
+            this.tvLastUpdate = new WeakReference<TextView>(lblUpdate);
         }
 
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
 			if (dialog != null) {
-				dialog.setMessage(ProductFragment.this.getString(R.string.dowloading));
+				dialog.setMessage(fragmentWeakRef.get().getString(R.string.dowloading));
 				dialog.show();
 			}
 		}
@@ -156,15 +154,19 @@ public class ProductFragment extends ListFragment {
 		@Override
 		protected void onPostExecute(List<Product> lstProducts) {
 			super.onPostExecute(lstProducts);
-			if (this.fragmentWeakRef.get() != null) {
-				ProductAdapter adapter = new ProductAdapter(fragmentWeakRef.get().getActivity(),
+			if (fragmentWeakRef.get() != null) {
+				MainActivity activity = (MainActivity) fragmentWeakRef.get().getActivity();
+				ProductAdapter adapter = new ProductAdapter(activity,
 						R.layout.product_row_layout, lstProducts);
 				// update list adapter
 				fragmentWeakRef.get().setListAdapter(adapter);
 				// display current time
-				if (tvLastUpdate != null) {
-					tvLastUpdate.setText(sdf.format(Calendar.getInstance().getTime()));
+				if (tvLastUpdate.get() != null) {
+					long curTime = Calendar.getInstance().getTimeInMillis();
+					tvLastUpdate.get().setText(MainActivity.sdf.format(new Date(curTime)));
+					activity.setLastProductUpdateTime(curTime);
 				}
+				activity.setLstProducts(lstProducts);
 				
 				if (dialog != null) {
 					dialog.dismiss();
