@@ -74,11 +74,6 @@ public class ProductAdapter extends ArrayAdapter<Product> {
 		if (holder.imgProductThumbnail != null) {
 			new ImageDownloaderTask(holder.imgProductThumbnail).execute(product.getImageUrl());
 		}
-		
-	//	if (product.getImage() != null) {
-	//		holder.imgProductThumbnail.setImageBitmap(product.getImage());
-	//		holder.imgProductThumbnail.setScaleType(ScaleType.FIT_CENTER);
-	//	}
 		return view;
 	}
 	

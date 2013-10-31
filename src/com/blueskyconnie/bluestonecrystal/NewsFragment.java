@@ -1,6 +1,7 @@
 package com.blueskyconnie.bluestonecrystal;
 
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -17,10 +18,11 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.blueskyconnie.bluestonecrystal.adapter.NewsAdapter;
-import com.blueskyconnie.bluestonecrystal.adapter.ProductAdapter;
 import com.blueskyconnie.bluestonecrystal.data.News;
+import com.blueskyconnie.bluestonecrystal.exception.BusinessException;
 import com.blueskyconnie.bluestonecrystal.helper.AlertDialogHelper;
 import com.blueskyconnie.bluestonecrystal.helper.ConnectionDetector;
+import com.blueskyconnie.bluestonecrystal.helper.HttpClientHelper;
 
 public class NewsFragment extends ListFragment {
 
@@ -65,8 +67,7 @@ public class NewsFragment extends ListFragment {
 		
 		MainActivity activity = (MainActivity) this.getActivity();
 		List<News> lstNews = activity.getLstNews();
-		NewsAdapter adapter = new NewsAdapter(getActivity(),
-				R.layout.product_row_layout, lstNews);
+		NewsAdapter adapter = new NewsAdapter(getActivity(), R.layout.news_row_layout, lstNews);
 		getListView().setAdapter(adapter);
 		tvUpdateTime.setText(MainActivity.sdf.format(new Date(activity.getLastNewsUpdateTime())));
 	}
@@ -101,11 +102,11 @@ public class NewsFragment extends ListFragment {
 	private class RetrieveNewsTask extends AsyncTask<String, Void, List<News>> {
 
 		private WeakReference<NewsFragment> fragmentWeakRef;
-		private WeakReference<TextView> tvLastUpdate;
+		private WeakReference<TextView> tvLastUpdateReference;
 		
-		private RetrieveNewsTask(NewsFragment fragment, TextView lblUpdate) {
+		private RetrieveNewsTask(NewsFragment fragment, TextView tvUpdateTime) {
 			fragmentWeakRef = new WeakReference<NewsFragment>(fragment);
-            tvLastUpdate = new WeakReference<TextView>(lblUpdate);
+            tvLastUpdateReference = new WeakReference<TextView>(tvUpdateTime);
 		}
 		
 		@Override
@@ -119,8 +120,13 @@ public class NewsFragment extends ListFragment {
 		
 		@Override
 		protected List<News> doInBackground(String... params) {
-			// TODO Auto-generated method stub
-			return null;
+			try {
+				List<News> lstNews = HttpClientHelper.retrieveNews(params[0]);
+				return lstNews;
+			} catch (BusinessException ex) {
+				ex.printStackTrace();
+			}
+			return new ArrayList<News>();
 		}
 
 		@Override
@@ -128,13 +134,14 @@ public class NewsFragment extends ListFragment {
 			super.onPostExecute(lstNews);
 			if (fragmentWeakRef.get() != null) {
 				MainActivity activity = (MainActivity) fragmentWeakRef.get().getActivity();
-				NewsAdapter adapter = new NewsAdapter(activity, R.layout.product_row_layout, lstNews);
+				NewsAdapter newsAdapter = new NewsAdapter(activity, R.layout.news_row_layout, lstNews);
 				// update list adapter
-				fragmentWeakRef.get().setListAdapter(adapter);
+				fragmentWeakRef.get().setListAdapter(newsAdapter);
 				// display current time
-				if (tvLastUpdate.get() != null) {
+				if (tvLastUpdateReference.get() != null) {
 					long curTime = Calendar.getInstance().getTimeInMillis();
-					tvLastUpdate.get().setText(MainActivity.sdf.format(new Date(curTime)));
+					tvLastUpdateReference.get().setText(getString(R.string.last_update_time) + 
+							MainActivity.sdf.format(new Date(curTime)));
 					activity.setLastNewsUpdateTime(curTime);
 				}
 				activity.setLstNews(lstNews);

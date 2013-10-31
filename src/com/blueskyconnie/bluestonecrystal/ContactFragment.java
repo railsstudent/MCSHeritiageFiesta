@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blueskyconnie.bluestonecrystal.helper.AlertDialogHelper;
@@ -19,6 +20,9 @@ public class ContactFragment extends Fragment {
 
 	private Button btnSendMail;
 	private Button btnTellAFriend;
+	private TextView tvAddress;
+	private TextView tvEmail;
+	private String shopEmail = "";
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -27,11 +31,30 @@ public class ContactFragment extends Fragment {
 		
 		btnSendMail = (Button) rootView.findViewById(R.id.btnSendMail);
 		btnTellAFriend = (Button) rootView.findViewById(R.id.btnTellAFriend);
+		tvAddress = (TextView) rootView.findViewById(R.id.tvAddress);
+		tvEmail = (TextView) rootView.findViewById(R.id.tvEmail);
 		OnClickListener listener = new MyOnClickListener();
 		btnSendMail.setOnClickListener(listener);
 		btnTellAFriend.setOnClickListener(listener);
 		return rootView;
 	}
+
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+		
+		MainActivity activity = (MainActivity) getActivity();
+		if (activity != null) {
+			tvAddress.setText(activity.getShop().getAddress());
+			tvEmail.setText(activity.getShop().getEmail());
+			shopEmail = activity.getShop().getEmail();
+		} else {
+			tvAddress.setText("");
+			tvEmail.setText("");
+		}
+	}
+
+
 
 	private final class MyOnClickListener implements
 		OnClickListener {
@@ -46,7 +69,7 @@ public class ContactFragment extends Fragment {
 					case R.id.btnSendMail:
 						Intent itEmail = new Intent();
 						itEmail.setAction(Intent.ACTION_VIEW);
-						itEmail.setData(Uri.parse("mailto:" + getString(R.string.shop_email)));
+						itEmail.setData(Uri.parse("mailto:" + shopEmail));
 						itEmail.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.email_subject));
 						itEmail.putExtra(Intent.EXTRA_TEXT, getString(R.string.email_text));
 						try {

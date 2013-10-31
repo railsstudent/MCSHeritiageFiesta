@@ -1,24 +1,20 @@
 package com.blueskyconnie.bluestonecrystal.data;
 
-import java.sql.Timestamp;
-
 import android.os.Parcel;
 import android.os.Parcelable;
 
 public class News implements Parcelable {
 	
 	private int id;
-	private String subject;
-	private String description;
-	private Timestamp updateAt;
+	private String contents;
+	private String updateAt;
 	
 	public News() {}
 	
 	public News (Parcel in){
 		id = in.readInt();
-		subject = in.readString();
-		description = in.readString();
-		updateAt = new Timestamp(in.readLong());
+		contents = in.readString();
+		updateAt = in.readString();
 	}
 	
 	public int getId() {
@@ -28,27 +24,19 @@ public class News implements Parcelable {
 		this.id = id;
 	}
 
-	public String getSubject() {
-		return subject;
+	public String getContents() {
+		return contents;
 	}
 
-	public void setSubject(String subject) {
-		this.subject = subject;
+	public void setContents(String description) {
+		this.contents = description;
 	}
 
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public Timestamp getUpdateAt() {
+	public String getUpdateAt() {
 		return updateAt;
 	}
 
-	public void setUpdateAt(Timestamp updateAt) {
+	public void setUpdateAt(String updateAt) {
 		this.updateAt = updateAt;
 	}
 	
@@ -57,9 +45,8 @@ public class News implements Parcelable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result
-				+ ((description == null) ? 0 : description.hashCode());
+				+ ((contents == null) ? 0 : contents.hashCode());
 		result = prime * result + id;
-		result = prime * result + ((subject == null) ? 0 : subject.hashCode());
 		result = prime * result
 				+ ((updateAt == null) ? 0 : updateAt.hashCode());
 		return result;
@@ -74,17 +61,12 @@ public class News implements Parcelable {
 		if (getClass() != obj.getClass())
 			return false;
 		News other = (News) obj;
-		if (description == null) {
-			if (other.description != null)
+		if (contents == null) {
+			if (other.contents != null)
 				return false;
-		} else if (!description.equals(other.description))
+		} else if (!contents.equals(other.contents))
 			return false;
 		if (id != other.id)
-			return false;
-		if (subject == null) {
-			if (other.subject != null)
-				return false;
-		} else if (!subject.equals(other.subject))
 			return false;
 		if (updateAt == null) {
 			if (other.updateAt != null)
@@ -102,9 +84,8 @@ public class News implements Parcelable {
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
 		dest.writeInt(id);
-		dest.writeString(subject);
-		dest.writeString(description);
-		dest.writeLong(updateAt.getTime());
+		dest.writeString(contents);
+		dest.writeString(updateAt);
 	}
 	
 

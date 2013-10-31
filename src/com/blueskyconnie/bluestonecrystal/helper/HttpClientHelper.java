@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
-import java.sql.Timestamp;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,8 +21,10 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import com.blueskyconnie.bluestonecrystal.MainActivity;
 import com.blueskyconnie.bluestonecrystal.data.News;
 import com.blueskyconnie.bluestonecrystal.data.Product;
+import com.blueskyconnie.bluestonecrystal.data.Shop;
 import com.blueskyconnie.bluestonecrystal.exception.BusinessException;
 
 public final class HttpClientHelper {
@@ -165,20 +167,21 @@ public final class HttpClientHelper {
 								News news = new News();
 								Node node = nodes.item(i);
 								NamedNodeMap attrs = node.getAttributes();
-
-								Node attrNode = attrs.getNamedItem("subject");
-								if (attrNode != null) {
-									news.setSubject(attrNode.getTextContent());
-								}
 								
-								attrNode = attrs.getNamedItem("description");
+								Node attrNode = attrs.getNamedItem("contents");
 								if (attrNode != null) {
-									news.setDescription(attrNode.getTextContent());
+									news.setContents(attrNode.getTextContent());
 								}
 								
 								attrNode = attrs.getNamedItem("updated_at");
 								if (attrNode != null) {
-									news.setUpdateAt(new Timestamp(Long.valueOf(attrNode.getTextContent())));
+									try {
+										String updated_at = attrNode.getTextContent();
+										String strDate = MainActivity.sdf.format(MainActivity.sdf_ymd_hms.parse(updated_at));
+										news.setUpdateAt(strDate);
+									} catch (ParseException ex) {
+										news.setUpdateAt("");
+									}
 								}
 								lstNews.add(news);
 							}
@@ -203,5 +206,65 @@ public final class HttpClientHelper {
 			 }
 	   	     return new ArrayList<News>();
 		}
+
+	public static Shop retrieveShop(String shopUrl) throws BusinessException {
+		if (shopUrl == null || shopUrl.length() == 0) {
+			return new Shop();
+		}
+		
+		InputStream is = null;
+   	    try{
+		 	 URL url = new URL(shopUrl);
+			 URLConnection conn = url.openConnection();
+			 HttpURLConnection httpConn = (HttpURLConnection)conn;
+			 httpConn.setRequestMethod("GET");
+			 httpConn.connect();
+		 
+			 if (httpConn.getResponseCode() == HttpURLConnection.HTTP_OK) {
+				  is = httpConn.getInputStream();
+				  
+				  DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+				  DocumentBuilder builder = factory.newDocumentBuilder();
+				  Document doc = builder.parse(is);
+				  Shop shop = new Shop();
+
+				  NodeList nodes = doc.getElementsByTagName("shop");
+				  if (nodes != null && nodes.getLength() > 0) {
+					Node node = nodes.item(0);
+					NodeList children = node.getChildNodes();
+					if (children != null) {
+						for (int i = 0; i < children.getLength(); i++) {
+							Node childNode = children.item(i);
+							if (childNode != null && childNode.getNodeName().equals("email")) {
+								 shop.setEmail(childNode.getTextContent());
+							} else if (childNode != null && childNode.getNodeName().equals("address")) {
+								 shop.setAddress(childNode.getTextContent());
+							} else if (childNode != null && childNode.getNodeName().equals("homepage")) {
+								 shop.setHomepage(childNode.getTextContent());
+							}
+						}
+						
+					}
+				  }
+				  return shop;
+			  } 
+		 } catch (IOException ex){
+			 ex.printStackTrace();
+			 throw new BusinessException(ex.getMessage(), ex);
+		 } catch (ParserConfigurationException e) {
+			e.printStackTrace();
+		 } catch (SAXException e) {
+			e.printStackTrace();
+		} finally {
+			 try {
+				 if (is != null) {
+					 is.close();
+				 }
+			 } catch (IOException ex) {
+				 ex.printStackTrace();
+			 }
+		 }
+   		 return new Shop();
+	}
 	
 }

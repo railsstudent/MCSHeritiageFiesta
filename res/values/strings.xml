@@ -9,12 +9,9 @@
     <string name="tab_contact">聯絡</string>
     <string name="tab_product">產品</string>
     <string name="tab_news">消息</string>
-    <string name="facebook_url">http://www.facebook.com/bluestonecrystal</string>
     <string name="map_shop_title">Bluestone Crystal</string>
     <string name="map_shop_building">Solo Building</string>
     <string name="map_shop_address">尖沙咀加拿芬道41&#8211;43號\r\n(加拿分廣場對面)</string>
-    <string name="shop_address">尖沙咀加拿芬道41&#8211;43號 Solo Building 220室</string>
-    <string name="shop_email">crystal.bluestone@yahoo.com.hk</string>
     <string name="back_to_shop">返回店鋪</string>
     <string name="send_email">發送郵件</string>
     <string name="tell_a_friend">告訴朋友</string>

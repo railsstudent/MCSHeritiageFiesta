@@ -12,6 +12,7 @@ public class BatchData implements Parcelable {
 	private List<News> lstNews;
 	private long lastProductUpdateTime;
 	private long lastNewsUpdateTime;
+	private Shop shop;
 	
 	public BatchData() {}
 	
@@ -22,6 +23,7 @@ public class BatchData implements Parcelable {
 		in.readTypedList(lstNews, News.CREATOR);
 		this.lastProductUpdateTime = in.readLong();
 		this.lastNewsUpdateTime = in.readLong();
+		this.shop = in.readParcelable(Shop.class.getClassLoader());
 	}
 	
 	public List<Product> getLstProduct() {
@@ -68,6 +70,7 @@ public class BatchData implements Parcelable {
 		result = prime * result + ((lstNews == null) ? 0 : lstNews.hashCode());
 		result = prime * result
 				+ ((lstProduct == null) ? 0 : lstProduct.hashCode());
+		result = prime * result + ((shop == null) ? 0 : shop.hashCode());
 		return result;
 	}
 	@Override
@@ -93,6 +96,11 @@ public class BatchData implements Parcelable {
 				return false;
 		} else if (!lstProduct.equals(other.lstProduct))
 			return false;
+		if (shop == null) {
+			if (other.shop != null)
+				return false;
+		} else if (!shop.equals(other.shop))
+			return false;
 		return true;
 	}
 
@@ -107,6 +115,7 @@ public class BatchData implements Parcelable {
 		dest.writeTypedList(lstNews);
 		dest.writeLong(lastProductUpdateTime);
 		dest.writeLong(lastNewsUpdateTime);
+		dest.writeParcelable(shop, Parcelable.PARCELABLE_WRITE_RETURN_VALUE);
 	}
 	
 	public static final Parcelable.Creator<BatchData> CREATOR = new Parcelable.Creator<BatchData>() {
@@ -118,4 +127,12 @@ public class BatchData implements Parcelable {
             return new BatchData[size];
         }
     };
+    
+    public Shop getShop() {
+    	return this.shop;
+    }
+
+	public void setShop(Shop shop) {
+		this.shop = shop;
+	}
 }

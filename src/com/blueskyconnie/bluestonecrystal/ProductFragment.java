@@ -163,7 +163,7 @@ public class ProductFragment extends ListFragment {
 				// display current time
 				if (tvLastUpdate.get() != null) {
 					long curTime = Calendar.getInstance().getTimeInMillis();
-					tvLastUpdate.get().setText(MainActivity.sdf.format(new Date(curTime)));
+					tvLastUpdate.get().setText(getString(R.string.last_update_time) + MainActivity.sdf.format(new Date(curTime)));
 					activity.setLastProductUpdateTime(curTime);
 				}
 				activity.setLstProducts(lstProducts);

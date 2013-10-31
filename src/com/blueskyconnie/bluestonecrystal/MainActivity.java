@@ -26,6 +26,7 @@ import com.blueskyconnie.bluestonecrystal.adapter.TabspagerAdapter;
 import com.blueskyconnie.bluestonecrystal.data.BatchData;
 import com.blueskyconnie.bluestonecrystal.data.News;
 import com.blueskyconnie.bluestonecrystal.data.Product;
+import com.blueskyconnie.bluestonecrystal.data.Shop;
 
 public class MainActivity extends FragmentActivity implements
 	TabListener {
@@ -33,6 +34,7 @@ public class MainActivity extends FragmentActivity implements
 	public static final String BATCH_DATA = "batchData";
 	public static final int SHOP_ID = 1;
 	public static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MMM-dd hh:mm:ss aa", Locale.US);
+	public static final SimpleDateFormat sdf_ymd_hms = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.US);
 
 	/**
 	 * 
@@ -58,6 +60,7 @@ public class MainActivity extends FragmentActivity implements
 	private List<News> lstNews;
 	private long lastProductUpdateTime;
 	private long lastNewsUpdateTime;
+	private Shop shop;
 
 	@Override
 	protected void onCreate(Bundle savedBundle) {
@@ -131,10 +134,13 @@ public class MainActivity extends FragmentActivity implements
 		Intent intent = getIntent();
 		if (intent != null) {
 			BatchData data = (BatchData) intent.getParcelableExtra(BATCH_DATA);
-			this.setLstProducts(data.getLstProduct());
-			this.setLstNews(data.getLstNews());
-			this.setLastProductUpdateTime(data.getLastProductUpdateTime());
-			this.setLastNewsUpdateTime(data.getLastNewsUpdateTime());
+			if (data != null) {
+				this.setLstProducts(data.getLstProduct());
+				this.setLstNews(data.getLstNews());
+				this.setLastProductUpdateTime(data.getLastProductUpdateTime());
+				this.setLastNewsUpdateTime(data.getLastNewsUpdateTime());
+				this.setShop(data.getShop());
+			}
 		}
 	}
 
@@ -233,5 +239,13 @@ public class MainActivity extends FragmentActivity implements
 
 	public void setLastNewsUpdateTime(long lastNewsUpdateTime) {
 		this.lastNewsUpdateTime = lastNewsUpdateTime;
+	}
+	
+	public Shop getShop() {
+		return shop;
+	}
+
+	public void setShop(Shop shop) {
+		this.shop = shop;
 	}
 }

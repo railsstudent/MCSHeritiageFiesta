@@ -18,7 +18,9 @@ import com.blueskyconnie.bluestonecrystal.helper.ConnectionDetector;
 @SuppressLint("SetJavaScriptEnabled")
 public class FacebookFragment extends Fragment implements OnKeyListener {
 
+	private static final String DEFAULT_HOMEPAGE = "https://www.facebook.com/metroame";
 	private WebView webView;
+	private String homepage;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -56,6 +58,15 @@ public class FacebookFragment extends Fragment implements OnKeyListener {
 		webView.setOnKeyListener(this);
 		return rootView;
 	}
+	
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+		MainActivity activity = (MainActivity) getActivity();
+		if (activity != null) {
+			homepage = activity.getShop().getHomepage();
+		} 
+	}
 
 	@Override
 	public void onResume() {
@@ -64,7 +75,7 @@ public class FacebookFragment extends Fragment implements OnKeyListener {
 			ConnectionDetector detector = new ConnectionDetector(getActivity());
 			if (detector.isConnectingToInternet()) {
 				if (webView != null) {
-					webView.loadUrl(getString(R.string.facebook_url));
+					webView.loadUrl((homepage != null && homepage.length() > 0) ? homepage : DEFAULT_HOMEPAGE);
 				}		
 			} 
 		}

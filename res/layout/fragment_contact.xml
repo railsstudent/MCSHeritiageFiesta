@@ -30,7 +30,7 @@
            android:layout_width="0dp"
            android:layout_height="wrap_content"
            android:layout_weight="5"
-           android:text="@string/shop_address"
+           android:text=""
            android:textAppearance="?android:attr/textAppearanceLarge"
            android:textColor="@color/blue" />
 
@@ -54,7 +54,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="5"
-            android:text="@string/shop_email"
+            android:text=""
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/blue" />
 
