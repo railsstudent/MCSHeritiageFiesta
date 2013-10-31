@@ -69,7 +69,8 @@ public class NewsFragment extends ListFragment {
 		List<News> lstNews = activity.getLstNews();
 		NewsAdapter adapter = new NewsAdapter(getActivity(), R.layout.news_row_layout, lstNews);
 		getListView().setAdapter(adapter);
-		tvUpdateTime.setText(MainActivity.sdf.format(new Date(activity.getLastNewsUpdateTime())));
+		tvUpdateTime.setText(getString(R.string.last_update_time) + 
+				MainActivity.sdf.format(new Date(activity.getLastNewsUpdateTime())));
 	}
 
 	@Override

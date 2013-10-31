@@ -72,7 +72,8 @@ public class ProductFragment extends ListFragment {
 		ProductAdapter adapter = new ProductAdapter(getActivity(),
 				R.layout.product_row_layout, lstProducts);
 		getListView().setAdapter(adapter);
-		tvUpdateTime.setText(MainActivity.sdf.format(new Date(activity.getLastProductUpdateTime())));
+		tvUpdateTime.setText(getString(R.string.last_update_time) + 
+				MainActivity.sdf.format(new Date(activity.getLastProductUpdateTime())));
 	}
 
 	@Override
