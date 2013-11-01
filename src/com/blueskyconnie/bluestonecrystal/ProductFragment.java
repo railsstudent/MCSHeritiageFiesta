@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.blueskyconnie.bluestonecrystal.adapter.ProductAdapter;
 import com.blueskyconnie.bluestonecrystal.data.Product;
@@ -126,10 +127,12 @@ public class ProductFragment extends ListFragment {
 
 		private WeakReference<ProductFragment> fragmentWeakRef;
 		private WeakReference<TextView> tvLastUpdate;
+		private Exception exception;
 
         private RetrieveProductTask (ProductFragment fragment, TextView lblUpdate) {
             this.fragmentWeakRef = new WeakReference<ProductFragment>(fragment);
             this.tvLastUpdate = new WeakReference<TextView>(lblUpdate);
+            exception = null;
         }
 
 		@Override
@@ -144,10 +147,12 @@ public class ProductFragment extends ListFragment {
 		@Override
 		protected List<Product> doInBackground(String... params) {
 			try {
-				List<Product> lstProduct = HttpClientHelper.retrieveProducts(params[0], cmsUrl);
+				List<Product> lstProduct = HttpClientHelper.retrieveProducts(fragmentWeakRef.get().getActivity(), 
+						params[0], cmsUrl);
 				return lstProduct;
 			} catch (BusinessException ex) {
 				ex.printStackTrace();
+				exception = ex;
 			}
 			return new ArrayList<Product>();
 		}
@@ -157,8 +162,11 @@ public class ProductFragment extends ListFragment {
 			super.onPostExecute(lstProducts);
 			if (fragmentWeakRef.get() != null) {
 				MainActivity activity = (MainActivity) fragmentWeakRef.get().getActivity();
-				ProductAdapter adapter = new ProductAdapter(activity,
-						R.layout.product_row_layout, lstProducts);
+				if (exception != null) {
+					Toast.makeText(activity, exception.getMessage(), Toast.LENGTH_LONG).show();
+				}
+
+				ProductAdapter adapter = new ProductAdapter(activity, R.layout.product_row_layout, lstProducts);
 				// update list adapter
 				fragmentWeakRef.get().setListAdapter(adapter);
 				// display current time

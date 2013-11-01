@@ -21,7 +21,10 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import android.content.Context;
+
 import com.blueskyconnie.bluestonecrystal.MainActivity;
+import com.blueskyconnie.bluestonecrystal.R;
 import com.blueskyconnie.bluestonecrystal.data.News;
 import com.blueskyconnie.bluestonecrystal.data.Product;
 import com.blueskyconnie.bluestonecrystal.data.Shop;
@@ -58,7 +61,7 @@ public final class HttpClientHelper {
 		 return null;
 	}
 	
-	public static List<Product> retrieveProducts(String strUrl, String cms_url) 
+	public static List<Product> retrieveProducts(Context context, String strUrl, String cms_url) 
 		throws BusinessException {
 
 		if (strUrl == null || strUrl.length() == 0) {
@@ -120,12 +123,14 @@ public final class HttpClientHelper {
 			  } 
 		 } catch (IOException ex){
 			 ex.printStackTrace();
-			 throw new BusinessException(ex.getMessage(), ex);
-		 } catch (ParserConfigurationException e) {
-			e.printStackTrace();
-		 } catch (SAXException e) {
-			e.printStackTrace();
-		} finally {
+			 throw new BusinessException(context.getString(R.string.http_request_error), ex);
+		 } catch (ParserConfigurationException ex) {
+			ex.printStackTrace();
+			 throw new BusinessException(context.getString(R.string.http_request_error), ex);
+		 } catch (SAXException ex) {
+			ex.printStackTrace();
+			 throw new BusinessException(context.getString(R.string.http_request_error), ex);
+		 } finally {
 			 try {
 				 if (is != null) {
 					 is.close();
@@ -138,7 +143,7 @@ public final class HttpClientHelper {
 	}
 	
 	
-	public static List<News> retrieveNews(String strUrl) 
+	public static List<News> retrieveNews(Context context, String strUrl) 
 			throws BusinessException {
 
 			if (strUrl == null || strUrl.length() == 0) {
@@ -190,11 +195,14 @@ public final class HttpClientHelper {
 				  } 
 			 } catch (IOException ex){
 				 ex.printStackTrace();
-				 throw new BusinessException(ex.getMessage(), ex);
-			 } catch (ParserConfigurationException e) {
-				e.printStackTrace();
-			 } catch (SAXException e) {
-				e.printStackTrace();
+//				 throw new BusinessException(ex.getMessage(), ex);
+				 throw new BusinessException(context.getString(R.string.http_request_error), ex);
+			 } catch (ParserConfigurationException ex) {
+				ex.printStackTrace();
+				 throw new BusinessException(context.getString(R.string.http_request_error), ex);
+			 } catch (SAXException ex) {
+				ex.printStackTrace();
+				throw new BusinessException(context.getString(R.string.http_request_error), ex);
 			} finally {
 				 try {
 					 if (is != null) {
@@ -207,7 +215,7 @@ public final class HttpClientHelper {
 	   	     return new ArrayList<News>();
 		}
 
-	public static Shop retrieveShop(String shopUrl) throws BusinessException {
+	public static Shop retrieveShop(Context context, String shopUrl) throws BusinessException {
 		if (shopUrl == null || shopUrl.length() == 0) {
 			return new Shop();
 		}
@@ -250,11 +258,13 @@ public final class HttpClientHelper {
 			  } 
 		 } catch (IOException ex){
 			 ex.printStackTrace();
-			 throw new BusinessException(ex.getMessage(), ex);
-		 } catch (ParserConfigurationException e) {
-			e.printStackTrace();
-		 } catch (SAXException e) {
-			e.printStackTrace();
+			 throw new BusinessException(context.getString(R.string.http_request_error), ex);
+		 } catch (ParserConfigurationException ex) {
+			ex.printStackTrace();
+			throw new BusinessException(context.getString(R.string.http_request_error), ex);
+		 } catch (SAXException ex) {
+			ex.printStackTrace();
+			throw new BusinessException(context.getString(R.string.http_request_error), ex);
 		} finally {
 			 try {
 				 if (is != null) {

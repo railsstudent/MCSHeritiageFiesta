@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.blueskyconnie.bluestonecrystal.data.BatchData;
 import com.blueskyconnie.bluestonecrystal.data.News;
@@ -95,9 +96,11 @@ public class SplashActivity extends Activity {
 	private class LoadDataTask extends AsyncTask<String, Void, BatchData> {
 
 		private WeakReference<SplashActivity> activityWeakRef;
+		private Exception exception;
 		
 		private LoadDataTask(SplashActivity activity) {
 			this.activityWeakRef = new WeakReference<SplashActivity>(activity);
+			exception = null;
 		}
 		
 		@Override
@@ -116,20 +119,22 @@ public class SplashActivity extends Activity {
 			Calendar cal = Calendar.getInstance();
 			BatchData data = new BatchData();
 			try {
-				List<Product> lstProduct = HttpClientHelper.retrieveProducts(productUrl, cmsUrl);
+				List<Product> lstProduct = HttpClientHelper.retrieveProducts(activityWeakRef.get(), 
+						productUrl, cmsUrl);
 				data.setLstProduct(lstProduct);
 				data.setLastProductUpdateTime(cal.getTimeInMillis());
 				
-				List<News> lstNews = HttpClientHelper.retrieveNews(newsUrl);
+				List<News> lstNews = HttpClientHelper.retrieveNews(activityWeakRef.get(), newsUrl);
 				data.setLstNews(lstNews);
 				data.setLastNewsUpdateTime(cal.getTimeInMillis());
 				
-				Shop shop = HttpClientHelper.retrieveShop(shopUrl);
+				Shop shop = HttpClientHelper.retrieveShop(activityWeakRef.get(), shopUrl);
 				data.setShop(shop);
 				
 				return data;
 			} catch (BusinessException ex) {
 				ex.printStackTrace();
+				exception = ex;
 			}
 			data.setLstNews(new ArrayList<News>());
 			data.setLstProduct(new ArrayList<Product>());
@@ -143,6 +148,10 @@ public class SplashActivity extends Activity {
 		protected void onPostExecute(BatchData result) {
 			super.onPostExecute(result);
 			if (asyncTaskWeakRef.get() != null) {
+				if (exception != null) {
+					Toast.makeText(activityWeakRef.get(), exception.getMessage(), Toast.LENGTH_LONG)
+						.show();
+				}
 				Intent intent = new Intent(activityWeakRef.get(), MainActivity.class);
 				intent.putExtra(MainActivity.BATCH_DATA, result);
 				activityWeakRef.get().startActivity(intent);

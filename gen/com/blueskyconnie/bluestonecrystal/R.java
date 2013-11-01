@@ -184,7 +184,7 @@ containing a value of this type.
         public static final int common_signin_btn_text_pressed_dark=0x7f020017;
         public static final int common_signin_btn_text_pressed_light=0x7f020018;
         public static final int contact_ic=0x7f020019;
-        public static final int darkgray=0x7f02002d;
+        public static final int darkgray=0x7f02002e;
         public static final int facebook_ic=0x7f02001a;
         public static final int ic_launcher=0x7f02001b;
         public static final int ic_plusone_medium_off_client=0x7f02001c;
@@ -198,18 +198,19 @@ containing a value of this type.
         public static final int img_no_photo_thumbnail=0x7f020024;
         public static final int img_product=0x7f020025;
         public static final int img_refresh=0x7f020026;
-        public static final int img_send_email=0x7f020027;
-        public static final int img_share=0x7f020028;
-        public static final int location_ic=0x7f020029;
-        public static final int pin=0x7f02002a;
-        public static final int solo_building2=0x7f02002b;
-        public static final int splash=0x7f02002c;
+        public static final int img_right_arrow=0x7f020027;
+        public static final int img_send_email=0x7f020028;
+        public static final int img_share=0x7f020029;
+        public static final int location_ic=0x7f02002a;
+        public static final int pin=0x7f02002b;
+        public static final int solo_building2=0x7f02002c;
+        public static final int splash=0x7f02002d;
     }
     public static final class id {
         public static final int LinearLayout1=0x7f05000a;
         public static final int RelativeLayout1=0x7f050006;
         public static final int ScrollLayout=0x7f050016;
-        public static final int action_settings=0x7f05002d;
+        public static final int action_settings=0x7f05002e;
         public static final int btnSendMail=0x7f050013;
         public static final int btnTellAFriend=0x7f050014;
         public static final int hybrid=0x7f050004;
@@ -220,9 +221,10 @@ containing a value of this type.
         public static final int imgProductThumbnail=0x7f05002a;
         public static final int imgRefresh=0x7f050023;
         public static final int imgRefreshNews=0x7f050021;
+        public static final int imgRightArrow=0x7f05002c;
         public static final int imgShop=0x7f050024;
         public static final int imgSplash=0x7f050007;
-        public static final int item_shop=0x7f05002c;
+        public static final int item_shop=0x7f05002d;
         public static final int lblDescription=0x7f05001a;
         public static final int lblItemName=0x7f050018;
         public static final int lblPrice=0x7f05001c;
@@ -301,7 +303,7 @@ containing a value of this type.
         public static final int cancel_exit=0x7f060030;
         public static final int choose_email_app=0x7f060028;
         public static final int choose_share_app=0x7f060027;
-        public static final int cms_url=0x7f06003c;
+        public static final int cms_url=0x7f060039;
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
         will direct user to application settings of Google Play services where they
         can enable it [CHAR LIMIT=40] 
@@ -374,21 +376,19 @@ containing a value of this type.
         public static final int email_app_not_installed=0x7f06002a;
         public static final int email_subject=0x7f06002b;
         public static final int email_text=0x7f06002d;
-        public static final int info_title=0x7f06003b;
-        public static final int itemDesc=0x7f06003e;
-        public static final int itemName=0x7f06003f;
-        public static final int itemPrice=0x7f060040;
-        public static final int last_update_time=0x7f06003d;
+        public static final int http_request_error=0x7f06003e;
+        public static final int info_title=0x7f060038;
+        public static final int itemDesc=0x7f06003b;
+        public static final int itemName=0x7f06003c;
+        public static final int itemPrice=0x7f06003d;
+        public static final int last_update_time=0x7f06003a;
         public static final int loading=0x7f060036;
-        public static final int loading_news=0x7f060038;
-        public static final int loading_products=0x7f060037;
-        public static final int loading_shopInfo=0x7f060039;
         public static final int map_shop_address=0x7f060023;
         public static final int map_shop_building=0x7f060022;
         public static final int map_shop_title=0x7f060021;
         public static final int no_accessories=0x7f060033;
         public static final int no_data=0x7f060032;
-        public static final int no_internet_error=0x7f06003a;
+        public static final int no_internet_error=0x7f060037;
         public static final int no_news=0x7f060034;
         public static final int send_email=0x7f060025;
         public static final int share_app_not_installed=0x7f060029;

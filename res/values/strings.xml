@@ -22,7 +22,7 @@
     <string name="email_subject">查詢</string>
     <string name="share_subject">我想與你分享此網頁</string>
     <string name="email_text">查詢</string>
-    <string name="share_text">請讚好這Facebook網頁 http://goo.gl/vFSgWf.</string>
+    <string name="share_text">請讚好這Facebook網頁 - http://goo.gl/vFSgWf.</string>
     <string name="confirm_exit">確認</string>
     <string name="cancel_exit">取消</string>
     <string name="title_confirm_exit">離開</string>
@@ -31,9 +31,6 @@
     <string name="no_news">沒有消息</string>
     <string name="dowloading">下載進行中&#8230;</string>
     <string name="loading">載入&#8230;</string>
-    <string name="loading_products">載入產品</string>
-    <string name="loading_news">載入消息</string>
-    <string name="loading_shopInfo">載入店鋪</string>
     <string name="no_internet_error">互聯網網路連接失敗。</string>
     <string name="info_title">資訊</string>
     <string name="cms_url">http://192.168.1.138/bluestone/</string>
@@ -41,5 +38,5 @@
     <string name="itemDesc">作用：</string>
     <string name="itemName">名稱：</string>
     <string name="itemPrice">價錢：</string>
-
+    <string name="http_request_error">HTTP請求被拒絕，請稍後再回來。</string>
 </resources>

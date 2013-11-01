@@ -16,6 +16,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.blueskyconnie.bluestonecrystal.adapter.NewsAdapter;
 import com.blueskyconnie.bluestonecrystal.data.News;
@@ -104,10 +105,12 @@ public class NewsFragment extends ListFragment {
 
 		private WeakReference<NewsFragment> fragmentWeakRef;
 		private WeakReference<TextView> tvLastUpdateReference;
+		private Exception exception;
 		
 		private RetrieveNewsTask(NewsFragment fragment, TextView tvUpdateTime) {
 			fragmentWeakRef = new WeakReference<NewsFragment>(fragment);
             tvLastUpdateReference = new WeakReference<TextView>(tvUpdateTime);
+            exception = null;
 		}
 		
 		@Override
@@ -122,10 +125,11 @@ public class NewsFragment extends ListFragment {
 		@Override
 		protected List<News> doInBackground(String... params) {
 			try {
-				List<News> lstNews = HttpClientHelper.retrieveNews(params[0]);
+				List<News> lstNews = HttpClientHelper.retrieveNews(fragmentWeakRef.get().getActivity(), params[0]);
 				return lstNews;
 			} catch (BusinessException ex) {
 				ex.printStackTrace();
+				exception = ex;
 			}
 			return new ArrayList<News>();
 		}
@@ -135,6 +139,10 @@ public class NewsFragment extends ListFragment {
 			super.onPostExecute(lstNews);
 			if (fragmentWeakRef.get() != null) {
 				MainActivity activity = (MainActivity) fragmentWeakRef.get().getActivity();
+				if (exception != null) {
+					Toast.makeText(activity, exception.getMessage(), Toast.LENGTH_LONG).show();
+				}
+
 				NewsAdapter newsAdapter = new NewsAdapter(activity, R.layout.news_row_layout, lstNews);
 				// update list adapter
 				fragmentWeakRef.get().setListAdapter(newsAdapter);
