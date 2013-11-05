@@ -108,6 +108,9 @@ public class ProductFragment extends ListFragment {
 		    intent.putExtra("currentProduct", product);
 		    hasClickedItem = true;
 		    startActivityForResult(intent, 1);
+		    
+//		    this.getFragmentManager().
+		    
 		}
 	}
 	

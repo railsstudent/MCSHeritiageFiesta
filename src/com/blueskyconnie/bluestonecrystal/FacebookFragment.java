@@ -1,26 +1,58 @@
 package com.blueskyconnie.bluestonecrystal;
 
-import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnKeyListener;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.webkit.WebChromeClient;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.Toast;
+import android.widget.TextView;
 
+import com.blueskyconnie.bluestonecrystal.helper.AlertDialogHelper;
 import com.blueskyconnie.bluestonecrystal.helper.ConnectionDetector;
 
-@SuppressLint("SetJavaScriptEnabled")
-public class FacebookFragment extends Fragment implements OnKeyListener {
+public class FacebookFragment extends Fragment {
 
 	private static final String DEFAULT_HOMEPAGE = "https://www.facebook.com/metroame";
-	private WebView webView;
+	private static final String TAROT_HOMEPAGE = "https://www.facebook.com/tarot.selina";
+
 	private String homepage;
+	
+	private OnClickListener listener = new OnClickListener() {
+
+		public void onClick(View v) {
+			
+			ConnectionDetector detector = new ConnectionDetector(getActivity());
+			switch (v.getId()) {
+				case R.id.tvAmeFB:
+					if (detector.isConnectingToInternet()) {
+						Intent ameIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(DEFAULT_HOMEPAGE));
+						startActivity(ameIntent);
+					} else {
+						AlertDialogHelper.showNoInternetDialog(FacebookFragment.this.getActivity());
+					}
+					break;
+				case R.id.tvSelinaFB:
+					if (detector.isConnectingToInternet()) {
+						Intent tarotIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(TAROT_HOMEPAGE));
+						startActivity(tarotIntent);
+					} else {
+						AlertDialogHelper.showNoInternetDialog(FacebookFragment.this.getActivity());
+					}
+					break;
+				case R.id.tvBluestoneFB:
+					if (detector.isConnectingToInternet()) {
+						Intent homeIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(homepage));
+						startActivity(homeIntent);
+					} else {
+						AlertDialogHelper.showNoInternetDialog(FacebookFragment.this.getActivity());
+					}
+					break;
+			}
+		}
+	};
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -33,73 +65,20 @@ public class FacebookFragment extends Fragment implements OnKeyListener {
 			Bundle savedInstanceState) {
 
 		View rootView = inflater.inflate(R.layout.fragment_facebook, container, false);
-		webView = (WebView) rootView.findViewById(R.id.wvFacbook);
-		webView.getSettings().setJavaScriptEnabled(true);
-		webView.getSettings().setBuiltInZoomControls(true);
-		webView.invokeZoomPicker();
-		// set initial scale to 80%
-		webView.setInitialScale(80);
-		webView.setWebViewClient(new WebViewClient() {
+		TextView tvAmeFB = (TextView) rootView.findViewById(R.id.tvAmeFB);
+		TextView tvTarotFB = (TextView) rootView.findViewById(R.id.tvSelinaFB);
+		TextView tvBluestoneFB = (TextView) rootView.findViewById(R.id.tvBluestoneFB);
 
-			@Override
-			public void onReceivedError(WebView view, int errorCode,
-					String description, String failingUrl) {
-				Toast.makeText(FacebookFragment.this.getActivity(), 
-						"Oh no! " + description, Toast.LENGTH_SHORT).show();
-			}
-		});
-		
-		webView.setWebChromeClient(new WebChromeClient() {
-			@Override
-			public void onProgressChanged(WebView view, int newProgress) {
-				getActivity().setProgress(newProgress * 100);
-			}
-		});
-		webView.setOnKeyListener(this);
-		return rootView;
-	}
-	
-	@Override
-	public void onActivityCreated(Bundle savedInstanceState) {
-		super.onActivityCreated(savedInstanceState);
 		MainActivity activity = (MainActivity) getActivity();
 		if (activity != null) {
 			homepage = activity.getShop().getHomepage();
 		} 
-	}
+		
+		tvAmeFB.setOnClickListener(listener);
+		tvTarotFB.setOnClickListener(listener);
+		tvBluestoneFB.setOnClickListener(listener);
 
-	@Override
-	public void onResume() {
-		super.onResume();
-		if (getUserVisibleHint()) {
-			ConnectionDetector detector = new ConnectionDetector(getActivity());
-			if (detector.isConnectingToInternet()) {
-				if (webView != null) {
-					webView.loadUrl((homepage != null && homepage.length() > 0) ? homepage : DEFAULT_HOMEPAGE);
-				}		
-			} 
-		}
+		return rootView;
 	}
 	
-	@Override
-	public boolean onKey(View view, int keyCode, KeyEvent event) {
-		if (event.getAction() == KeyEvent.ACTION_DOWN) {
-			WebView webView = (WebView) view;
-			if (keyCode == KeyEvent.KEYCODE_BACK && webView.canGoBack()) {
-				webView.goBack();
-				return true;
-			}
-		}
-		return false;
-	}
-
-	@Override
-	public void onPause() {
-		super.onPause();
-		if (!getUserVisibleHint()) {
-			if (webView != null) {
-				webView.onPause();
-			}
-		}
-	}
 }

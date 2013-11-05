@@ -3,7 +3,9 @@ package com.blueskyconnie.bluestonecrystal.helper;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.widget.Toast;
 
+import com.blueskyconnie.bluestonecrystal.MainActivity;
 import com.blueskyconnie.bluestonecrystal.R;
 
 public final class AlertDialogHelper {
@@ -21,5 +23,37 @@ public final class AlertDialogHelper {
 			});
 		AlertDialog alertDialog = builder.create();
 		alertDialog.show();
+	}
+	
+	public static void showConfirmExitDialog(final Context context) {
+		
+		// prompt confirmation dialog before exit
+		DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				switch (which) {
+					case DialogInterface.BUTTON_NEGATIVE:   // confirm to exit
+						// close dialog and do nothing
+						dialog.dismiss();
+						if (context != null && context instanceof MainActivity) {
+							((MainActivity) context).finish();
+						} else {
+							Toast.makeText(context, R.string.exit_error, Toast.LENGTH_LONG).show();	
+						}
+						break;
+					case DialogInterface.BUTTON_POSITIVE:   // cancel
+						dialog.dismiss();
+						break;
+				}
+			}
+		};
+		
+		AlertDialog.Builder builder = new AlertDialog.Builder(context);
+		builder.setTitle(R.string.bluestone_crystal);
+		builder.setMessage(R.string.title_confirm_exit);
+		builder.setPositiveButton(R.string.cancel_exit, listener);
+		builder.setNegativeButton(R.string.confirm_exit, listener);
+		AlertDialog quitDialog = builder.create();
+		quitDialog.show();
 	}
 }

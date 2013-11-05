@@ -8,9 +8,7 @@ import java.util.Locale;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.ActionBar.TabListener;
-import android.app.AlertDialog;
 import android.app.FragmentTransaction;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -27,6 +25,7 @@ import com.blueskyconnie.bluestonecrystal.data.BatchData;
 import com.blueskyconnie.bluestonecrystal.data.News;
 import com.blueskyconnie.bluestonecrystal.data.Product;
 import com.blueskyconnie.bluestonecrystal.data.Shop;
+import com.blueskyconnie.bluestonecrystal.helper.AlertDialogHelper;
 
 public class MainActivity extends FragmentActivity implements
 	TabListener {
@@ -185,28 +184,7 @@ public class MainActivity extends FragmentActivity implements
 
 	@Override
 	public void onBackPressed() {
-		// prompt confirmation dialog before exit
-		DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				switch (which) {
-					case DialogInterface.BUTTON_NEGATIVE:   // confirm to exit
-						// close dialog and do nothing
-						finish();
-						break;
-					case DialogInterface.BUTTON_POSITIVE:   // cancel
-						dialog.dismiss();
-						break;
-				}
-			}
-		};
-		
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setTitle(R.string.title_confirm_exit);
-		builder.setPositiveButton(R.string.cancel_exit, listener);
-		builder.setNegativeButton(R.string.confirm_exit, listener);
-		AlertDialog quitDialog = builder.create();
-		quitDialog.show();
+		AlertDialogHelper.showConfirmExitDialog(this);
 	}
 
 	public List<Product> getLstProducts() {
