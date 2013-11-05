@@ -1,5 +1,7 @@
 package com.blueskyconnie.bluestonecrystal;
 
+import android.app.AlertDialog;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -25,10 +27,13 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 public class StoreMapFragment extends Fragment {
 
 	private static final LatLng SHOP_LATLNG = new LatLng(22.299132,114.173793);
+	private static final LatLng MTR_EXIT_B2 = new LatLng(22.298725,114.172409);
+	
 	private static final int RQS_GooglePlayServices = 1;
 	
 	private MapView mapView;
@@ -91,6 +96,11 @@ public class StoreMapFragment extends Fragment {
 					// draw a pin to indicate shop location
 					map.moveCamera(CameraUpdateFactory.newLatLng(SHOP_LATLNG));
 					map.animateCamera(CameraUpdateFactory.zoomTo(17));
+					
+					map.addMarker(new MarkerOptions().position(MTR_EXIT_B2)
+							.title("MTR Exit B2")
+							.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin)));
+					
 					map.addMarker(new MarkerOptions().position(SHOP_LATLNG)
 							.title(getString(R.string.map_shop_title))
 							.snippet(getString(R.string.map_shop_address))
@@ -110,6 +120,13 @@ public class StoreMapFragment extends Fragment {
 							map.moveCamera(CameraUpdateFactory.newLatLng(latLng));
 						}
 					});
+					
+					// drop polylines
+					PolylineOptions lineOptions = new PolylineOptions();
+					lineOptions.add(MTR_EXIT_B2, new LatLng(22.298745,114.172785), 
+							new LatLng(22.298993,114.173665), new LatLng(22.299093,114.173611));
+					lineOptions.color(Color.RED);
+					map.addPolyline(lineOptions);
 				}
 				mapView.onResume();
 			}
@@ -128,6 +145,14 @@ public class StoreMapFragment extends Fragment {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if (item.getItemId() == R.id.item_shop) {
 			map.moveCamera(CameraUpdateFactory.newLatLng(SHOP_LATLNG));
+		} else if (item.getItemId() == R.id.menu_legalnotices) {
+			 String LicenseInfo = GooglePlayServicesUtil.getOpenSourceSoftwareLicenseInfo(
+				        getActivity());
+		     AlertDialog.Builder LicenseDialog = new AlertDialog.Builder(getActivity());
+		     LicenseDialog.setTitle(getString(R.string.menu_legalnotices));
+		     LicenseDialog.setMessage(LicenseInfo);
+		     LicenseDialog.show();
+		     return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}

@@ -37,6 +37,31 @@
    </TableRow>
 
     <TableRow
+        android:id="@+id/tableRow1a"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp" >
+
+        <ImageView
+            android:id="@+id/imgHour"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/img_hour" />
+
+        <TextView
+            android:id="@+id/tvWorkingHours"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:gravity="bottom|fill"
+            android:text="3 pm - 8:30 pm"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/blue" />
+
+    </TableRow>
+   
+    <TableRow
         android:id="@+id/tableRow2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
