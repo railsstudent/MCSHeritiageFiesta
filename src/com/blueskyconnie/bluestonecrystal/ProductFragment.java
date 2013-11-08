@@ -39,13 +39,15 @@ public class ProductFragment extends ListFragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setRetainInstance(true);
+		dialog = new ProgressDialog(getActivity()); 
+		cmsUrl = getString(R.string.cms_url);
 	}
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+
 		View rootView = inflater.inflate(R.layout.fragment_product, container, false);
-		
 		tvUpdateTime = (TextView) rootView.findViewById(R.id.tvLastUpdate);
 		ImageButton imgBtnRefresh = (ImageButton) rootView.findViewById(R.id.imgRefresh);
 		imgBtnRefresh.setOnClickListener(new OnClickListener() {
@@ -61,20 +63,45 @@ public class ProductFragment extends ListFragment {
 		});
 		return rootView;
 	}
-	
+
+	@Override
+	public void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		if (outState != null) {
+			MainActivity activity = (MainActivity) getActivity();
+			ArrayList<Product> lstProductParceable = new ArrayList<Product>(activity.getLstProducts());
+			outState.putParcelableArrayList("productlist", lstProductParceable); 
+			outState.putLong("product_lastUpdateTime", activity.getLastProductUpdateTime());
+			Toast.makeText(getActivity(), "On Save Instance State, Product Fragment", Toast.LENGTH_LONG).show();
+		}
+	}
+
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		dialog = new ProgressDialog(getActivity()); 
-		cmsUrl = getString(R.string.cms_url);
 		
-		MainActivity activity = (MainActivity) this.getActivity();
-		List<Product> lstProducts = activity.getLstProducts();
-		ProductAdapter adapter = new ProductAdapter(getActivity(),
-				R.layout.product_row_layout, lstProducts);
-		getListView().setAdapter(adapter);
-		tvUpdateTime.setText(getString(R.string.last_update_time) + 
-				MainActivity.sdf.format(new Date(activity.getLastProductUpdateTime())));
+		if (savedInstanceState == null) {
+			MainActivity activity = (MainActivity) getActivity();
+			List<Product> lstProducts = activity.getLstProducts();
+			ProductAdapter adapter = new ProductAdapter(getActivity(), R.layout.product_row_layout, lstProducts);
+			setListAdapter(adapter);
+			tvUpdateTime.setText(getString(R.string.last_update_time) + 
+					MainActivity.sdf.format(new Date(activity.getLastProductUpdateTime())));
+			Toast.makeText(getActivity(), "onActivityCreated, Product Fragment, null savedInstanceState",
+					Toast.LENGTH_LONG).show();
+
+		} else {
+			// restore products 
+			MainActivity activity = (MainActivity) getActivity();
+			List<Product> lstProducts = activity.getLstProducts();
+			ProductAdapter adapter = new ProductAdapter(getActivity(), R.layout.product_row_layout, lstProducts);
+			getListView().setAdapter(adapter);
+			tvUpdateTime.setText(getString(R.string.last_update_time) + 
+					MainActivity.sdf.format(new Date(activity.getLastProductUpdateTime())));
+			
+			Toast.makeText(getActivity(), "onActivityCreated, Product Fragment, non-null savedInstanceState",
+					Toast.LENGTH_LONG).show();			
+		}
 	}
 
 	@Override
@@ -108,9 +135,6 @@ public class ProductFragment extends ListFragment {
 		    intent.putExtra("currentProduct", product);
 		    hasClickedItem = true;
 		    startActivityForResult(intent, 1);
-		    
-//		    this.getFragmentManager().
-		    
 		}
 	}
 	
@@ -142,7 +166,8 @@ public class ProductFragment extends ListFragment {
 		protected void onPreExecute() {
 			super.onPreExecute();
 			if (dialog != null) {
-				dialog.setMessage(fragmentWeakRef.get().getString(R.string.dowloading));
+				dialog.setTitle(fragmentWeakRef.get().getString(R.string.bluestone_crystal));
+				dialog.setMessage(fragmentWeakRef.get().getString(R.string.downloading));
 				dialog.show();
 			}
 		}

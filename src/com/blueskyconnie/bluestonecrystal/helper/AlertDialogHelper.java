@@ -34,8 +34,8 @@ public final class AlertDialogHelper {
 				switch (which) {
 					case DialogInterface.BUTTON_NEGATIVE:   // confirm to exit
 						// close dialog and do nothing
-						dialog.dismiss();
 						if (context != null && context instanceof MainActivity) {
+							dialog.dismiss();
 							((MainActivity) context).finish();
 						} else {
 							Toast.makeText(context, R.string.exit_error, Toast.LENGTH_LONG).show();	

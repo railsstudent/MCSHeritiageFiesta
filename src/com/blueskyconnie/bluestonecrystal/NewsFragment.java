@@ -36,6 +36,8 @@ public class NewsFragment extends ListFragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.setRetainInstance(true);
+		dialog = new ProgressDialog(getActivity()); 
+		cmsUrl = getString(R.string.cms_url);
 	}
 	
 	@Override
@@ -59,19 +61,41 @@ public class NewsFragment extends ListFragment {
 		});
 		return rootView;
 	}
+
 	
+	@Override
+	public void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		if (outState != null) {
+			MainActivity activity = (MainActivity) getActivity();
+			ArrayList<News> lstNewsParceable = new ArrayList<News>(activity.getLstNews());
+			outState.putParcelableArrayList("newslist", lstNewsParceable); 
+			outState.putLong("news_lastUpdateTime", activity.getLastNewsUpdateTime());
+			Toast.makeText(getActivity(), "On Save Instance State, News Fragment", Toast.LENGTH_LONG).show();
+		}
+	}
+
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		dialog = new ProgressDialog(getActivity()); 
-		cmsUrl = getString(R.string.cms_url);
-		
+
 		MainActivity activity = (MainActivity) this.getActivity();
-		List<News> lstNews = activity.getLstNews();
-		NewsAdapter adapter = new NewsAdapter(getActivity(), R.layout.news_row_layout, lstNews);
-		getListView().setAdapter(adapter);
-		tvUpdateTime.setText(getString(R.string.last_update_time) + 
-				MainActivity.sdf.format(new Date(activity.getLastNewsUpdateTime())));
+		if (savedInstanceState == null) {
+			List<News> lstNews = activity.getLstNews();
+			NewsAdapter adapter = new NewsAdapter(getActivity(), R.layout.news_row_layout, lstNews);
+			getListView().setAdapter(adapter);
+			tvUpdateTime.setText(getString(R.string.last_update_time) 
+					+ MainActivity.sdf.format(new Date(activity.getLastNewsUpdateTime())));
+			Toast.makeText(getActivity(), "onActivityCreated, News Fragment, null savedinstancestate.", Toast.LENGTH_LONG).show();
+		} else {
+			ArrayList<News> lstNewsParceable = savedInstanceState.getParcelableArrayList("newslist");
+			Long news_last_update_time = savedInstanceState.getLong("news_lastUpdateTime", Calendar.getInstance().getTimeInMillis());
+			NewsAdapter newsAdapter = new NewsAdapter(activity, R.layout.news_row_layout, lstNewsParceable);
+			setListAdapter(newsAdapter);
+			tvUpdateTime.setText(getString(R.string.last_update_time) 
+					+ MainActivity.sdf.format(new Date(news_last_update_time)));
+			Toast.makeText(getActivity(), "onActivityCreated, News Fragment, non-null savedinstancestate.", Toast.LENGTH_LONG).show();
+		}
 	}
 
 	@Override
@@ -93,8 +117,7 @@ public class NewsFragment extends ListFragment {
 			}
 		}
 	}
-	
-	
+
 	private void startNewAsyncTask(TextView tvUpdateTime) {
 		RetrieveNewsTask asyncTask = new RetrieveNewsTask(this, tvUpdateTime);
 	    asyncTaskWeakRef = new WeakReference<RetrieveNewsTask >(asyncTask);
@@ -117,7 +140,8 @@ public class NewsFragment extends ListFragment {
 		protected void onPreExecute() {
 			super.onPreExecute();
 			if (dialog != null) {
-				dialog.setMessage(fragmentWeakRef.get().getString(R.string.dowloading));
+				dialog.setTitle(fragmentWeakRef.get().getString(R.string.bluestone_crystal));
+				dialog.setMessage(fragmentWeakRef.get().getString(R.string.downloading));
 				dialog.show();
 			}
 		}
@@ -144,6 +168,7 @@ public class NewsFragment extends ListFragment {
 				}
 
 				NewsAdapter newsAdapter = new NewsAdapter(activity, R.layout.news_row_layout, lstNews);
+				activity.setLstNews(lstNews);
 				// update list adapter
 				fragmentWeakRef.get().setListAdapter(newsAdapter);
 				// display current time
@@ -153,7 +178,6 @@ public class NewsFragment extends ListFragment {
 							MainActivity.sdf.format(new Date(curTime)));
 					activity.setLastNewsUpdateTime(curTime);
 				}
-				activity.setLstNews(lstNews);
 			}
 			
 			if (dialog != null) {

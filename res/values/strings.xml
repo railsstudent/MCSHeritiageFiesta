@@ -9,6 +9,7 @@
     <string name="tab_contact">聯絡</string>
     <string name="tab_product">產品</string>
     <string name="tab_news">消息</string>
+    <string name="map_carnarvon_plaza">加拿分廣場</string>
     <string name="map_shop_title">Bluestone Crystal</string>
     <string name="map_shop_building">Solo Building 220室</string>
     <string name="map_shop_address">尖沙咀加拿芬道41&#8211;43號\r\n(加拿分廣場對面)</string>
@@ -29,7 +30,7 @@
     <string name="no_data">沒有數據</string>
     <string name="no_accessories">沒有配飾</string>
     <string name="no_news">沒有消息</string>
-    <string name="dowloading">下載進行中&#8230;</string>
+    <string name="downloading">下載進行中&#8230;</string>
     <string name="loading">載入&#8230;</string>
     <string name="no_internet_error">互聯網網路連接失敗。</string>
     <string name="exit_error">離開失敗，請再試一次。</string>

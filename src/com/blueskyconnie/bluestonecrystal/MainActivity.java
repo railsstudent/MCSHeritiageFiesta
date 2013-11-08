@@ -38,13 +38,13 @@ public class MainActivity extends FragmentActivity implements
 	/**
 	 * 
 	 */
-	private static final int[] TAB_NAMES = { R.string.tab_product, R.string.tab_news
-		, R.string.tab_facebook, R.string.tab_map, R.string.tab_contact };
+	private static final int[] TAB_NAMES = { R.string.tab_news, R.string.tab_product, 
+		 R.string.tab_facebook, R.string.tab_map, R.string.tab_contact };
 
-	private static final String[] TAB_TAGS = { "product_tag", "news_tag", "facebook_tag", 
+	private static final String[] TAB_TAGS = { "news_tag", "product_tag", "facebook_tag", 
 			"map_tag", "contact_tag" };
 	
-	private static final int[] TAB_ICONS = { R.drawable.img_product, R.drawable.img_news
+	private static final int[] TAB_ICONS = { R.drawable.img_news, R.drawable.img_product 
 		, R.drawable.facebook_ic, R.drawable.location_ic, R.drawable.contact_ic };
 
 	private static final String CURRENT_TAG_KEY = "current_tag";
@@ -73,8 +73,8 @@ public class MainActivity extends FragmentActivity implements
 		viewPager = (ViewPager) findViewById(R.id.pager);
 		viewPager.setId(R.id.pager);
 		// initializs fragmentpageradapter
-		lstFragment.add(new ProductFragment());
 		lstFragment.add(new NewsFragment());
+		lstFragment.add(new ProductFragment());
 		lstFragment.add(new FacebookFragment());
 		lstFragment.add(new StoreMapFragment());
 		lstFragment.add(new ContactFragment());

@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.blueskyconnie.bluestonecrystal.R;
 import com.blueskyconnie.bluestonecrystal.data.Product;
@@ -72,6 +73,7 @@ public class ProductAdapter extends ArrayAdapter<Product> {
 		Product product = getItem(position);
 		holder.tvProductName.setText(product.getName());
 		if (holder.imgProductThumbnail != null) {
+			Toast.makeText(context, "load product image....", Toast.LENGTH_SHORT).show();
 			new ImageDownloaderTask(holder.imgProductThumbnail).execute(product.getImageUrl());
 		}
 		return view;
@@ -107,7 +109,7 @@ public class ProductAdapter extends ArrayAdapter<Product> {
 				if (bitmap != null) {
 					imgView.setImageBitmap(bitmap);
 				} else {
-					imgView.setImageResource(R.id.imgProductThumbnail);
+					imgView.setImageResource(R.drawable.img_stub);
 				}
 				imgView.setVisibility(ImageView.VISIBLE);
 			}

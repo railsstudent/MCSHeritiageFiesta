@@ -33,6 +33,7 @@ public class StoreMapFragment extends Fragment {
 
 	private static final LatLng SHOP_LATLNG = new LatLng(22.299132,114.173793);
 	private static final LatLng MTR_EXIT_B2 = new LatLng(22.298725,114.172409);
+	private static final LatLng CARNAVON_PLAZA = new LatLng(22.299212,114.173268);
 	
 	private static final int RQS_GooglePlayServices = 1;
 	
@@ -105,6 +106,11 @@ public class StoreMapFragment extends Fragment {
 							.title(getString(R.string.map_shop_title))
 							.snippet(getString(R.string.map_shop_address))
 							.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin)));
+					
+					map.addMarker(new MarkerOptions().position(CARNAVON_PLAZA)
+							.title(getString(R.string.map_carnarvon_plaza))
+							.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin)));
+					
 					map.setMyLocationEnabled(true);
 					map.setOnMarkerClickListener(new OnMarkerClickListener() {
 						@Override

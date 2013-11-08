@@ -7,6 +7,7 @@ import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,26 +23,56 @@ public class DetailActivity extends Activity {
 
 	private ProgressDialog dialog; 
 	private WeakReference<DownloadImageTask> asyncTaskWeakRef;
+	private Product currentProduct = null;
+	
+	private ImageView imgView;
+	private TextView tvName;
+	private TextView tvDesc; 
+	private TextView tvPrice; 
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.fragment_detail);
 		dialog = new ProgressDialog(this);
-		if (getIntent() != null)  {
-			Product product = (Product) getIntent().getParcelableExtra("currentProduct");
-			if (product != null) { 
-				ConnectionDetector detector = new ConnectionDetector(this);
-				if (detector.isConnectingToInternet()) {
-					// retrieve image
-					startNewAsyncTask(product);
-				} else {
-					AlertDialogHelper.showNoInternetDialog(this);
+		imgView = (ImageView) findViewById(R.id.imgItem);
+		tvName = (TextView) findViewById(R.id.tvItemName);
+		tvDesc = (TextView) findViewById(R.id.tvItemDescription);
+		tvPrice = (TextView) findViewById(R.id.tvItemPrice);
+
+		if (savedInstanceState != null) {
+			currentProduct = (Product) savedInstanceState.getParcelable("currentProduct");
+			imgView.setImageBitmap(currentProduct.getImage());
+			tvName.setText(currentProduct.getName());
+			tvDesc.setText(currentProduct.getDescription());
+			tvPrice.setText(currentProduct.getPrice().toPlainString());
+			Log.i("Detail Activity onCreate if", "non-null saveInstanceState"); 
+		} else {
+			if (getIntent() != null)  {
+				currentProduct = (Product) getIntent().getParcelableExtra("currentProduct");
+				if (currentProduct != null) { 
+					ConnectionDetector detector = new ConnectionDetector(this);
+					if (detector.isConnectingToInternet()) {
+						// retrieve image
+						startNewAsyncTask(currentProduct);
+					} else {
+						AlertDialogHelper.showNoInternetDialog(this);
+					}
 				}
 			}
+			Log.i("Detail Activity onCreate else", "null saveInstanceState"); 
 		}
 	}
-	
+
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		if (outState != null) {
+			outState.putParcelable ("currentProduct", currentProduct);
+			Log.i("onSaveInstanceState", "save currentProduct to outState bundle."); 
+		}
+	}
+
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
@@ -66,8 +97,8 @@ public class DetailActivity extends Activity {
 
 	@Override
 	public void onBackPressed() {
-		super.onBackPressed();
 		finish();
+		super.onBackPressed();
 	}
 
 	private void startNewAsyncTask(Product product) {
@@ -129,7 +160,8 @@ public class DetailActivity extends Activity {
 			}
 			
 			if (dialog != null) {
-				dialog.setMessage(DetailActivity.this.getString(R.string.dowloading));
+				dialog.setTitle(fragmentWeakRef.get().getString(R.string.bluestone_crystal));
+				dialog.setMessage(fragmentWeakRef.get().getString(R.string.downloading));
 				dialog.show();
 			}
 		}
@@ -178,6 +210,7 @@ public class DetailActivity extends Activity {
 				ImageView imgView = (ImageView) fragmentWeakRef.get().findViewById(R.id.imgItem);
 				if (result.getImage() != null) {
 					imgView.setImageBitmap(result.getImage());
+					fragmentWeakRef.get().currentProduct.setImage(result.getImage());
 				} 
 				imgView.setVisibility(ImageView.VISIBLE);
 				if (dialog != null) {
@@ -197,6 +230,7 @@ public class DetailActivity extends Activity {
 					lbl3.setVisibility(TextView.VISIBLE);
 				}
 			}
+			Log.i("DownloadImageTask - onPostExecute", "Load detail image...");
 		}
 	}
 }

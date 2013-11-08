@@ -12,7 +12,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:scaleType="fitCenter"
-        android:src="@drawable/img_no_photo_thumbnail" />
+        android:src="@drawable/img_stub" />
 
     <TextView
         android:id="@+id/tvProductName"
