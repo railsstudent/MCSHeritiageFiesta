@@ -184,7 +184,7 @@ containing a value of this type.
         public static final int common_signin_btn_text_pressed_dark=0x7f020017;
         public static final int common_signin_btn_text_pressed_light=0x7f020018;
         public static final int contact_ic=0x7f020019;
-        public static final int darkgray=0x7f02002f;
+        public static final int darkgray=0x7f020030;
         public static final int facebook_ic=0x7f02001a;
         public static final int ic_launcher=0x7f02001b;
         public static final int ic_plusone_medium_off_client=0x7f02001c;
@@ -192,26 +192,26 @@ containing a value of this type.
         public static final int ic_plusone_standard_off_client=0x7f02001e;
         public static final int ic_plusone_tall_off_client=0x7f02001f;
         public static final int img_email=0x7f020020;
-        public static final int img_globe=0x7f020021;
-        public static final int img_hour=0x7f020022;
-        public static final int img_news=0x7f020023;
-        public static final int img_no_photo=0x7f020024;
-        public static final int img_product=0x7f020025;
-        public static final int img_refresh=0x7f020026;
-        public static final int img_right_arrow=0x7f020027;
-        public static final int img_send_email=0x7f020028;
-        public static final int img_share=0x7f020029;
-        public static final int img_stub=0x7f02002a;
-        public static final int location_ic=0x7f02002b;
-        public static final int pin=0x7f02002c;
-        public static final int solo_building2=0x7f02002d;
-        public static final int splash=0x7f02002e;
+        public static final int img_error=0x7f020021;
+        public static final int img_globe=0x7f020022;
+        public static final int img_hour=0x7f020023;
+        public static final int img_news=0x7f020024;
+        public static final int img_no_photo=0x7f020025;
+        public static final int img_product=0x7f020026;
+        public static final int img_refresh=0x7f020027;
+        public static final int img_right_arrow=0x7f020028;
+        public static final int img_send_email=0x7f020029;
+        public static final int img_share=0x7f02002a;
+        public static final int img_stub=0x7f02002b;
+        public static final int location_ic=0x7f02002c;
+        public static final int pin=0x7f02002d;
+        public static final int solo_building2=0x7f02002e;
+        public static final int splash=0x7f02002f;
     }
     public static final class id {
         public static final int LinearLayout1=0x7f05000a;
         public static final int RelativeLayout1=0x7f050006;
         public static final int ScrollLayout=0x7f050019;
-        public static final int action_settings=0x7f050039;
         public static final int btnSendMail=0x7f050016;
         public static final int btnTellAFriend=0x7f050017;
         public static final int hybrid=0x7f050004;
@@ -226,12 +226,14 @@ containing a value of this type.
         public static final int imgRightArrow=0x7f050036;
         public static final int imgShop=0x7f05002e;
         public static final int imgSplash=0x7f050007;
-        public static final int item_shop=0x7f050037;
+        public static final int item_clear_disc_cache=0x7f050038;
+        public static final int item_clear_memory_cache=0x7f050037;
+        public static final int item_shop=0x7f050039;
         public static final int lblDescription=0x7f05001d;
         public static final int lblItemName=0x7f05001b;
         public static final int lblPrice=0x7f05001f;
         public static final int mapView=0x7f050029;
-        public static final int menu_legalnotices=0x7f050038;
+        public static final int menu_legalnotices=0x7f05003a;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
         public static final int pager=0x7f050005;
@@ -281,8 +283,8 @@ containing a value of this type.
         public static final int product_row_layout=0x7f03000a;
     }
     public static final class menu {
-        public static final int menu_shop=0x7f090000;
-        public static final int news=0x7f090001;
+        public static final int main_menu=0x7f090000;
+        public static final int menu_shop=0x7f090001;
     }
     public static final class string {
         public static final int action_settings=0x7f06001a;
@@ -400,6 +402,8 @@ containing a value of this type.
         public static final int map_shop_address=0x7f060024;
         public static final int map_shop_building=0x7f060023;
         public static final int map_shop_title=0x7f060022;
+        public static final int menu_item_clear_disc_cache=0x7f06004a;
+        public static final int menu_item_clear_memory_cache=0x7f060049;
         public static final int menu_legalnotices=0x7f060048;
         public static final int no_accessories=0x7f060034;
         public static final int no_data=0x7f060033;

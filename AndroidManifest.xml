@@ -26,8 +26,9 @@
 
     <!-- add permission to call phone -->
     <!-- uses-permission android:name="android.permission.CALL_PHONE" -->
-    
+
     <application
+        android:name="com.blueskyconnie.bluestonecrystal.MyApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
@@ -48,10 +49,7 @@
 
         <activity android:name="com.blueskyconnie.bluestonecrystal.MainActivity" >
         </activity>
-        <activity android:name="com.blueskyconnie.bluestonecrystal.DetailActivity" >
-        </activity>
-        <!--  activity android:name="com.blueskyconnie.bluestonecrystal.NewsFragment" -->
-        <!-- activity -->
+        <activity android:name="com.blueskyconnie.bluestonecrystal.DetailActivity" ></activity>
     </application>
 
 </manifest>

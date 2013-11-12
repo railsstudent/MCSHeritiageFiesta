@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.blueskyconnie.bluestonecrystal.R;
 import com.blueskyconnie.bluestonecrystal.data.News;
@@ -62,8 +61,6 @@ public class NewsAdapter extends ArrayAdapter<News> {
 		News news = getItem(position);
 		holder.tvNews.setText(news.getContents());
 		holder.tvUpdateTime.setText(news.getUpdateAt());
-		
-		Toast.makeText(context, "load news....", Toast.LENGTH_SHORT).show();
 		return view;
 	}
 	

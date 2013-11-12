@@ -49,4 +49,7 @@
     <string name="strAmeFB">讚好Ame胡凱澄Facebook專頁</string>
     <string name="strBluestoneFB">讚好Bluestone Crystal 專頁</string>
     <string name="menu_legalnotices">Legal Notices</string>
+    <string name="menu_item_clear_memory_cache">清除內存圖像</string>
+    <string name="menu_item_clear_disc_cache">清除外置卡圖像</string>
+
 </resources>

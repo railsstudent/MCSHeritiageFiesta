@@ -1,31 +1,29 @@
 package com.blueskyconnie.bluestonecrystal.adapter;
 
-import java.lang.ref.WeakReference;
 import java.util.List;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.os.AsyncTask;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.blueskyconnie.bluestonecrystal.R;
 import com.blueskyconnie.bluestonecrystal.data.Product;
-import com.blueskyconnie.bluestonecrystal.helper.ImageDecodeHelper;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 public class ProductAdapter extends ArrayAdapter<Product> {
 
-	private static final int THUMBNAIL_WIDTH = 50;
-	private static final int THUMBNAIL_HEIGHT = 50;
+//	private static final int THUMBNAIL_WIDTH = 50;
+//	private static final int THUMBNAIL_HEIGHT = 50;
 
 	private List<Product> products;
 	private Context context;
 	private int resourceId;
+	private ImageLoader imageLoader = ImageLoader.getInstance();
 	
 	public ProductAdapter(Context context, int resource, List<Product> objects) {
 		super(context, resource, objects);
@@ -64,7 +62,7 @@ public class ProductAdapter extends ArrayAdapter<Product> {
 			
 			// find ui controls from view and assign them to holder object
 			holder.tvProductName  = (TextView) view.findViewById(R.id.tvProductName);
-			holder.imgProductThumbnail = (ImageView) view.findViewById(R.id.imgProductThumbnail);
+			holder.imgProduct = (ImageView) view.findViewById(R.id.imgProductThumbnail);
 			view.setTag(holder);
 		} else {
 			holder = (ProductHolder) view.getTag();
@@ -72,47 +70,48 @@ public class ProductAdapter extends ArrayAdapter<Product> {
 		
 		Product product = getItem(position);
 		holder.tvProductName.setText(product.getName());
-		if (holder.imgProductThumbnail != null) {
-			Toast.makeText(context, "load product image....", Toast.LENGTH_SHORT).show();
-			new ImageDownloaderTask(holder.imgProductThumbnail).execute(product.getImageUrl());
+		if (holder.imgProduct != null) {
+//			new ImageDownloaderTask(holder.imgProduct).execute(product.getImageUrl());
+			imageLoader.displayImage(product.getImageUrl(), holder.imgProduct);
+			Log.i("Product Adapter", "load product image....");
 		}
 		return view;
 	}
 	
 	private static class ProductHolder {
 		TextView tvProductName;
-		ImageView imgProductThumbnail;
+		ImageView imgProduct;
 	}
 	
-	private class ImageDownloaderTask extends AsyncTask<String, Void, Bitmap> {
-
-		private WeakReference<ImageView> imageViewReference;
-
-        private ImageDownloaderTask (ImageView imageView) {
-            this.imageViewReference = new WeakReference<ImageView>(imageView);
-            if (imageViewReference.get() != null) {
-            	imageViewReference.get().setVisibility(ImageView.INVISIBLE);
-            }
-        }
-        
-		@Override
-		protected Bitmap doInBackground(String... params) {
-			return ImageDecodeHelper.decodeSampledBitmapFromByteArray(params[0], 
-					THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT);
-		}
-		
-		@Override
-		protected void onPostExecute(Bitmap bitmap) {
-			super.onPostExecute(bitmap);
-			ImageView imgView = this.imageViewReference.get();
-			if (imgView != null) {
-				if (bitmap != null) {
-					imgView.setImageBitmap(bitmap);
-				} else {
-					imgView.setImageResource(R.drawable.img_stub);
-				}
-				imgView.setVisibility(ImageView.VISIBLE);
-			}
-		}
-	}
+//	private class ImageDownloaderTask extends AsyncTask<String, Void, Bitmap> {
+//
+//		private WeakReference<ImageView> imageViewReference;
+//
+//        private ImageDownloaderTask (ImageView imageView) {
+//            this.imageViewReference = new WeakReference<ImageView>(imageView);
+//            if (imageViewReference.get() != null) {
+//            	imageViewReference.get().setVisibility(ImageView.INVISIBLE);
+//            }
+//        }
+//        
+//		@Override
+//		protected Bitmap doInBackground(String... params) {
+//			return ImageDecodeHelper.decodeSampledBitmapFromByteArray(params[0], 
+//					THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT);
+//		}
+//		
+//		@Override
+//		protected void onPostExecute(Bitmap bitmap) {
+//			super.onPostExecute(bitmap);
+//			ImageView imgView = this.imageViewReference.get();
+//			if (imgView != null) {
+//				if (bitmap != null) {
+//					imgView.setImageBitmap(bitmap);
+//				} else {
+//					imgView.setImageResource(R.drawable.img_stub);
+//				}
+//				imgView.setVisibility(ImageView.VISIBLE);
+//			}
+//		}
+//	}
 }

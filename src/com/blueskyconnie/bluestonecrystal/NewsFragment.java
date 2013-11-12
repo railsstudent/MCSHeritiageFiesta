@@ -10,6 +10,7 @@ import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -59,43 +60,15 @@ public class NewsFragment extends ListFragment {
 				}
 			}
 		});
-		return rootView;
-	}
-
-	
-	@Override
-	public void onSaveInstanceState(Bundle outState) {
-		super.onSaveInstanceState(outState);
-		if (outState != null) {
-			MainActivity activity = (MainActivity) getActivity();
-			ArrayList<News> lstNewsParceable = new ArrayList<News>(activity.getLstNews());
-			outState.putParcelableArrayList("newslist", lstNewsParceable); 
-			outState.putLong("news_lastUpdateTime", activity.getLastNewsUpdateTime());
-			Toast.makeText(getActivity(), "On Save Instance State, News Fragment", Toast.LENGTH_LONG).show();
-		}
-	}
-
-	@Override
-	public void onActivityCreated(Bundle savedInstanceState) {
-		super.onActivityCreated(savedInstanceState);
-
+		
 		MainActivity activity = (MainActivity) this.getActivity();
-		if (savedInstanceState == null) {
+		if (activity != null) {
 			List<News> lstNews = activity.getLstNews();
-			NewsAdapter adapter = new NewsAdapter(getActivity(), R.layout.news_row_layout, lstNews);
-			getListView().setAdapter(adapter);
-			tvUpdateTime.setText(getString(R.string.last_update_time) 
-					+ MainActivity.sdf.format(new Date(activity.getLastNewsUpdateTime())));
-			Toast.makeText(getActivity(), "onActivityCreated, News Fragment, null savedinstancestate.", Toast.LENGTH_LONG).show();
-		} else {
-			ArrayList<News> lstNewsParceable = savedInstanceState.getParcelableArrayList("newslist");
-			Long news_last_update_time = savedInstanceState.getLong("news_lastUpdateTime", Calendar.getInstance().getTimeInMillis());
-			NewsAdapter newsAdapter = new NewsAdapter(activity, R.layout.news_row_layout, lstNewsParceable);
+			NewsAdapter newsAdapter = new NewsAdapter(getActivity(), R.layout.news_row_layout, lstNews);
 			setListAdapter(newsAdapter);
-			tvUpdateTime.setText(getString(R.string.last_update_time) 
-					+ MainActivity.sdf.format(new Date(news_last_update_time)));
-			Toast.makeText(getActivity(), "onActivityCreated, News Fragment, non-null savedinstancestate.", Toast.LENGTH_LONG).show();
 		}
+		Log.i("News Fragment", "onCreateView called."); 
+		return rootView;
 	}
 
 	@Override

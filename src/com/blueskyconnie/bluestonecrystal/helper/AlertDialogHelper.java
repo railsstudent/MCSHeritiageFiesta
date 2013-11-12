@@ -3,10 +3,12 @@ package com.blueskyconnie.bluestonecrystal.helper;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.blueskyconnie.bluestonecrystal.MainActivity;
 import com.blueskyconnie.bluestonecrystal.R;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 public final class AlertDialogHelper {
 
@@ -25,7 +27,7 @@ public final class AlertDialogHelper {
 		alertDialog.show();
 	}
 	
-	public static void showConfirmExitDialog(final Context context) {
+	public static void showConfirmExitDialog(final Context context, final ImageLoader imageLoader) {
 		
 		// prompt confirmation dialog before exit
 		DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
@@ -36,6 +38,8 @@ public final class AlertDialogHelper {
 						// close dialog and do nothing
 						if (context != null && context instanceof MainActivity) {
 							dialog.dismiss();
+							imageLoader.stop();
+							Log.i("showConfirmExitDialog", "Stop Universal Image Loader.");
 							((MainActivity) context).finish();
 						} else {
 							Toast.makeText(context, R.string.exit_error, Toast.LENGTH_LONG).show();	

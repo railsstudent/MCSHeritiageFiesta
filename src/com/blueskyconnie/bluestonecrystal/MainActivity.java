@@ -14,7 +14,6 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
@@ -27,14 +26,14 @@ import com.blueskyconnie.bluestonecrystal.data.Product;
 import com.blueskyconnie.bluestonecrystal.data.Shop;
 import com.blueskyconnie.bluestonecrystal.helper.AlertDialogHelper;
 
-public class MainActivity extends FragmentActivity implements
+public class MainActivity extends BaseFragmentActivity implements
 	TabListener {
 	
 	public static final String BATCH_DATA = "batchData";
 	public static final int SHOP_ID = 1;
 	public static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MMM-dd hh:mm:ss aa", Locale.US);
 	public static final SimpleDateFormat sdf_ymd_hms = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.US);
-
+	
 	/**
 	 * 
 	 */
@@ -55,6 +54,7 @@ public class MainActivity extends FragmentActivity implements
 	private List<Fragment> lstFragment = new ArrayList<Fragment>();
 	private int currentPosition;
 	
+	// data models
 	private List<Product> lstProducts;
 	private List<News> lstNews;
 	private long lastProductUpdateTime;
@@ -72,7 +72,7 @@ public class MainActivity extends FragmentActivity implements
 		// initialize viewpager
 		viewPager = (ViewPager) findViewById(R.id.pager);
 		viewPager.setId(R.id.pager);
-		// initializs fragmentpageradapter
+		// initialize fragmentpageradapter
 		lstFragment.add(new NewsFragment());
 		lstFragment.add(new ProductFragment());
 		lstFragment.add(new FacebookFragment());
@@ -168,7 +168,7 @@ public class MainActivity extends FragmentActivity implements
 		super.onPause();
 		// save last visit tab in shared preference
 		int current_tab = actionBar.getSelectedNavigationIndex();
-		Editor editor = this.getPreferences(MODE_PRIVATE).edit();
+		Editor editor = getPreferences(MODE_PRIVATE).edit();
 		editor.putInt(CURRENT_TAG_KEY, current_tab);
 		editor.commit();
 	}
@@ -184,7 +184,7 @@ public class MainActivity extends FragmentActivity implements
 
 	@Override
 	public void onBackPressed() {
-		AlertDialogHelper.showConfirmExitDialog(this);
+		AlertDialogHelper.showConfirmExitDialog(this, imageLoader);
 	}
 
 	public List<Product> getLstProducts() {
