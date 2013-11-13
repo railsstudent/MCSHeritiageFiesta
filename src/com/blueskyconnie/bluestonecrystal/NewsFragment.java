@@ -10,7 +10,6 @@ import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -67,7 +66,7 @@ public class NewsFragment extends ListFragment {
 			NewsAdapter newsAdapter = new NewsAdapter(getActivity(), R.layout.news_row_layout, lstNews);
 			setListAdapter(newsAdapter);
 		}
-		Log.i("News Fragment", "onCreateView called."); 
+//		Log.i("News Fragment", "onCreateView called."); 
 		return rootView;
 	}
 

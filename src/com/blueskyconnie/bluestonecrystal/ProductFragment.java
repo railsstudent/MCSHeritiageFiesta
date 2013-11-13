@@ -90,7 +90,7 @@ public class ProductFragment extends ListFragment {
 		if (listview != null) {
 			listview.setOnScrollListener(new PauseOnScrollListener(imageLoader, true, true));
 		}
-		Log.i("Product Fragment", "onResume");
+//		Log.i("Product Fragment", "onResume");
 	}
 
 	@Override

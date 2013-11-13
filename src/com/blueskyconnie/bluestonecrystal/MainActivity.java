@@ -34,6 +34,8 @@ public class MainActivity extends BaseFragmentActivity implements
 	public static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MMM-dd hh:mm:ss aa", Locale.US);
 	public static final SimpleDateFormat sdf_ymd_hms = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.US);
 	
+	private static final String STATE_SELECTED_NAVIGATION_ITEM = "selected_navigation_item";
+	
 	/**
 	 * 
 	 */
@@ -43,8 +45,8 @@ public class MainActivity extends BaseFragmentActivity implements
 	private static final String[] TAB_TAGS = { "news_tag", "product_tag", "facebook_tag", 
 			"map_tag", "contact_tag" };
 	
-	private static final int[] TAB_ICONS = { R.drawable.img_news, R.drawable.img_product 
-		, R.drawable.facebook_ic, R.drawable.location_ic, R.drawable.contact_ic };
+	private static final int[] TAB_ICONS = { R.drawable.ic_news, R.drawable.ic_product  
+		, R.drawable.ic_facebook, R.drawable.ic_location, R.drawable.ic_contact };
 
 	private static final String CURRENT_TAG_KEY = "current_tag";
 
@@ -67,7 +69,7 @@ public class MainActivity extends BaseFragmentActivity implements
 		
 		requestWindowFeature(Window.FEATURE_PROGRESS);
 		setContentView(R.layout.activity_main);
-		actionBar = this.getActionBar();
+		actionBar = getActionBar();
 		
 		// initialize viewpager
 		viewPager = (ViewPager) findViewById(R.id.pager);
@@ -185,6 +187,23 @@ public class MainActivity extends BaseFragmentActivity implements
 	@Override
 	public void onBackPressed() {
 		AlertDialogHelper.showConfirmExitDialog(this, imageLoader);
+	}
+
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		outState.putInt(STATE_SELECTED_NAVIGATION_ITEM, actionBar.getSelectedNavigationIndex());
+	}
+
+	@Override
+	protected void onRestoreInstanceState(Bundle savedInstanceState) {
+		super.onRestoreInstanceState(savedInstanceState);
+		if (savedInstanceState != null) {
+			if (savedInstanceState.containsKey(STATE_SELECTED_NAVIGATION_ITEM)) {
+				int position = savedInstanceState.getInt(STATE_SELECTED_NAVIGATION_ITEM);
+				actionBar.setSelectedNavigationItem(position);
+			}
+		}
 	}
 
 	public List<Product> getLstProducts() {

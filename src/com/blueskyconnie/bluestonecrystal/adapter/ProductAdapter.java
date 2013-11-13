@@ -3,7 +3,6 @@ package com.blueskyconnie.bluestonecrystal.adapter;
 import java.util.List;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -73,7 +72,7 @@ public class ProductAdapter extends ArrayAdapter<Product> {
 		if (holder.imgProduct != null) {
 //			new ImageDownloaderTask(holder.imgProduct).execute(product.getImageUrl());
 			imageLoader.displayImage(product.getImageUrl(), holder.imgProduct);
-			Log.i("Product Adapter", "load product image....");
+//			Log.i("Product Adapter", "load product image....");
 		}
 		return view;
 	}
