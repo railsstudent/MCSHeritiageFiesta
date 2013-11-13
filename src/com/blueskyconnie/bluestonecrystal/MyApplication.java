@@ -37,12 +37,11 @@ public class MyApplication extends Application {
 			.denyCacheImageMultipleSizesInMemory()
 			.memoryCache(new WeakMemoryCache())
 			.discCache(new UnlimitedDiscCache(cacheDir))   // write to bluestone/Cache in SD card
-			.writeDebugLogs()
 			.defaultDisplayImageOptions(options)
 			.build();
+//			.writeDebugLogs()
 		
 		ImageLoader.getInstance().init(config);
-
 		Log.i("MyApplication", "Initialize Universal Image Loader....");
 	}
 	

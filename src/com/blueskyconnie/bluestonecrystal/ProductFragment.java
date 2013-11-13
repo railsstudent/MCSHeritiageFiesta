@@ -61,23 +61,6 @@ public class ProductFragment extends ListFragment {
 				ConnectionDetector detector = new ConnectionDetector(getActivity());
 				if (detector.isConnectingToInternet()) {
 					startNewAsyncTask(tvUpdateTime);
-//					MainActivity activity = (MainActivity) getActivity();
-//					try {
-//						List<Product> lstProducts = HttpClientHelper.retrieveProducts(getActivity(), 
-//								cmsUrl + "products_android.php?id=" + MainActivity.SHOP_ID, 
-//								cmsUrl);
-//						activity.setLstProducts(lstProducts);
-//						ProductAdapter adapter = new ProductAdapter(activity, 
-//								R.layout.product_row_layout, 
-//								activity.getLstProducts());
-//						setListAdapter(adapter);
-//						long curTime = Calendar.getInstance().getTimeInMillis();
-//						activity.setLastProductUpdateTime(curTime);
-//						tvUpdateTime.setText(getString(R.string.last_update_time) 
-//								+ MainActivity.sdf.format(new Date(curTime)));
-//					} catch (BusinessException ex) {
-//						Toast.makeText(activity, ex.getMessage(), Toast.LENGTH_SHORT).show();
-//					}
 				} else {
 					AlertDialogHelper.showNoInternetDialog(getActivity());
 				}
@@ -86,42 +69,18 @@ public class ProductFragment extends ListFragment {
 		return rootView;
 	}
 
-//	@Override
-//	public void onSaveInstanceState(Bundle outState) {
-//		super.onSaveInstanceState(outState);
-//		if (outState != null) {
-//			MainActivity activity = (MainActivity) getActivity();
-//			ArrayList<Product> lstProductParceable = new ArrayList<Product>(activity.getLstProducts());
-//			outState.putParcelableArrayList("productlist", lstProductParceable); 
-//			outState.putLong("product_lastUpdateTime", activity.getLastProductUpdateTime());
-//			Log.i("Product Fragment", "onSaveInstanceState");
-//		}
-//	}
-
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		
-//		if (savedInstanceState == null) {
-//			MainActivity activity = (MainActivity) getActivity();
-//			List<Product> lstProducts = activity.getLstProducts();
-//			ProductAdapter adapter = new ProductAdapter(getActivity(), R.layout.product_row_layout, lstProducts);
-//			setListAdapter(adapter);
-//			tvUpdateTime.setText(getString(R.string.last_update_time) + 
-//					MainActivity.sdf.format(new Date(activity.getLastProductUpdateTime())));
-//			Log.i("Product Fragment", "onActivityCreated null savedInstanceState");
-//
-//		} else {
-			// restore products 
-			MainActivity activity = (MainActivity) getActivity();
-//			List<Product> lstProducts = activity.getLstProducts();
-			ProductAdapter adapter = new ProductAdapter(getActivity(), R.layout.product_row_layout, 
-					activity.getLstProducts());
-			setListAdapter(adapter);
-			tvUpdateTime.setText(getString(R.string.last_update_time) + 
-					MainActivity.sdf.format(new Date(activity.getLastProductUpdateTime())));
-			Log.i("Product Fragment", "onActivityCreated non-null savedInstanceState");
-//		}
+		// restore products 
+		MainActivity activity = (MainActivity) getActivity();
+		ProductAdapter adapter = new ProductAdapter(getActivity(), R.layout.product_row_layout, 
+				activity.getLstProducts());
+		setListAdapter(adapter);
+		tvUpdateTime.setText(getString(R.string.last_update_time) + 
+				MainActivity.sdf.format(new Date(activity.getLastProductUpdateTime())));
+		Log.i("Product Fragment", "onActivityCreated");
 	}
 	
 	@Override
@@ -131,19 +90,7 @@ public class ProductFragment extends ListFragment {
 		if (listview != null) {
 			listview.setOnScrollListener(new PauseOnScrollListener(imageLoader, true, true));
 		}
-		if (imageLoader != null) {
-			imageLoader.resume();
-		}
 		Log.i("Product Fragment", "onResume");
-	}
-
-	@Override
-	public void onPause() {
-		super.onPause();
-		if (imageLoader != null) {
-			imageLoader.pause();
-		}
-		Log.i("Product Fragment", "onPause");
 	}
 
 	@Override
@@ -171,7 +118,7 @@ public class ProductFragment extends ListFragment {
 		super.onListItemClick(l, v, position, id);
 		
 		if (!hasClickedItem) {
-			// go to detail fragment
+			// go to detail activity
 			Product product = (Product) l.getItemAtPosition(position);
 		    Intent intent = new Intent(this.getActivity(), DetailActivity.class);
 		    intent.putExtra("currentProduct", product);

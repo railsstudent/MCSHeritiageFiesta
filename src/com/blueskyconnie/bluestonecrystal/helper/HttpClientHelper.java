@@ -113,7 +113,10 @@ public final class HttpClientHelper {
 
 							attrNode = attrs.getNamedItem("url");
 							if (attrNode != null) {
-								prod.setImageUrl(cms_url + attrNode.getTextContent());
+								String imgUrl = attrNode.getTextContent();
+								if (imgUrl != null && imgUrl.length() > 0) {
+									prod.setImageUrl(cms_url + attrNode.getTextContent());
+								}
 							}
 							lstProduct.add(prod);
 						}

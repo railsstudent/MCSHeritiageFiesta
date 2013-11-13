@@ -42,29 +42,6 @@ public class DetailActivity extends Activity {
 		tvDesc = (TextView) findViewById(R.id.tvItemDescription);
 		tvPrice = (TextView) findViewById(R.id.tvItemPrice);
 
-//		if (savedInstanceState != null) {
-//			currentProduct = (Product) savedInstanceState.getParcelable("currentProduct");
-//			imgView.setImageBitmap(currentProduct.getImage());
-//			tvName.setText(currentProduct.getName());
-//			tvDesc.setText(currentProduct.getDescription());
-//			tvPrice.setText(currentProduct.getPrice().toPlainString());
-//			Log.i("Detail Activity onCreate if", "non-null saveInstanceState"); 
-//		} else {
-//			if (getIntent() != null)  {
-//				currentProduct = (Product) getIntent().getParcelableExtra("currentProduct");
-//				if (currentProduct != null) { 
-//					ConnectionDetector detector = new ConnectionDetector(this);
-//					if (detector.isConnectingToInternet()) {
-//						// retrieve image
-//						startNewAsyncTask(currentProduct);
-//					} else {
-//						AlertDialogHelper.showNoInternetDialog(this);
-//					}
-//				}
-//			}
-//			Log.i("Detail Activity onCreate else", "null saveInstanceState"); 
-//		}
-		
 		if (getIntent() != null)  {
 			currentProduct = (Product) getIntent().getParcelableExtra("currentProduct");
 			if (currentProduct != null) { 
@@ -129,17 +106,6 @@ public class DetailActivity extends Activity {
 		Log.i("Detail Activity" ,"onCreate"); 
 	}
 
-//	@Override
-//	protected void onSaveInstanceState(Bundle outState) {
-//		super.onSaveInstanceState(outState);
-//		if (outState != null) {
-//			outState.putParcelable ("currentProduct", currentProduct);
-//			Log.i("onSaveInstanceState", "save currentProduct to outState bundle."); 
-//		}
-//	}
-	
-	
-
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
@@ -148,22 +114,6 @@ public class DetailActivity extends Activity {
 			if (dialog.isShowing()) {
 				dialog.cancel();
 			}
-		}
-	}
-
-	@Override
-	protected void onPause() {
-		super.onPause();
-		if (imageLoader != null) {
-			imageLoader.pause();
-		}
-	}
-
-	@Override
-	protected void onResume() {
-		super.onResume();
-		if (imageLoader != null) {
-			imageLoader.resume();
 		}
 	}
 
