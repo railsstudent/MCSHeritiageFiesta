@@ -3,6 +3,7 @@ package com.blueskyconnie.bluestonecrystal.helper;
 
 public final class ImageDecodeHelper {
 	
+	// use third-party universal image loader to retrieve images from Internet	
 //	private static int calculateInSampleSize(
 //            BitmapFactory.Options options, int reqWidth, int reqHeight) {
 //	    // Raw height and width of image

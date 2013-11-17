@@ -1,6 +1,5 @@
 package com.blueskyconnie.bluestonecrystal.helper;
 
-import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
@@ -32,34 +31,34 @@ import com.blueskyconnie.bluestonecrystal.exception.BusinessException;
 
 public final class HttpClientHelper {
 
-	public static InputStream retrieveImage(String strUrl) {
-		
-		if (strUrl == null || strUrl.length() == 0) {
-			return null;
-		}
-		
-		InputStream is = null;
-		BufferedInputStream bis = null;
-		 try{
-			 URL url = new URL(strUrl);
-			 URLConnection conn = url.openConnection();
-			 HttpURLConnection httpConn = (HttpURLConnection)conn;
-			  httpConn.setRequestMethod("GET");
-			  httpConn.connect();
-		 
-			  if (httpConn.getResponseCode() == HttpURLConnection.HTTP_OK) {
-				  is = httpConn.getInputStream();
-				  if (is != null) {
-					  bis = new BufferedInputStream(is);
-					  return bis;
-				  }
-			  } 
-		 }
-		 catch (IOException ex){
-			 ex.printStackTrace();
-		 }
-		 return null;
-	}
+//	public static InputStream retrieveImage(String strUrl) {
+//		
+//		if (strUrl == null || strUrl.length() == 0) {
+//			return null;
+//		}
+//		
+//		InputStream is = null;
+//		BufferedInputStream bis = null;
+//		 try{
+//			 URL url = new URL(strUrl);
+//			 URLConnection conn = url.openConnection();
+//			 HttpURLConnection httpConn = (HttpURLConnection)conn;
+//			  httpConn.setRequestMethod("GET");
+//			  httpConn.connect();
+//		 
+//			  if (httpConn.getResponseCode() == HttpURLConnection.HTTP_OK) {
+//				  is = httpConn.getInputStream();
+//				  if (is != null) {
+//					  bis = new BufferedInputStream(is);
+//					  return bis;
+//				  }
+//			  } 
+//		 }
+//		 catch (IOException ex){
+//			 ex.printStackTrace();
+//		 }
+//		 return null;
+//	}
 	
 	public static List<Product> retrieveProducts(Context context, String strUrl, String cms_url) 
 		throws BusinessException {

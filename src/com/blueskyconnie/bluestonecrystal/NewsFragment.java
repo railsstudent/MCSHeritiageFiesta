@@ -60,14 +60,22 @@ public class NewsFragment extends ListFragment {
 			}
 		});
 		
+//		Log.i("News Fragment", "onCreateView called."); 
+		return rootView;
+	}
+
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+		
 		MainActivity activity = (MainActivity) this.getActivity();
 		if (activity != null) {
 			List<News> lstNews = activity.getLstNews();
 			NewsAdapter newsAdapter = new NewsAdapter(getActivity(), R.layout.news_row_layout, lstNews);
 			setListAdapter(newsAdapter);
+			tvUpdateTime.setText(getString(R.string.last_update_time) + 
+					MainActivity.sdf.format(new Date(activity.getLastNewsUpdateTime())));
 		}
-//		Log.i("News Fragment", "onCreateView called."); 
-		return rootView;
 	}
 
 	@Override
