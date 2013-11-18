@@ -388,7 +388,7 @@ containing a value of this type.
         public static final int common_signin_button_text_long=0x7f060012;
         public static final int confirm_exit=0x7f060030;
         public static final int downloading=0x7f060036;
-        public static final int email_app_not_installed=0x7f06002b;
+        public static final int email_app_not_installed=0x7f06002a;
         public static final int email_subject=0x7f06002c;
         public static final int email_text=0x7f06002e;
         public static final int exit_error=0x7f060039;
@@ -411,7 +411,7 @@ containing a value of this type.
         public static final int no_internet_error=0x7f060038;
         public static final int no_news=0x7f060035;
         public static final int send_email=0x7f060026;
-        public static final int share_app_not_installed=0x7f06002a;
+        public static final int share_app_not_installed=0x7f06002b;
         public static final int share_subject=0x7f06002d;
         public static final int share_text=0x7f06002f;
         public static final int strAme=0x7f060041;

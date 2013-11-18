@@ -186,7 +186,7 @@ int string common_signin_button_text 0x7f060011
 int string common_signin_button_text_long 0x7f060012
 int string confirm_exit 0x7f060030
 int string downloading 0x7f060036
-int string email_app_not_installed 0x7f06002b
+int string email_app_not_installed 0x7f06002a
 int string email_subject 0x7f06002c
 int string email_text 0x7f06002e
 int string exit_error 0x7f060039
@@ -209,7 +209,7 @@ int string no_data 0x7f060033
 int string no_internet_error 0x7f060038
 int string no_news 0x7f060035
 int string send_email 0x7f060026
-int string share_app_not_installed 0x7f06002a
+int string share_app_not_installed 0x7f06002b
 int string share_subject 0x7f06002d
 int string share_text 0x7f06002f
 int string strAme 0x7f060041
