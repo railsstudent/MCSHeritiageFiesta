@@ -181,6 +181,7 @@ int string common_google_play_services_update_text 0x7f060008
 int string common_google_play_services_update_title 0x7f060007
 int string common_signin_button_text 0x7f060011
 int string common_signin_button_text_long 0x7f060012
+<<<<<<< HEAD
 int string confirm_exit 0x7f060036
 int string contact_email 0x7f060026
 int string contact_fax 0x7f060028
@@ -218,6 +219,43 @@ int string pdf_viewer_not_installed 0x7f060032
 int string phone_school 0x7f06002e
 int string send_email 0x7f06002d
 int string splash_production 0x7f06001f
+=======
+int string confirm_exit 0x7f060030
+int string downloading 0x7f060036
+int string email_app_not_installed 0x7f06002a
+int string email_subject 0x7f06002c
+int string email_text 0x7f06002e
+int string exit_error 0x7f060039
+int string http_request_error 0x7f060040
+int string info_title 0x7f06003a
+int string itemDesc 0x7f06003d
+int string itemName 0x7f06003e
+int string itemPrice 0x7f06003f
+int string last_update_time 0x7f06003c
+int string loading 0x7f060037
+int string map_carnarvon_plaza 0x7f060021
+int string map_shop_address 0x7f060024
+int string map_shop_building 0x7f060023
+int string map_shop_title 0x7f060022
+int string menu_item_clear_disc_cache 0x7f06004a
+int string menu_item_clear_memory_cache 0x7f060049
+int string menu_legalnotices 0x7f060048
+int string no_accessories 0x7f060034
+int string no_data 0x7f060033
+int string no_internet_error 0x7f060038
+int string no_news 0x7f060035
+int string send_email 0x7f060026
+int string share_app_not_installed 0x7f06002b
+int string share_subject 0x7f06002d
+int string share_text 0x7f06002f
+int string strAme 0x7f060041
+int string strAmeDesc 0x7f060042
+int string strAmeFB 0x7f060046
+int string strBluestoneFB 0x7f060047
+int string strTarot 0x7f060043
+int string strTarotDesc 0x7f060044
+int string strTarotFB 0x7f060045
+>>>>>>> 95c1de80f2a4949b8ece1d10cbc4e15de3a4d718
 int string tab_contact 0x7f06001e
 int string tab_gallery 0x7f06001a
 int string tab_introduction 0x7f06001b

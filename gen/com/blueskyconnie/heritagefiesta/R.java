@@ -383,6 +383,7 @@ containing a value of this type.
         /**  Long form sign-in button text [CHAR LIMIT=30] 
          */
         public static final int common_signin_button_text_long=0x7f060012;
+<<<<<<< HEAD:gen/com/blueskyconnie/heritagefiesta/R.java
         public static final int confirm_exit=0x7f060036;
         /**  
     <string name="contact_email">mcsps@mcsps.edu.hk</string>
@@ -425,6 +426,43 @@ containing a value of this type.
         public static final int phone_school=0x7f06002e;
         public static final int send_email=0x7f06002d;
         public static final int splash_production=0x7f06001f;
+=======
+        public static final int confirm_exit=0x7f060030;
+        public static final int downloading=0x7f060036;
+        public static final int email_app_not_installed=0x7f06002a;
+        public static final int email_subject=0x7f06002c;
+        public static final int email_text=0x7f06002e;
+        public static final int exit_error=0x7f060039;
+        public static final int http_request_error=0x7f060040;
+        public static final int info_title=0x7f06003a;
+        public static final int itemDesc=0x7f06003d;
+        public static final int itemName=0x7f06003e;
+        public static final int itemPrice=0x7f06003f;
+        public static final int last_update_time=0x7f06003c;
+        public static final int loading=0x7f060037;
+        public static final int map_carnarvon_plaza=0x7f060021;
+        public static final int map_shop_address=0x7f060024;
+        public static final int map_shop_building=0x7f060023;
+        public static final int map_shop_title=0x7f060022;
+        public static final int menu_item_clear_disc_cache=0x7f06004a;
+        public static final int menu_item_clear_memory_cache=0x7f060049;
+        public static final int menu_legalnotices=0x7f060048;
+        public static final int no_accessories=0x7f060034;
+        public static final int no_data=0x7f060033;
+        public static final int no_internet_error=0x7f060038;
+        public static final int no_news=0x7f060035;
+        public static final int send_email=0x7f060026;
+        public static final int share_app_not_installed=0x7f06002b;
+        public static final int share_subject=0x7f06002d;
+        public static final int share_text=0x7f06002f;
+        public static final int strAme=0x7f060041;
+        public static final int strAmeDesc=0x7f060042;
+        public static final int strAmeFB=0x7f060046;
+        public static final int strBluestoneFB=0x7f060047;
+        public static final int strTarot=0x7f060043;
+        public static final int strTarotDesc=0x7f060044;
+        public static final int strTarotFB=0x7f060045;
+>>>>>>> 95c1de80f2a4949b8ece1d10cbc4e15de3a4d718:gen/com/blueskyconnie/bluestonecrystal/R.java
         public static final int tab_contact=0x7f06001e;
         public static final int tab_gallery=0x7f06001a;
         public static final int tab_introduction=0x7f06001b;
