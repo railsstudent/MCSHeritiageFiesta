@@ -1,29 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Bluestone Crystal</string>
-    <string name="action_settings">Settings</string>
-    <string name="bluestone_crystal">Bluestone Crystal Accessories</string>
-    <string name="tab_facebook">Facebook</string>
+    <string name="app_name">MCS古蹟同樂日</string>
+
+    <string name="tab_gallery">照片集</string>
+    <string name="tab_introduction">簡介</string>
+    <string name="tab_website">學校網站</string>
     <string name="tab_map">位置</string>
     <string name="tab_contact">聯絡</string>
-    <string name="tab_product">產品</string>
-    <string name="tab_news">消息</string>
-    <string name="map_carnarvon_plaza">加拿分廣場</string>
-    <string name="map_shop_title">Bluestone Crystal</string>
-    <string name="map_shop_building">Solo Building 220室</string>
-    <string name="map_shop_address">尖沙咀加拿芬道41&#8211;43號\r\n(加拿分廣場對面)</string>
-    <string name="back_to_shop">返回店鋪</string>
+    
+    <string name="splash_production">BlueSky誠意製作</string>
+    <string name="cms_url">http://103.11.100.49/~connie/heritagefiesta/</string>
+    
+    <string name="map_school_title">瑪利諾修院學校\r\n小學部</string>
+    <string name="map_school_address">九龍塘窩打老道130號</string>
+    <string name="map_content_desc">瑪利諾修院學校小學部</string>
+    <string name="map_mtr_title">太子地鐵站A出口</string>
+
+    <string name="intro_content_desc">古蹟同樂日</string>
+    
+    <!-- 
+    <string name="contact_email">mcsps@mcsps.edu.hk</string>
+    <string name="contact_phone">2336 0611</string>
+    -->
+    <string name="contact_email">con_leung10@yahoo.com</string>
+    <string name="contact_phone">2742 5268</string>
+    <string name="contact_fax">2336 3154</string>
+    <string name="content_address">地址</string>
+    <string name="content_email">電郵</string>
+    <string name="content_fax">傳真</string>
+    <string name="content_phone">電話</string>
     <string name="send_email">發送郵件</string>
-    <string name="tell_a_friend">告訴朋友</string>
-    <string name="choose_share_app">選擇分享程式</string>
+    <string name="phone_school">即時致電</string>
     <string name="choose_email_app">選擇電郵程式</string>
-    <string name="share_app_not_installed">電子郵件程式沒有安裝。</string>
-    <string name="email_app_not_installed">分享應用程式沒有安裝。</string>
+    <string name="email_app_not_installed">電子郵件程式沒有安裝。</string>
+
+    <string name="choose_pdf_viewer">選擇PDF瀏覽程式</string>
+    <string name="pdf_viewer_not_installed">PDF瀏覽程式沒有安裝，請去Google Play Store下。</string>
+    
     <string name="email_subject">查詢</string>
-    <string name="share_subject">我想與你分享此網頁</string>
     <string name="email_text">查詢</string>
-    <string name="share_text">請讚好這Facebook網頁 - http://goo.gl/vFSgWf.</string>
+    
+    <string name="homepage">http://www.mcsps.edu.hk</string>
+    
     <string name="confirm_exit">確認</string>
     <string name="cancel_exit">取消</string>
     <string name="title_confirm_exit">確認離開？</string>
@@ -41,15 +60,9 @@
     <string name="itemName">名稱：</string>
     <string name="itemPrice">價錢：</string>
     <string name="http_request_error">HTTP請求被拒絕，請稍後再回來。</string>
-    <string name="strAme"><u>Ame胡凱澄</u></string>
-    <string name="strAmeDesc">寒命人﹐愛貓之人, DJ/主持/作家。享受美食﹐享受戀愛。喜歡烹飪﹐喜歡音樂。愛說話﹐愛聆聽.</string>
-    <string name="strTarot"><u>Selina 塔羅小公主</u></string>
-    <string name="strTarotDesc">塔羅小公主，專業占卜通靈師，Blu-e Energy Healer。新城997 新香蕉俱樂部 嘉賓主持。</string>
-    <string name="strTarotFB">讚好塔羅小公主Facebook專頁</string>
-    <string name="strAmeFB">讚好Ame胡凱澄Facebook專頁</string>
-    <string name="strBluestoneFB">讚好Bluestone Crystal 專頁</string>
-    <string name="menu_legalnotices">Legal Notices</string>
+    
     <string name="menu_item_clear_memory_cache">清除內存圖像</string>
     <string name="menu_item_clear_disc_cache">清除外置卡圖像</string>
+    <string name="menu_legalnotices">法律聲明</string>
 
 </resources>

@@ -5,36 +5,27 @@
     android:orientation="vertical" >
 
     <ImageView
-        android:id="@+id/imgShop"
+        android:id="@+id/imgSchool"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:src="@drawable/solo_building2" />
+        android:src="@drawable/img_mcs_crest"
+        android:contentDescription="@string/map_content_desc"
+         />
 
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Large Text"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/green" />
-
-    <TextView
-        android:id="@+id/tvBuilding"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="Medium Text"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/silver" />
+        android:textAppearance="@style/TextLargeGreen"
+        android:text="Large Text" />
     
     <TextView
         android:id="@+id/tvSnippet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
         android:text="Medium Text"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/silver" />
+        android:layout_gravity="center_horizontal"
+        android:textAppearance="@style/TextMediumSilver" />
 </LinearLayout>
