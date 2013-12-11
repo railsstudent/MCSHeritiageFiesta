@@ -1,119 +1,100 @@
 package com.blueskyconnie.heritagefiesta;
 
-import android.app.ProgressDialog;
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.support.v4.app.ListFragment;
+import android.support.v4.app.Fragment;
+import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.AdapterView;
+import android.widget.GridView;
+import android.widget.Toast;
 
-import com.blueskyconnie.heritagefiesta.data.Product;
+import com.blueskyconnie.heritagefiesta.adapter.AlbumGridAdapter;
+import com.blueskyconnie.heritagefiesta.data.Album;
 import com.blueskyconnie.heritagefiesta.helper.AlertDialogHelper;
 import com.blueskyconnie.heritagefiesta.helper.ConnectionDetector;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.assist.PauseOnScrollListener;
 
-public class GalleryFragment extends ListFragment {
+public class GalleryFragment extends Fragment {
 	
-	private ProgressDialog dialog;
+	public static final int GALLERY_REQUEST_CODE = 1;
+	
+	private GridView gridView ;
 	private boolean hasClickedItem = false;
-	private TextView tvUpdateTime;
-	private ImageButton imgBtnRefresh;
-	private ImageLoader imageLoader = ImageLoader.getInstance();
+	private List<String> categories = new ArrayList<String>();
+	private List<Integer> lstCatId = new ArrayList<Integer>();
+	private List<Album> lstAlbum = new ArrayList<Album>();
+	private SparseArray<List<String>> categoryUrlMap = new SparseArray<List<String>>();
+	
+	private AdapterView.OnItemClickListener listener = new AdapterView.OnItemClickListener() {
+		@Override
+		public void onItemClick(AdapterView<?> arg0, View view, int position,
+				long arg3) {
+			
+			ConnectionDetector detector = new ConnectionDetector(GalleryFragment.this.getActivity());
+			if (!detector.isConnectingToInternet()) {
+				AlertDialogHelper.showNoInternetDialog(getActivity());
+			} else {
+				if (!hasClickedItem) {
+					if (categories.size() > position) {
+						int category = lstCatId.get(position).intValue();
+						List<String> imageUrls = categoryUrlMap.get(category);
+						ArrayList<String> alImageUrls = new ArrayList<String> (imageUrls);
+						
+						Intent intent = new Intent(GalleryFragment.this.getActivity(), ImageViewPager.class);
+						intent.putStringArrayListExtra("urls", alImageUrls);
+						startActivityForResult(intent, GALLERY_REQUEST_CODE);
+					} else {
+						Toast.makeText(GalleryFragment.this.getActivity(), 
+								getString(R.string.no_album_error), Toast.LENGTH_SHORT).show();
+					}
+				}
+			}
+		}
+	};
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setRetainInstance(true);
-		dialog = new ProgressDialog(getActivity()); 
+		MainActivity activity = (MainActivity) getActivity();
+		lstAlbum  = activity.getAlbums();
+		for (Album album : lstAlbum) {
+			categoryUrlMap.put(album.getCategoryId(), album.getImageUrl());
+			categories.add(album.getCategory());
+			lstCatId.add(album.getCategoryId());
+		}
 	}
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
-		View rootView = inflater.inflate(R.layout.fragment_product, container, false);
-		tvUpdateTime = (TextView) rootView.findViewById(R.id.tvLastUpdate);
-		imgBtnRefresh = (ImageButton) rootView.findViewById(R.id.imgRefresh);
-		imgBtnRefresh.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				ConnectionDetector detector = new ConnectionDetector(getActivity());
-				if (detector.isConnectingToInternet()) {
-				} else {
-					AlertDialogHelper.showNoInternetDialog(getActivity());
-				}
-			}
-		});
+		View rootView = inflater.inflate(R.layout.fragment_gallery, container, false);
+		AlbumGridAdapter adapter = new AlbumGridAdapter(getActivity(), R.layout.album_row_grid, categories);
+		gridView = (GridView) rootView.findViewById(R.id.gridView);
+		gridView.setAdapter(adapter);
+		gridView.setOnItemClickListener(listener);
 		return rootView;
 	}
 
 	@Override
-	public void onActivityCreated(Bundle savedInstanceState) {
-		super.onActivityCreated(savedInstanceState);
-		
-//		// restore products 
-//		MainActivity activity = (MainActivity) getActivity();
-//		ProductAdapter adapter = new ProductAdapter(getActivity(), R.layout.product_row_layout, 
-//				activity.getLstProducts());
-//		setListAdapter(adapter);
-//		tvUpdateTime.setText(getString(R.string.last_update_time) + 
-//				MainActivity.sdf.format(new Date(activity.getLastProductUpdateTime())));
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if (requestCode == GALLERY_REQUEST_CODE) {
+			hasClickedItem = false;
+		}
 	}
-	
+
+
 	@Override
 	public void onResume() {
 		super.onResume();
-		ListView listview = getListView();
-		if (listview != null) {
-			listview.setOnScrollListener(new PauseOnScrollListener(imageLoader, true, true));
-		}
-//		Log.i("Product Fragment", "onResume");
+		getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 	}
-
-	@Override
-	public void onDestroy() {
-		super.onDestroy();
-		if (dialog != null) {
-			if (dialog.isShowing()) {
-				dialog.cancel();
-			}
-		}
-	}
-
-	@Override
-	public void onStop() {
-		super.onStop();
-		if (dialog != null) {
-			if (dialog.isShowing()) {
-				dialog.cancel();
-			}
-		}
-	}
-
-	@Override
-	public void onListItemClick(ListView l, View v, int position, long id) {
-		super.onListItemClick(l, v, position, id);
-		
-		if (!hasClickedItem) {
-			// go to detail activity
-			Product product = (Product) l.getItemAtPosition(position);
-		    Intent intent = new Intent(this.getActivity(), DetailActivity.class);
-		    intent.putExtra("currentProduct", product);
-		    hasClickedItem = true;
-		    startActivityForResult(intent, 1);
-		}
-	}
-	
-	@Override
-	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
-		hasClickedItem = false;
-	}
-
 }

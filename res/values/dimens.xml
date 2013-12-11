@@ -4,4 +4,13 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <dimen name="card_show_stick_height">44dp</dimen>
+    <dimen name="card_show_stick_height_without_shadow">42dp</dimen>
+    <dimen name="loading_spinner_size_small">30dp</dimen>
+    <!-- Dimen for 360dp -->
+    <!-- Web View Action -->
+    <dimen name="web_view_margin_1">10dp</dimen>
+    <dimen name="web_view_margin_2">10dp</dimen>
+    <dimen name="web_view_margin_3">10dp</dimen>
+    <dimen name="web_view_margin_4">35dp</dimen>
 </resources>

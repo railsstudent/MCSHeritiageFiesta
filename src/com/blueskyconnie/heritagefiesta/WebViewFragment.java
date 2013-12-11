@@ -3,29 +3,37 @@ package com.blueskyconnie.heritagefiesta;
 import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnKeyListener;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings.ZoomDensity;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.blueskyconnie.heritagefiesta.helper.AlertDialogHelper;
 import com.blueskyconnie.heritagefiesta.helper.ConnectionDetector;
 
-public class WebViewFragment extends Fragment {
+public class WebViewFragment extends Fragment implements OnClickListener {
 
 	private WebView webView;
 	private Bundle webViewBundle;
+	private ImageButton btnBack;
+	private ImageButton btnForward;
+	private ImageButton btnRefresh;
+	private ProgressBar progressBar;
+	private ImageButton btnOpenBrowser;
+	private String strHomepage;
 
 	// http://www.lucazanini.eu/2013/android/how-to-save-the-state-of-a-webview-inside-a-fragment-of-an-action-bar/?lang=en
 
@@ -40,6 +48,12 @@ public class WebViewFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_webview, container, false);
+
+		strHomepage = getString(R.string.homepage);
+		if (!strHomepage.startsWith("http://") && !strHomepage.startsWith("https://")) {
+			strHomepage = "http://" + strHomepage;
+		}
+		
 		webView = (WebView) rootView.findViewById(R.id.webView);
 		initWebView();
 		webView.setWebViewClient(new WebViewClient() {
@@ -51,7 +65,8 @@ public class WebViewFragment extends Fragment {
 			@SuppressLint("DefaultLocale")
 			@Override
 			public boolean shouldOverrideUrlLoading(WebView view, String url) {
-				if (url.toUpperCase().endsWith("PDF")) {
+				String tmpUrl = url.toUpperCase();
+				if (tmpUrl.endsWith("PDF")) {
 					try {
 						 Intent intentUrl = new Intent(Intent.ACTION_VIEW);
 						 intentUrl.setDataAndType(Uri.parse(url), "application/pdf");
@@ -60,11 +75,24 @@ public class WebViewFragment extends Fragment {
 					    Toast.makeText(WebViewFragment.this.getActivity(),
 					    		getString(R.string.pdf_viewer_not_installed), Toast.LENGTH_SHORT).show();
 					}
-				} else {
+				} else if (!tmpUrl.endsWith("HTM")) {
 					view.loadUrl(url);
 				}
-				
 				return true;
+			}
+
+			@Override
+			public void onPageFinished(WebView view, String url) {
+				progressBar.setVisibility(View.INVISIBLE);
+				btnRefresh.setVisibility(View.VISIBLE);
+				updateActionView();
+			}
+
+			@Override
+			public void onPageStarted(WebView view, String url, Bitmap favicon) {
+				btnRefresh.setVisibility(View.INVISIBLE);
+				progressBar.setVisibility(View.VISIBLE);
+				updateActionView();
 			}
 			
 			
@@ -80,14 +108,26 @@ public class WebViewFragment extends Fragment {
 		ConnectionDetector detector = new ConnectionDetector(getActivity()); 
 		if (detector.isConnectingToInternet()) {
 			if (webViewBundle == null) {
-				webView.loadUrl(getString(R.string.homepage));	
+				webView.loadUrl(strHomepage);	
 			} else {
 				webView.restoreState(webViewBundle);
 			}
 		} else {
 			AlertDialogHelper.showNoInternetDialog(getActivity());
 		}
-		Log.i("WebViewFragment", "In OnCreateView");
+		
+		progressBar = (ProgressBar) rootView.findViewById(R.id.loading1);
+		btnBack = (ImageButton) rootView.findViewById(R.id.web_view_btn_back);
+		btnForward = (ImageButton) rootView.findViewById(R.id.web_view_btn_forward);
+		btnRefresh = (ImageButton) rootView.findViewById(R.id.web_view_btn_refresh);
+		btnOpenBrowser = (ImageButton) rootView.findViewById(R.id.web_view_btn_share);
+		
+		btnBack.setOnClickListener(this);
+		btnForward.setOnClickListener(this);
+		btnRefresh.setOnClickListener(this);
+		btnOpenBrowser.setOnClickListener(this);
+		
+		updateActionView();
 		return rootView;
 	}
 
@@ -107,9 +147,15 @@ public class WebViewFragment extends Fragment {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
 			webView.getSettings().setDisplayZoomControls(false);
 		}
-		webView.setOnKeyListener(new MyKeyListener());
+//		webView.setOnKeyListener(new MyKeyListener());
 	}
 	
+	@Override
+	public void onResume() {
+		super.onResume();
+		getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+	}
+
 	@Override
 	public void onPause() {
 		super.onPause();
@@ -119,14 +165,37 @@ public class WebViewFragment extends Fragment {
 		webView.saveState(webViewBundle);
 	}
 
-	private class MyKeyListener implements OnKeyListener {
+	private void updateActionView() {
+       if (webView.canGoBack())
+    	   btnBack.setEnabled(true);
+       else
+    	   btnBack.setEnabled(false);
 
-		public boolean onKey(View v, int keyCode, KeyEvent event) {
-			if (keyCode == KeyEvent.KEYCODE_BACK && webView.canGoBack()) {
+       if (webView.canGoForward())
+    	   btnForward.setEnabled(true);
+       else
+    	   btnForward.setEnabled(false);
+       
+   }
+	
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+			case R.id.web_view_btn_back:
 				webView.goBack();
-				return true;
-			}
-			return false;
+				break;
+			case R.id.web_view_btn_forward:
+				webView.goForward();
+				break;
+			case R.id.web_view_btn_refresh:
+				webView.reload();
+				break;
+			case R.id.web_view_btn_share:
+				Uri uri = Uri.parse(strHomepage);
+				Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+				startActivity(intent);
+				break;
 		}
+		updateActionView();
 	}
 }

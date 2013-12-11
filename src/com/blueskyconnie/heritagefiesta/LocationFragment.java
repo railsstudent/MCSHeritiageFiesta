@@ -1,6 +1,7 @@
 package com.blueskyconnie.heritagefiesta;
 
 import android.app.AlertDialog;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -32,6 +33,8 @@ public class LocationFragment extends Fragment {
 
 	private static final LatLng PRIMARY_SECTION_LATLNG = new LatLng(22.327365,114.179094);
 	private static final LatLng MTR_LATLNG = new LatLng(22.325068,114.168403);
+	private static final LatLng MTR_BUS1_LATLNG = new LatLng(22.327244,114.182686);
+	private static final LatLng MTR_BUS2_LATLNG = new LatLng(22.32716,114.180594);
 	
 	private static final int RQS_GooglePlayServices = 1;
 	
@@ -81,7 +84,21 @@ public class LocationFragment extends Fragment {
 					map.addMarker(new MarkerOptions().position(MTR_LATLNG)
 							.title(getString(R.string.map_mtr_title))
 							.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin)));
-					
+
+					map.addMarker(new MarkerOptions().position(MTR_LATLNG)
+							.title(getString(R.string.map_mtr_title))
+							.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin)));
+
+					map.addMarker(new MarkerOptions().position(MTR_BUS1_LATLNG)
+							.title(getString(R.string.map_bus1_title))
+							.snippet(getString(R.string.map_bus1_snippet))
+							.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin)));
+
+					map.addMarker(new MarkerOptions().position(MTR_BUS2_LATLNG)
+							.title(getString(R.string.map_bus2_title))
+							.snippet(getString(R.string.map_bus2_snippet))
+							.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin)));
+
 					map.setMyLocationEnabled(true);
 					map.setOnMarkerClickListener(new OnMarkerClickListener() {
 						@Override
@@ -100,6 +117,7 @@ public class LocationFragment extends Fragment {
 				}
 				mapView.onResume();
 			}
+			getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
 		} else {
 			GooglePlayServicesUtil.getErrorDialog(resultCode, getActivity(), RQS_GooglePlayServices).show();
 		}
@@ -111,6 +129,7 @@ public class LocationFragment extends Fragment {
 		if (mapView != null) {
 			mapView.onPause();
 		}
+		getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 	}
 
 	@Override

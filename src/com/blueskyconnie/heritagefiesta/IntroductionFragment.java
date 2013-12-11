@@ -1,5 +1,6 @@
 package com.blueskyconnie.heritagefiesta;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -20,4 +21,12 @@ public class IntroductionFragment extends Fragment {
 		View rootView = inflater.inflate(R.layout.fragment_intro, container, false);
 		return rootView;
 	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+	}
+	
+	
 }

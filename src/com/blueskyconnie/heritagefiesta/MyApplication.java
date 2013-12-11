@@ -30,17 +30,17 @@ public class MyApplication extends Application {
 			.imageScaleType(ImageScaleType.IN_SAMPLE_INT)
 			.build();
 		
-		File cacheDir = new File(Environment.getExternalStorageDirectory(), "mcsheritage/Cache");
+		File cacheDir = new File(Environment.getExternalStorageDirectory(), "mcs/Cache");
 		ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getApplicationContext())
 			.threadPriority(Thread.NORM_PRIORITY - 2)
 			.threadPoolSize(1)
 			.denyCacheImageMultipleSizesInMemory()
 			.memoryCache(new WeakMemoryCache())
-			.discCache(new UnlimitedDiscCache(cacheDir))   // write to mcsheritage/Cache in SD card
+			.discCache(new UnlimitedDiscCache(cacheDir))   // write to mcs/Cache in SD card
 			.defaultDisplayImageOptions(options)
 			.build();
 		
 		ImageLoader.getInstance().init(config);
+		RequestManager.init(this);
 	}
-	
 }

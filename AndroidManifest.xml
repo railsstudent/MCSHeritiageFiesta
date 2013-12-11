@@ -50,7 +50,9 @@
         <activity android:name="com.blueskyconnie.heritagefiesta.MainActivity"
             android:configChanges="orientation" >
         </activity>
-        <activity android:name="com.blueskyconnie.heritagefiesta.DetailActivity" ></activity>
+        <activity android:name="com.blueskyconnie.heritagefiesta.ImageViewPager" 
+            android:configChanges="orientation">
+        </activity>
     </application>
 
 </manifest>

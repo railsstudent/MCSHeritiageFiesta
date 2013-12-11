@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">MCS古蹟同樂日</string>
+    <string name="app_name">瑪利諾古蹟同樂日2013</string>
 
     <string name="tab_gallery">照片集</string>
     <string name="tab_introduction">簡介</string>
@@ -9,23 +9,36 @@
     <string name="tab_map">位置</string>
     <string name="tab_contact">聯絡</string>
     
-    <string name="splash_production">BlueSky誠意製作</string>
-    <string name="cms_url">http://103.11.100.49/~connie/heritagefiesta/</string>
-    
+    <string name="splash_production">Connie Leung 誠意製作</string>
+    <string name="cms_url">http://103.11.100.49/~connie/mcs/</string>
+    <!--  
+    <string name="cms_url">http://192.168.1.138/mcs/</string>
+    -->
     <string name="map_school_title">瑪利諾修院學校\r\n小學部</string>
     <string name="map_school_address">九龍塘窩打老道130號</string>
     <string name="map_content_desc">瑪利諾修院學校小學部</string>
     <string name="map_mtr_title">太子地鐵站A出口</string>
-
+    <string name="map_bus1_title">1A,6D,42 巴士站</string>
+    <string name="map_bus1_snippet">步行約7&#8211;10分鐘</string>
+    
+    <string name="map_bus2_title">1,7B,12A,113 巴士站</string>
+    <string name="map_bus2_snippet">步行約3&#8211;5分鐘</string>
+    
+    <!-- Content descriptions -->
     <string name="intro_content_desc">古蹟同樂日</string>
+    <string name="album_content_desc">照片集</string>
+    <string name="image_content_desc">照片</string>
+    
+    <string name="pagerTitleLeft">第</string>
+    <string name="pagerTitleRight">張</string>
     
     <!-- 
     <string name="contact_email">mcsps@mcsps.edu.hk</string>
-    <string name="contact_phone">2336 0611</string>
+    <string name="contact_phone">+852 2336 0611</string>
     -->
     <string name="contact_email">con_leung10@yahoo.com</string>
-    <string name="contact_phone">2742 5268</string>
-    <string name="contact_fax">2336 3154</string>
+    <string name="contact_phone">+852 9160 0987</string>
+    <string name="contact_fax">+852 2336 3154</string>
     <string name="content_address">地址</string>
     <string name="content_email">電郵</string>
     <string name="content_fax">傳真</string>
@@ -34,18 +47,14 @@
     <string name="phone_school">即時致電</string>
     <string name="choose_email_app">選擇電郵程式</string>
     <string name="email_app_not_installed">電子郵件程式沒有安裝。</string>
-<<<<<<< HEAD
 
     <string name="choose_pdf_viewer">選擇PDF瀏覽程式</string>
-    <string name="pdf_viewer_not_installed">PDF瀏覽程式沒有安裝，請去Google Play Store下。</string>
+    <string name="pdf_viewer_not_installed">PDF瀏覽程式沒有安裝，請去Google Play Store下載。</string>
     
-=======
-    <string name="share_app_not_installed">分享應用程式沒有安裝。</string>
->>>>>>> 95c1de80f2a4949b8ece1d10cbc4e15de3a4d718
     <string name="email_subject">查詢</string>
     <string name="email_text">查詢</string>
     
-    <string name="homepage">http://www.mcsps.edu.hk</string>
+    <string name="homepage">http://www.mcsps.edu.hk/index.html</string>
     
     <string name="confirm_exit">確認</string>
     <string name="cancel_exit">取消</string>
@@ -58,12 +67,8 @@
     <string name="no_internet_error">互聯網網路連接失敗。</string>
     <string name="exit_error">離開失敗，請再試一次。</string>
     <string name="info_title">資訊</string>
-    <string name="cms_url">http://103.11.100.49/~connie/bluestone/</string>
-    <string name="last_update_time">更新時間：</string>
-    <string name="itemDesc">作用：</string>
-    <string name="itemName">名稱：</string>
-    <string name="itemPrice">價錢：</string>
     <string name="http_request_error">HTTP請求被拒絕，請稍後再回來。</string>
+    <string name="no_album_error">相簿暫時不存在。</string>
     
     <string name="menu_item_clear_memory_cache">清除內存圖像</string>
     <string name="menu_item_clear_disc_cache">清除外置卡圖像</string>

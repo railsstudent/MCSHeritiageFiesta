@@ -2,6 +2,7 @@ package com.blueskyconnie.heritagefiesta;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -22,6 +23,12 @@ public class ContactFragment extends Fragment {
 	private Button btnPhoneSchool;
 	
 	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setRetainInstance(true);
+	}
+
+	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_contact, container, false);
@@ -34,6 +41,12 @@ public class ContactFragment extends Fragment {
 		return rootView;
 	}
 	
+	@Override
+	public void onResume() {
+		super.onResume();
+		getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+	}
+
 	private final class MyOnClickListener implements
 		OnClickListener {
 		@Override

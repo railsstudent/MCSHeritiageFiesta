@@ -1,32 +1,26 @@
 package com.blueskyconnie.heritagefiesta;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.ActionBar.TabListener;
 import android.app.FragmentTransaction;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
-import android.view.Window;
 
 import com.blueskyconnie.heritagefiesta.adapter.TabspagerAdapter;
+import com.blueskyconnie.heritagefiesta.data.Album;
 import com.blueskyconnie.heritagefiesta.helper.AlertDialogHelper;
 
 public class MainActivity extends BaseFragmentActivity implements
 	TabListener {
 	
-	public static final String BATCH_DATA = "batchData";
-	public static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MMM-dd hh:mm:ss aa", Locale.US);
-	public static final SimpleDateFormat sdf_ymd_hms = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.US);
-	
+	public static final String ALBUMS = "albums";
 	public static final String STATE_SELECTED_NAVIGATION_ITEM = "selected_navigation_item";
 	
 	/**
@@ -46,12 +40,14 @@ public class MainActivity extends BaseFragmentActivity implements
 	private TabspagerAdapter pageAdapter;
 	private List<Fragment> lstFragment = new ArrayList<Fragment>();
 	private int currentPosition;
+	
+	private List<Album> albums;
 
 	@Override
 	protected void onCreate(Bundle savedBundle) {
 		super.onCreate(savedBundle);
 		
-		requestWindowFeature(Window.FEATURE_PROGRESS);
+		//requestWindowFeature(Window.FEATURE_PROGRESS);
 		setContentView(R.layout.activity_main);
 		actionBar = getActionBar();
 		
@@ -115,6 +111,12 @@ public class MainActivity extends BaseFragmentActivity implements
 			tab.setTabListener(this);
 			actionBar.addTab(tab);
 		}
+		
+		if (getIntent() != null) {
+			albums = getIntent().getParcelableArrayListExtra(MainActivity.ALBUMS);
+		} else {
+			albums = new ArrayList<Album>();
+		}
 	}
 
 	private Fragment getActiveFragment(FragmentManager fragmentManager, int viewPagerId, int position) {
@@ -139,7 +141,7 @@ public class MainActivity extends BaseFragmentActivity implements
 
 	@Override
 	public void onBackPressed() {
-		AlertDialogHelper.showConfirmExitDialog(this);
+		AlertDialogHelper.showConfirmExitDialog(this, imageLoader);
 	}
 
 	@Override
@@ -159,17 +161,28 @@ public class MainActivity extends BaseFragmentActivity implements
 		}
 	}
 
-	// http://qtcstation.com/2011/12/fragment-activities-with-multiple-fragments/
-	@Override
-	public void onConfigurationChanged(Configuration newConfig) {
-		if (pageAdapter != null) {
-			Fragment fragment = pageAdapter.getItem(viewPager.getCurrentItem());
-			if(fragment!=null && fragment.isResumed()){
-				//do nothing here if we're showing the fragment
-			}else{
-				setRequestedOrientation(Configuration.ORIENTATION_PORTRAIT); // otherwise lock in portrait
-			}
-		}
-		super.onConfigurationChanged(newConfig);
+//	// http://qtcstation.com/2011/12/fragment-activities-with-multiple-fragments/
+//	// force it to portrait
+//	@Override
+//	public void onConfigurationChanged(Configuration newConfig) {
+//		Log.i("MainActivity", "onConfigurationChanged begins");
+//		if (pageAdapter != null) {
+//			Fragment fragment = pageAdapter.getItem(viewPager.getCurrentItem());
+//			if(fragment!=null && fragment.isResumed()){
+//				//do nothing here if we're showing the fragment
+//			}else{
+//				setRequestedOrientation(Configuration.ORIENTATION_PORTRAIT); // otherwise lock in portrait
+//			}
+//		}
+//		super.onConfigurationChanged(newConfig);
+//		Log.i("MainActivity", "onConfigurationChanged ends");
+//	}
+
+	public List<Album> getAlbums() {
+		return albums;
+	}
+
+	public void setAlbums(List<Album> albums) {
+		this.albums = albums;
 	}
 }

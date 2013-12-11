@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:paddingBottom="10dp" >
+            android:paddingBottom="2dp" >
 
             <ImageView
                 android:id="@+id/imgAddress"
@@ -30,7 +30,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="5"
                 android:text="@string/map_school_address"
-                android:textAppearance="@style/TextLargeBlue" />
+                android:textAppearance="@style/TextLargeBlack" />
         </TableRow>
 
         <TableRow
@@ -38,7 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:paddingBottom="10dp" >
+            android:paddingBottom="2dp" >
 
             <ImageView
                 android:id="@+id/imgEmail"
@@ -53,7 +53,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="5"
                 android:text="@string/contact_email"
-                android:textAppearance="@style/TextLargeBlue" />
+                android:textAppearance="@style/TextLargeBlack" />
         </TableRow>
 
         <TableRow
@@ -61,7 +61,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:paddingBottom="10dp" >
+            android:paddingBottom="5dp" >
 
             <ImageView
                 android:id="@+id/imgPhone"
@@ -76,7 +76,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="5"
                 android:text="@string/contact_phone"
-                android:textAppearance="@style/TextLargeBlue" />
+                android:textAppearance="@style/TextLargeBlack" />
         </TableRow>
 
         <TableRow
@@ -84,7 +84,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:paddingBottom="10dp" >
+            android:paddingBottom="5dp" >
 
             <ImageView
                 android:id="@+id/imgFax"
@@ -100,7 +100,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="5"
                 android:text="@string/contact_fax"
-                android:textAppearance="@style/TextLargeBlue" />
+                android:textAppearance="@style/TextLargeBlack" />
         </TableRow>
 
         <TableRow
