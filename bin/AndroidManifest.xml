@@ -23,7 +23,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
+    
     <!-- add permission to call phone -->
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
@@ -53,6 +53,9 @@
         <activity android:name="com.blueskyconnie.heritagefiesta.ImageViewPager" 
             android:configChanges="orientation">
         </activity>
+        
+        <activity android:name="com.google.ads.AdActivity" 
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
     </application>
 
 </manifest>

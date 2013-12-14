@@ -9,6 +9,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -94,14 +96,20 @@ public class WebViewFragment extends Fragment implements OnClickListener {
 				progressBar.setVisibility(View.VISIBLE);
 				updateActionView();
 			}
-			
-			
 		});
 		
 		webView.setWebChromeClient(new WebChromeClient() {
 			@Override
 			public void onProgressChanged(WebView view, int newProgress) {
-				 getActivity().setProgress(newProgress * 100);
+				if (view != null) {
+					FragmentActivity fragActivity = getActivity();
+					if (fragActivity != null) {
+					   Log.i("WebViewFragment", "Before setProgress");
+					   Log.i("WebViewFragment", "is getActivity() == null ? " + (fragActivity == null) );
+					   fragActivity.setProgress(newProgress * 100);
+					   Log.i("WebViewFragment", "After setProgress");
+					}
+				}
 			}
 		});
 	
@@ -162,9 +170,12 @@ public class WebViewFragment extends Fragment implements OnClickListener {
 		if (webViewBundle == null) {
 			webViewBundle = new Bundle();
 		}
-		webView.saveState(webViewBundle);
+		if (webView != null) {
+			webView.saveState(webViewBundle);
+			webView.onPause();
+		}
 	}
-
+	
 	private void updateActionView() {
        if (webView.canGoBack())
     	   btnBack.setEnabled(true);

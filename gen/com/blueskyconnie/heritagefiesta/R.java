@@ -241,9 +241,10 @@ containing a value of this type.
         public static final int webviewtheme_btn_default_pressed_holo_dark=0x7f020044;
     }
     public static final class id {
-        public static final int LinearLayout1=0x7f050021;
+        public static final int LinearLayout1=0x7f050022;
         public static final int RelativeLayout1=0x7f050006;
-        public static final int albumImage=0x7f050029;
+        public static final int adView=0x7f05001d;
+        public static final int albumImage=0x7f05002a;
         public static final int btnPhone=0x7f05001b;
         public static final int btnSendMail=0x7f05001a;
         public static final int gridView=0x7f05001c;
@@ -252,21 +253,21 @@ containing a value of this type.
         public static final int imgAlbum=0x7f050009;
         public static final int imgEmail=0x7f050011;
         public static final int imgFax=0x7f050017;
-        public static final int imgIntro=0x7f05001f;
-        public static final int imgLoading=0x7f05002a;
-        public static final int imgPager=0x7f05001d;
+        public static final int imgIntro=0x7f050020;
+        public static final int imgLoading=0x7f05002b;
+        public static final int imgPager=0x7f05001e;
         public static final int imgPhone=0x7f050014;
-        public static final int imgSchool=0x7f05002b;
+        public static final int imgSchool=0x7f05002c;
         public static final int imgSplash=0x7f050007;
-        public static final int item_clear_disc_cache=0x7f05002f;
-        public static final int item_clear_memory_cache=0x7f05002e;
-        public static final int loading1=0x7f050027;
-        public static final int mapView=0x7f050020;
-        public static final int menu_legalnotices=0x7f050030;
+        public static final int item_clear_disc_cache=0x7f050030;
+        public static final int item_clear_memory_cache=0x7f05002f;
+        public static final int loading1=0x7f050028;
+        public static final int mapView=0x7f050021;
+        public static final int menu_legalnotices=0x7f050031;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
         public static final int pager=0x7f050005;
-        public static final int pager_title_strip=0x7f05001e;
+        public static final int pager_title_strip=0x7f05001f;
         public static final int satellite=0x7f050002;
         public static final int scrollview=0x7f05000b;
         public static final int tableLayout=0x7f05000c;
@@ -282,14 +283,14 @@ containing a value of this type.
         public static final int tvFax=0x7f050018;
         public static final int tvLoading=0x7f050008;
         public static final int tvPhone=0x7f050015;
-        public static final int tvSnippet=0x7f05002d;
-        public static final int tvTitle=0x7f05002c;
-        public static final int webView=0x7f050022;
-        public static final int web_view_btn_back=0x7f050023;
-        public static final int web_view_btn_forward=0x7f050024;
-        public static final int web_view_btn_refresh=0x7f050026;
-        public static final int web_view_btn_share=0x7f050028;
-        public static final int web_view_lay_refresh=0x7f050025;
+        public static final int tvSnippet=0x7f05002e;
+        public static final int tvTitle=0x7f05002d;
+        public static final int webView=0x7f050023;
+        public static final int web_view_btn_back=0x7f050024;
+        public static final int web_view_btn_forward=0x7f050025;
+        public static final int web_view_btn_refresh=0x7f050027;
+        public static final int web_view_btn_share=0x7f050029;
+        public static final int web_view_lay_refresh=0x7f050026;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;

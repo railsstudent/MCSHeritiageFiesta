@@ -80,6 +80,7 @@ public class GalleryFragment extends Fragment {
 		gridView = (GridView) rootView.findViewById(R.id.gridView);
 		gridView.setAdapter(adapter);
 		gridView.setOnItemClickListener(listener);
+		
 		return rootView;
 	}
 
@@ -90,7 +91,6 @@ public class GalleryFragment extends Fragment {
 			hasClickedItem = false;
 		}
 	}
-
 
 	@Override
 	public void onResume() {

@@ -1,7 +1,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
     android:id="@+id/RelativeLayout1"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="top"
     android:orientation="vertical" >
 
     <GridView
@@ -13,5 +15,13 @@
         android:layout_marginRight="15dp"
         android:numColumns="3" >
     </GridView>
-
+  <com.google.ads.AdView
+       android:id="@+id/adView"
+       android:layout_width="fill_parent"
+       android:layout_height="wrap_content"
+       android:layout_alignParentBottom="true"
+       ads:adSize="SMART_BANNER"
+       ads:adUnitId="a152ac689c8b45f"
+       ads:loadAdOnCreate="true"
+       ads:testDevices="TEST_EMULATOR, 3BE2084011B4A10A"/>
 </RelativeLayout>
