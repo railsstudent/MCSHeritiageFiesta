@@ -79,7 +79,7 @@ public class WebViewFragment extends Fragment implements OnClickListener {
 			@Override
 			public boolean shouldOverrideUrlLoading(WebView view, String url) {
 				String tmpUrl = url.toUpperCase();
-				if (!tmpUrl.endsWith("HTM") && !tmpUrl.endsWith("ASP")) {
+				if (tmpUrl.endsWith("PDF")) {
 					try {
   						 Uri selectedUri = Uri.parse(url);
 						 String mimeType = MimeTypeMap.getFileExtensionFromUrl(selectedUri.toString());
@@ -90,8 +90,12 @@ public class WebViewFragment extends Fragment implements OnClickListener {
 					    Toast.makeText(WebViewFragment.this.getActivity(),
 					    		getString(R.string.viewer_not_installed), Toast.LENGTH_SHORT).show();
 					}
+					return true;
 				} else if (!tmpUrl.endsWith("HTM")) {
 					view.loadUrl(url);
+					return true;
+				} else if (!tmpUrl.endsWith("PDF") && !tmpUrl.endsWith("HTM")) {
+					return super.shouldOverrideUrlLoading(view, url);
 				}
 				return true;
 			}
