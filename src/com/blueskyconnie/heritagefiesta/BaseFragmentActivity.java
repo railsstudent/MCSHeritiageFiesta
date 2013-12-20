@@ -1,6 +1,5 @@
 package com.blueskyconnie.heritagefiesta;
 
-import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -12,11 +11,6 @@ public abstract class BaseFragmentActivity extends FragmentActivity {
 
 	protected ImageLoader imageLoader = ImageLoader.getInstance();
 	
-	@Override
-	protected void onCreate(Bundle arg0) {
-		super.onCreate(arg0);
-	}
-
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
