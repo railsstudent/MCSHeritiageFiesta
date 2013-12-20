@@ -3,6 +3,7 @@
 
     <string name="app_name">瑪利諾古蹟同樂日2013</string>
 
+    <string name="tab_video">影片</string>
     <string name="tab_gallery">照片集</string>
     <string name="tab_introduction">簡介</string>
     <string name="tab_website">學校網站</string>
@@ -18,16 +19,22 @@
     <string name="map_school_address">九龍塘窩打老道130號</string>
     <string name="map_content_desc">瑪利諾修院學校小學部</string>
     <string name="map_mtr_title">太子地鐵站A出口</string>
+    <string name="map_mtr_snippet">到達方法: 1) 轉乘的士直達學校入口 2) 步行30分鐘直達學校</string>
     <string name="map_bus1_title">1A,6D,42 巴士站</string>
     <string name="map_bus1_snippet">步行約7&#8211;10分鐘</string>
-    
     <string name="map_bus2_title">1,7B,12A,113 巴士站</string>
     <string name="map_bus2_snippet">步行約3&#8211;5分鐘</string>
+    <string name="map_mtr_kowloontong_title">九龍塘地鐵站</string>
+    <string name="map_mtr_kowloontong_snippet">到達方法： 轉乘九巴 10, 281A, 281B, 281X, 81C, 81S, 87D或3C, 然後在九龍塘會下車</string>
     
     <!-- Content descriptions -->
     <string name="intro_content_desc">古蹟同樂日</string>
     <string name="album_content_desc">照片集</string>
     <string name="image_content_desc">照片</string>
+    <string name="btn_back_desc">返回上一個網頁</string>
+    <string name="btn_fwd_desc">返回下一個網頁</string>
+    <string name="btn_reload_desc">重新載入網頁</string>
+    <string name="btn_open_browser_desc">在瀏覽器中打開網頁</string>
     
     <string name="pagerTitleLeft">第</string>
     <string name="pagerTitleRight">張</string>
@@ -47,13 +54,10 @@
     <string name="phone_school">即時致電</string>
     <string name="choose_email_app">選擇電郵程式</string>
     <string name="email_app_not_installed">電子郵件程式沒有安裝。</string>
-
-    <string name="choose_pdf_viewer">選擇PDF瀏覽程式</string>
-    <string name="pdf_viewer_not_installed">PDF瀏覽程式沒有安裝，請去Google Play Store下載。</string>
-    
+    <string name="choose_viewer">選擇瀏覽程式</string>
+    <string name="viewer_not_installed">沒有發現合適的瀏覽程式，請去Google Play Store下載。</string>
     <string name="email_subject">查詢</string>
     <string name="email_text">查詢</string>
-    
     <string name="homepage">http://www.mcsps.edu.hk/index.html</string>
     
     <string name="confirm_exit">確認</string>
@@ -69,9 +73,7 @@
     <string name="info_title">資訊</string>
     <string name="http_request_error">HTTP請求被拒絕，請稍後再回來。</string>
     <string name="no_album_error">相簿暫時不存在。</string>
-    
     <string name="menu_item_clear_memory_cache">清除內存圖像</string>
     <string name="menu_item_clear_disc_cache">清除外置卡圖像</string>
     <string name="menu_legalnotices">法律聲明</string>
-
 </resources>

@@ -24,6 +24,14 @@
          <item name="android:textColor">@color/silver</item>
     </style>
     
+    <style name="TextSmallGreen" parent="@android:style/TextAppearance.Small">
+         <item name="android:textColor">@color/green</item>
+    </style>
+    
+    <style name="TextSmallSilver" parent="@android:style/TextAppearance.Small">
+         <item name="android:textColor">@color/silver</item>
+    </style>
+    
     <style name="TextLargeBlue" parent="@android:style/TextAppearance.Large">
 		<item name="android:layout_height">wrap_content</item>        
 		<item name="android:textColor">@color/blue</item>        

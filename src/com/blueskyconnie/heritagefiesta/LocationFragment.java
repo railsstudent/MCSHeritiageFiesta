@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.blueskyconnie.heritagefiesta.R;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -33,6 +32,7 @@ public class LocationFragment extends Fragment {
 
 	private static final LatLng PRIMARY_SECTION_LATLNG = new LatLng(22.327365,114.179094);
 	private static final LatLng MTR_LATLNG = new LatLng(22.325068,114.168403);
+	private static final LatLng MTR_KOWLOON_TONG_LATLNG = new LatLng(22.337265,114.175928);
 	private static final LatLng MTR_BUS1_LATLNG = new LatLng(22.327244,114.182686);
 	private static final LatLng MTR_BUS2_LATLNG = new LatLng(22.32716,114.180594);
 	
@@ -83,10 +83,7 @@ public class LocationFragment extends Fragment {
 
 					map.addMarker(new MarkerOptions().position(MTR_LATLNG)
 							.title(getString(R.string.map_mtr_title))
-							.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin)));
-
-					map.addMarker(new MarkerOptions().position(MTR_LATLNG)
-							.title(getString(R.string.map_mtr_title))
+							.snippet(getString(R.string.map_mtr_snippet))
 							.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin)));
 
 					map.addMarker(new MarkerOptions().position(MTR_BUS1_LATLNG)
@@ -99,6 +96,11 @@ public class LocationFragment extends Fragment {
 							.snippet(getString(R.string.map_bus2_snippet))
 							.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin)));
 
+					map.addMarker(new MarkerOptions().position(MTR_KOWLOON_TONG_LATLNG)
+							.title(getString(R.string.map_mtr_kowloontong_title))
+							.snippet(getString(R.string.map_mtr_kowloontong_snippet))
+							.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin)));
+					
 					map.setMyLocationEnabled(true);
 					map.setOnMarkerClickListener(new OnMarkerClickListener() {
 						@Override
@@ -181,8 +183,14 @@ public class LocationFragment extends Fragment {
 				tvTitle.setText(marker_title);
 				tvSnippet.setText(marker_snippet);
 				return view;
-			} 
-			return null;
+			} else {
+				View view = getActivity().getLayoutInflater().inflate(R.layout.layout_main_popup_no_image, null);
+				TextView tvTitle = (TextView) view.findViewById(R.id.tvTitle);
+				TextView tvSnippet = (TextView) view.findViewById(R.id.tvSnippet);
+				tvTitle.setText(marker_title);
+				tvSnippet.setText(marker_snippet);
+				return view;
+			}
 		}
 
 		@Override

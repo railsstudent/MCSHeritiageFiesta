@@ -244,7 +244,7 @@ containing a value of this type.
         public static final int LinearLayout1=0x7f050022;
         public static final int RelativeLayout1=0x7f050006;
         public static final int adView=0x7f05001d;
-        public static final int albumImage=0x7f05002a;
+        public static final int albumImage=0x7f05002b;
         public static final int btnPhone=0x7f05001b;
         public static final int btnSendMail=0x7f05001a;
         public static final int gridView=0x7f05001c;
@@ -254,16 +254,16 @@ containing a value of this type.
         public static final int imgEmail=0x7f050011;
         public static final int imgFax=0x7f050017;
         public static final int imgIntro=0x7f050020;
-        public static final int imgLoading=0x7f05002b;
+        public static final int imgLoading=0x7f05002c;
         public static final int imgPager=0x7f05001e;
         public static final int imgPhone=0x7f050014;
-        public static final int imgSchool=0x7f05002c;
+        public static final int imgSchool=0x7f05002d;
         public static final int imgSplash=0x7f050007;
-        public static final int item_clear_disc_cache=0x7f050030;
-        public static final int item_clear_memory_cache=0x7f05002f;
-        public static final int loading1=0x7f050028;
+        public static final int item_clear_disc_cache=0x7f050031;
+        public static final int item_clear_memory_cache=0x7f050030;
+        public static final int loading1=0x7f050029;
         public static final int mapView=0x7f050021;
-        public static final int menu_legalnotices=0x7f050031;
+        public static final int menu_legalnotices=0x7f050032;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
         public static final int pager=0x7f050005;
@@ -283,14 +283,15 @@ containing a value of this type.
         public static final int tvFax=0x7f050018;
         public static final int tvLoading=0x7f050008;
         public static final int tvPhone=0x7f050015;
-        public static final int tvSnippet=0x7f05002e;
-        public static final int tvTitle=0x7f05002d;
+        public static final int tvSnippet=0x7f05002f;
+        public static final int tvTitle=0x7f05002e;
         public static final int webView=0x7f050023;
-        public static final int web_view_btn_back=0x7f050024;
-        public static final int web_view_btn_forward=0x7f050025;
-        public static final int web_view_btn_refresh=0x7f050027;
-        public static final int web_view_btn_share=0x7f050029;
-        public static final int web_view_lay_refresh=0x7f050026;
+        public static final int web_view_btn_back=0x7f050025;
+        public static final int web_view_btn_forward=0x7f050026;
+        public static final int web_view_btn_refresh=0x7f050028;
+        public static final int web_view_btn_share=0x7f05002a;
+        public static final int web_view_lay_refresh=0x7f050027;
+        public static final int web_view_progress=0x7f050024;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -304,13 +305,14 @@ containing a value of this type.
         public static final int fragment_webview=0x7f030008;
         public static final int item_pager_image=0x7f030009;
         public static final int layout_main_popup=0x7f03000a;
+        public static final int layout_main_popup_no_image=0x7f03000b;
     }
     public static final class menu {
         public static final int main_menu=0x7f090000;
         public static final int menu_location=0x7f090001;
     }
     public static final class string {
-        public static final int album_content_desc=0x7f06002a;
+        public static final int album_content_desc=0x7f06002e;
         public static final int app_name=0x7f060019;
         /**   Title for notification shown when GooglePlayServices needs to be
         enabled for a application to work. [CHAR LIMIT=70] 
@@ -335,10 +337,14 @@ containing a value of this type.
         [CHAR LIMIT=70] 
          */
         public static final int auth_client_using_bad_version_title=0x7f060013;
-        public static final int cancel_exit=0x7f06003f;
-        public static final int choose_email_app=0x7f060037;
-        public static final int choose_pdf_viewer=0x7f060039;
-        public static final int cms_url=0x7f060020;
+        public static final int btn_back_desc=0x7f060030;
+        public static final int btn_fwd_desc=0x7f060031;
+        public static final int btn_open_browser_desc=0x7f060033;
+        public static final int btn_reload_desc=0x7f060032;
+        public static final int cancel_exit=0x7f060047;
+        public static final int choose_email_app=0x7f06003f;
+        public static final int choose_viewer=0x7f060041;
+        public static final int cms_url=0x7f060021;
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
         will direct user to application settings of Google Play services where they
         can enable it [CHAR LIMIT=40] 
@@ -406,64 +412,68 @@ containing a value of this type.
         /**  Long form sign-in button text [CHAR LIMIT=30] 
          */
         public static final int common_signin_button_text_long=0x7f060012;
-        public static final int confirm_exit=0x7f06003e;
+        public static final int confirm_exit=0x7f060046;
         /**  
     <string name="contact_email">mcsps@mcsps.edu.hk</string>
     <string name="contact_phone">+852 2336 0611</string>
     
          */
-        public static final int contact_email=0x7f06002e;
-        public static final int contact_fax=0x7f060030;
-        public static final int contact_phone=0x7f06002f;
-        public static final int content_address=0x7f060031;
-        public static final int content_email=0x7f060032;
-        public static final int content_fax=0x7f060033;
-        public static final int content_phone=0x7f060034;
-        public static final int downloading=0x7f060044;
-        public static final int email_app_not_installed=0x7f060038;
-        public static final int email_subject=0x7f06003b;
-        public static final int email_text=0x7f06003c;
-        public static final int exit_error=0x7f060047;
-        public static final int homepage=0x7f06003d;
-        public static final int http_request_error=0x7f060049;
-        public static final int image_content_desc=0x7f06002b;
-        public static final int info_title=0x7f060048;
+        public static final int contact_email=0x7f060036;
+        public static final int contact_fax=0x7f060038;
+        public static final int contact_phone=0x7f060037;
+        public static final int content_address=0x7f060039;
+        public static final int content_email=0x7f06003a;
+        public static final int content_fax=0x7f06003b;
+        public static final int content_phone=0x7f06003c;
+        public static final int downloading=0x7f06004c;
+        public static final int email_app_not_installed=0x7f060040;
+        public static final int email_subject=0x7f060043;
+        public static final int email_text=0x7f060044;
+        public static final int exit_error=0x7f06004f;
+        public static final int homepage=0x7f060045;
+        public static final int http_request_error=0x7f060051;
+        public static final int image_content_desc=0x7f06002f;
+        public static final int info_title=0x7f060050;
         /**  Content descriptions 
          */
-        public static final int intro_content_desc=0x7f060029;
-        public static final int loading=0x7f060045;
-        public static final int map_bus1_snippet=0x7f060026;
-        public static final int map_bus1_title=0x7f060025;
-        public static final int map_bus2_snippet=0x7f060028;
-        public static final int map_bus2_title=0x7f060027;
-        public static final int map_content_desc=0x7f060023;
-        public static final int map_mtr_title=0x7f060024;
-        public static final int map_school_address=0x7f060022;
+        public static final int intro_content_desc=0x7f06002d;
+        public static final int loading=0x7f06004d;
+        public static final int map_bus1_snippet=0x7f060028;
+        public static final int map_bus1_title=0x7f060027;
+        public static final int map_bus2_snippet=0x7f06002a;
+        public static final int map_bus2_title=0x7f060029;
+        public static final int map_content_desc=0x7f060024;
+        public static final int map_mtr_kowloontong_snippet=0x7f06002c;
+        public static final int map_mtr_kowloontong_title=0x7f06002b;
+        public static final int map_mtr_snippet=0x7f060026;
+        public static final int map_mtr_title=0x7f060025;
+        public static final int map_school_address=0x7f060023;
         /**   
     <string name="cms_url">http://192.168.1.138/mcs/</string>
     
          */
-        public static final int map_school_title=0x7f060021;
-        public static final int menu_item_clear_disc_cache=0x7f06004c;
-        public static final int menu_item_clear_memory_cache=0x7f06004b;
-        public static final int menu_legalnotices=0x7f06004d;
-        public static final int no_accessories=0x7f060042;
-        public static final int no_album_error=0x7f06004a;
-        public static final int no_data=0x7f060041;
-        public static final int no_internet_error=0x7f060046;
-        public static final int no_news=0x7f060043;
-        public static final int pagerTitleLeft=0x7f06002c;
-        public static final int pagerTitleRight=0x7f06002d;
-        public static final int pdf_viewer_not_installed=0x7f06003a;
-        public static final int phone_school=0x7f060036;
-        public static final int send_email=0x7f060035;
-        public static final int splash_production=0x7f06001f;
-        public static final int tab_contact=0x7f06001e;
-        public static final int tab_gallery=0x7f06001a;
-        public static final int tab_introduction=0x7f06001b;
-        public static final int tab_map=0x7f06001d;
-        public static final int tab_website=0x7f06001c;
-        public static final int title_confirm_exit=0x7f060040;
+        public static final int map_school_title=0x7f060022;
+        public static final int menu_item_clear_disc_cache=0x7f060054;
+        public static final int menu_item_clear_memory_cache=0x7f060053;
+        public static final int menu_legalnotices=0x7f060055;
+        public static final int no_accessories=0x7f06004a;
+        public static final int no_album_error=0x7f060052;
+        public static final int no_data=0x7f060049;
+        public static final int no_internet_error=0x7f06004e;
+        public static final int no_news=0x7f06004b;
+        public static final int pagerTitleLeft=0x7f060034;
+        public static final int pagerTitleRight=0x7f060035;
+        public static final int phone_school=0x7f06003e;
+        public static final int send_email=0x7f06003d;
+        public static final int splash_production=0x7f060020;
+        public static final int tab_contact=0x7f06001f;
+        public static final int tab_gallery=0x7f06001b;
+        public static final int tab_introduction=0x7f06001c;
+        public static final int tab_map=0x7f06001e;
+        public static final int tab_video=0x7f06001a;
+        public static final int tab_website=0x7f06001d;
+        public static final int title_confirm_exit=0x7f060048;
+        public static final int viewer_not_installed=0x7f060042;
     }
     public static final class style {
         /** 
@@ -492,14 +502,16 @@ containing a value of this type.
  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f080001;
-        public static final int ButtonWebviewTheme=0x7f080007;
-        public static final int ImageButtonWebviewTheme=0x7f080008;
-        public static final int TextLargeBlack=0x7f080005;
-        public static final int TextLargeBlue=0x7f080004;
+        public static final int ButtonWebviewTheme=0x7f080009;
+        public static final int ImageButtonWebviewTheme=0x7f08000a;
+        public static final int TextLargeBlack=0x7f080007;
+        public static final int TextLargeBlue=0x7f080006;
         public static final int TextLargeGreen=0x7f080002;
         public static final int TextMediumSilver=0x7f080003;
-        public static final int TextSplashShadowBlue=0x7f080006;
-        public static final int WebviewTheme=0x7f080009;
+        public static final int TextSmallGreen=0x7f080004;
+        public static final int TextSmallSilver=0x7f080005;
+        public static final int TextSplashShadowBlue=0x7f080008;
+        public static final int WebviewTheme=0x7f08000b;
     }
     public static final class styleable {
         /** Attributes that can be used with a MapAttrs.

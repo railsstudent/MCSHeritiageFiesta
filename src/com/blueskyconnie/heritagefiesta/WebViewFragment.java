@@ -9,16 +9,19 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.webkit.MimeTypeMap;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings.ZoomDensity;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -34,8 +37,10 @@ public class WebViewFragment extends Fragment implements OnClickListener {
 	private ImageButton btnForward;
 	private ImageButton btnRefresh;
 	private ProgressBar progressBar;
+	private ProgressBar webViewProgressBar;
 	private ImageButton btnOpenBrowser;
 	private String strHomepage;
+	private FrameLayout frameLayout;
 
 	// http://www.lucazanini.eu/2013/android/how-to-save-the-state-of-a-webview-inside-a-fragment-of-an-action-bar/?lang=en
 
@@ -56,7 +61,13 @@ public class WebViewFragment extends Fragment implements OnClickListener {
 			strHomepage = "http://" + strHomepage;
 		}
 		
-		webView = (WebView) rootView.findViewById(R.id.webView);
+		// put the web view in the frameLayout
+		frameLayout = (FrameLayout) rootView.findViewById(R.id.webView);
+		webViewProgressBar = (ProgressBar) rootView.findViewById(R.id.web_view_progress);
+		webView = new WebView(getActivity());
+		// hide web view until the page is fully loaded
+		webView.setVisibility(WebView.GONE);
+		webView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 		initWebView();
 		webView.setWebViewClient(new WebViewClient() {
 			@Override
@@ -68,14 +79,16 @@ public class WebViewFragment extends Fragment implements OnClickListener {
 			@Override
 			public boolean shouldOverrideUrlLoading(WebView view, String url) {
 				String tmpUrl = url.toUpperCase();
-				if (tmpUrl.endsWith("PDF")) {
+				if (!tmpUrl.endsWith("HTM") && !tmpUrl.endsWith("ASP")) {
 					try {
+  						 Uri selectedUri = Uri.parse(url);
+						 String mimeType = MimeTypeMap.getFileExtensionFromUrl(selectedUri.toString());
 						 Intent intentUrl = new Intent(Intent.ACTION_VIEW);
-						 intentUrl.setDataAndType(Uri.parse(url), "application/pdf");
-						 startActivity(Intent.createChooser(intentUrl, getString(R.string.choose_pdf_viewer)));
+						 intentUrl.setDataAndType(selectedUri, mimeType);
+						 startActivity(Intent.createChooser(intentUrl, getString(R.string.choose_viewer)));
 					} catch (ActivityNotFoundException e) {
 					    Toast.makeText(WebViewFragment.this.getActivity(),
-					    		getString(R.string.pdf_viewer_not_installed), Toast.LENGTH_SHORT).show();
+					    		getString(R.string.viewer_not_installed), Toast.LENGTH_SHORT).show();
 					}
 				} else if (!tmpUrl.endsWith("HTM")) {
 					view.loadUrl(url);
@@ -85,6 +98,12 @@ public class WebViewFragment extends Fragment implements OnClickListener {
 
 			@Override
 			public void onPageFinished(WebView view, String url) {
+				view.setVisibility(View.VISIBLE);
+				final Animation fade = new AlphaAnimation(0.0f, 1.0f);
+		        fade.setDuration(200);
+		        view.startAnimation(fade);
+		        view.setVisibility(View.VISIBLE);
+				webViewProgressBar.setVisibility(View.GONE);
 				progressBar.setVisibility(View.INVISIBLE);
 				btnRefresh.setVisibility(View.VISIBLE);
 				updateActionView();
@@ -94,6 +113,8 @@ public class WebViewFragment extends Fragment implements OnClickListener {
 			public void onPageStarted(WebView view, String url, Bitmap favicon) {
 				btnRefresh.setVisibility(View.INVISIBLE);
 				progressBar.setVisibility(View.VISIBLE);
+				webViewProgressBar.setVisibility(View.VISIBLE);
+				webView.setVisibility(View.GONE);
 				updateActionView();
 			}
 		});
@@ -101,17 +122,21 @@ public class WebViewFragment extends Fragment implements OnClickListener {
 		webView.setWebChromeClient(new WebChromeClient() {
 			@Override
 			public void onProgressChanged(WebView view, int newProgress) {
-				if (view != null) {
-					FragmentActivity fragActivity = getActivity();
-					if (fragActivity != null) {
-					   Log.i("WebViewFragment", "Before setProgress");
-					   Log.i("WebViewFragment", "is getActivity() == null ? " + (fragActivity == null) );
-					   fragActivity.setProgress(newProgress * 100);
-					   Log.i("WebViewFragment", "After setProgress");
+				if (view != null /*&& fragActivity != null*/) {
+					if (newProgress < 100 && webViewProgressBar.getVisibility() == View.GONE) {
+						webViewProgressBar.setVisibility(View.VISIBLE);
+					}
+					webViewProgressBar.setProgress(newProgress);
+					if (newProgress >= 100) {
+						if (webView.getVisibility() == View.GONE) {
+							webView.setVisibility(View.VISIBLE);
+						}
+						webViewProgressBar.setVisibility(View.GONE);
 					}
 				}
 			}
 		});
+		frameLayout.addView(webView);
 	
 		ConnectionDetector detector = new ConnectionDetector(getActivity()); 
 		if (detector.isConnectingToInternet()) {
@@ -155,7 +180,6 @@ public class WebViewFragment extends Fragment implements OnClickListener {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
 			webView.getSettings().setDisplayZoomControls(false);
 		}
-//		webView.setOnKeyListener(new MyKeyListener());
 	}
 	
 	@Override
@@ -176,17 +200,26 @@ public class WebViewFragment extends Fragment implements OnClickListener {
 		}
 	}
 	
-	private void updateActionView() {
-       if (webView.canGoBack())
-    	   btnBack.setEnabled(true);
-       else
-    	   btnBack.setEnabled(false);
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		frameLayout.removeView(webView);
+		webView.removeAllViews();
+		webView.destroy();
+	}
 
-       if (webView.canGoForward())
+	private void updateActionView() {
+       if (webView.canGoBack()) {
+    	   btnBack.setEnabled(true);
+       } else {
+    	   btnBack.setEnabled(false);
+       }
+
+       if (webView.canGoForward()) {
     	   btnForward.setEnabled(true);
-       else
+       } else {
     	   btnForward.setEnabled(false);
-       
+       }
    }
 	
 	@Override
