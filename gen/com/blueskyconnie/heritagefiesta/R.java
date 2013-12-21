@@ -418,9 +418,9 @@ containing a value of this type.
          */
         public static final int common_signin_button_text_long=0x7f060012;
         public static final int confirm_exit=0x7f060049;
-        /**  
-    <string name="contact_email">mcsps@mcsps.edu.hk</string>
-    <string name="contact_phone">+852 2336 0611</string>
+        /**   
+    <string name="contact_email">con_leung10@yahoo.com</string>
+    <string name="contact_phone">+852 9160 0987</string>
     
          */
         public static final int contact_email=0x7f060039;
