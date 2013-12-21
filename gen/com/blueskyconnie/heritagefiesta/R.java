@@ -194,7 +194,7 @@ containing a value of this type.
         public static final int common_signin_btn_text_normal_light=0x7f020016;
         public static final int common_signin_btn_text_pressed_dark=0x7f020017;
         public static final int common_signin_btn_text_pressed_light=0x7f020018;
-        public static final int darkgray=0x7f020045;
+        public static final int darkgray=0x7f020046;
         public static final int ic_brochure=0x7f020019;
         public static final int ic_contact=0x7f02001a;
         public static final int ic_gallery=0x7f02001b;
@@ -205,40 +205,41 @@ containing a value of this type.
         public static final int ic_plusone_standard_off_client=0x7f020020;
         public static final int ic_plusone_tall_off_client=0x7f020021;
         public static final int ic_website=0x7f020022;
-        public static final int img_album=0x7f020023;
-        public static final int img_back=0x7f020024;
-        public static final int img_email=0x7f020025;
-        public static final int img_error=0x7f020026;
-        public static final int img_fax=0x7f020027;
-        public static final int img_forward=0x7f020028;
-        public static final int img_globe=0x7f020029;
-        public static final int img_hour=0x7f02002a;
-        public static final int img_intro=0x7f02002b;
-        public static final int img_mcs_crest=0x7f02002c;
-        public static final int img_no_photo=0x7f02002d;
-        public static final int img_open_browser=0x7f02002e;
-        public static final int img_phone=0x7f02002f;
-        public static final int img_phone2=0x7f020030;
-        public static final int img_refresh=0x7f020031;
-        public static final int img_right_arrow=0x7f020032;
-        public static final int img_send_email=0x7f020033;
-        public static final int img_stub=0x7f020034;
-        public static final int pin=0x7f020035;
-        public static final int progress_bar_circles_01=0x7f020036;
-        public static final int progress_bar_circles_02=0x7f020037;
-        public static final int progress_bar_circles_03=0x7f020038;
-        public static final int progress_bar_circles_04=0x7f020039;
-        public static final int progress_bar_circles_05=0x7f02003a;
-        public static final int progress_bar_circles_06=0x7f02003b;
-        public static final int progress_bar_circles_07=0x7f02003c;
-        public static final int progress_bar_circles_08=0x7f02003d;
-        public static final int splash=0x7f02003e;
-        public static final int webviewtheme_btn_default_disabled_focused_holo_dark=0x7f02003f;
-        public static final int webviewtheme_btn_default_disabled_holo_dark=0x7f020040;
-        public static final int webviewtheme_btn_default_focused_holo_dark=0x7f020041;
-        public static final int webviewtheme_btn_default_holo_dark=0x7f020042;
-        public static final int webviewtheme_btn_default_normal_holo_dark=0x7f020043;
-        public static final int webviewtheme_btn_default_pressed_holo_dark=0x7f020044;
+        public static final int ic_youtube=0x7f020023;
+        public static final int img_album=0x7f020024;
+        public static final int img_back=0x7f020025;
+        public static final int img_email=0x7f020026;
+        public static final int img_error=0x7f020027;
+        public static final int img_fax=0x7f020028;
+        public static final int img_forward=0x7f020029;
+        public static final int img_globe=0x7f02002a;
+        public static final int img_hour=0x7f02002b;
+        public static final int img_intro=0x7f02002c;
+        public static final int img_mcs_crest=0x7f02002d;
+        public static final int img_no_photo=0x7f02002e;
+        public static final int img_open_browser=0x7f02002f;
+        public static final int img_phone=0x7f020030;
+        public static final int img_phone2=0x7f020031;
+        public static final int img_refresh=0x7f020032;
+        public static final int img_right_arrow=0x7f020033;
+        public static final int img_send_email=0x7f020034;
+        public static final int img_stub=0x7f020035;
+        public static final int pin=0x7f020036;
+        public static final int progress_bar_circles_01=0x7f020037;
+        public static final int progress_bar_circles_02=0x7f020038;
+        public static final int progress_bar_circles_03=0x7f020039;
+        public static final int progress_bar_circles_04=0x7f02003a;
+        public static final int progress_bar_circles_05=0x7f02003b;
+        public static final int progress_bar_circles_06=0x7f02003c;
+        public static final int progress_bar_circles_07=0x7f02003d;
+        public static final int progress_bar_circles_08=0x7f02003e;
+        public static final int splash=0x7f02003f;
+        public static final int webviewtheme_btn_default_disabled_focused_holo_dark=0x7f020040;
+        public static final int webviewtheme_btn_default_disabled_holo_dark=0x7f020041;
+        public static final int webviewtheme_btn_default_focused_holo_dark=0x7f020042;
+        public static final int webviewtheme_btn_default_holo_dark=0x7f020043;
+        public static final int webviewtheme_btn_default_normal_holo_dark=0x7f020044;
+        public static final int webviewtheme_btn_default_pressed_holo_dark=0x7f020045;
     }
     public static final class id {
         public static final int LinearLayout1=0x7f050022;
@@ -259,11 +260,11 @@ containing a value of this type.
         public static final int imgPhone=0x7f050014;
         public static final int imgSchool=0x7f05002d;
         public static final int imgSplash=0x7f050007;
-        public static final int item_clear_disc_cache=0x7f050031;
-        public static final int item_clear_memory_cache=0x7f050030;
+        public static final int item_clear_disc_cache=0x7f050034;
+        public static final int item_clear_memory_cache=0x7f050033;
         public static final int loading1=0x7f050029;
         public static final int mapView=0x7f050021;
-        public static final int menu_legalnotices=0x7f050032;
+        public static final int menu_legalnotices=0x7f050035;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
         public static final int pager=0x7f050005;
@@ -283,7 +284,10 @@ containing a value of this type.
         public static final int tvFax=0x7f050018;
         public static final int tvLoading=0x7f050008;
         public static final int tvPhone=0x7f050015;
+        public static final int tvReach=0x7f050030;
         public static final int tvSnippet=0x7f05002f;
+        public static final int tvSnippet1=0x7f050031;
+        public static final int tvSnippet2=0x7f050032;
         public static final int tvTitle=0x7f05002e;
         public static final int webView=0x7f050023;
         public static final int web_view_btn_back=0x7f050025;
@@ -305,14 +309,15 @@ containing a value of this type.
         public static final int fragment_webview=0x7f030008;
         public static final int item_pager_image=0x7f030009;
         public static final int layout_main_popup=0x7f03000a;
-        public static final int layout_main_popup_no_image=0x7f03000b;
+        public static final int layout_multi_transport_method_popup=0x7f03000b;
+        public static final int layout_simple_transport_popup=0x7f03000c;
     }
     public static final class menu {
         public static final int main_menu=0x7f090000;
         public static final int menu_location=0x7f090001;
     }
     public static final class string {
-        public static final int album_content_desc=0x7f06002e;
+        public static final int album_content_desc=0x7f060031;
         public static final int app_name=0x7f060019;
         /**   Title for notification shown when GooglePlayServices needs to be
         enabled for a application to work. [CHAR LIMIT=70] 
@@ -337,13 +342,13 @@ containing a value of this type.
         [CHAR LIMIT=70] 
          */
         public static final int auth_client_using_bad_version_title=0x7f060013;
-        public static final int btn_back_desc=0x7f060030;
-        public static final int btn_fwd_desc=0x7f060031;
-        public static final int btn_open_browser_desc=0x7f060033;
-        public static final int btn_reload_desc=0x7f060032;
-        public static final int cancel_exit=0x7f060047;
-        public static final int choose_email_app=0x7f06003f;
-        public static final int choose_viewer=0x7f060041;
+        public static final int btn_back_desc=0x7f060033;
+        public static final int btn_fwd_desc=0x7f060034;
+        public static final int btn_open_browser_desc=0x7f060036;
+        public static final int btn_reload_desc=0x7f060035;
+        public static final int cancel_exit=0x7f06004a;
+        public static final int choose_email_app=0x7f060042;
+        public static final int choose_viewer=0x7f060044;
         public static final int cms_url=0x7f060021;
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
         will direct user to application settings of Google Play services where they
@@ -412,40 +417,42 @@ containing a value of this type.
         /**  Long form sign-in button text [CHAR LIMIT=30] 
          */
         public static final int common_signin_button_text_long=0x7f060012;
-        public static final int confirm_exit=0x7f060046;
+        public static final int confirm_exit=0x7f060049;
         /**  
     <string name="contact_email">mcsps@mcsps.edu.hk</string>
     <string name="contact_phone">+852 2336 0611</string>
     
          */
-        public static final int contact_email=0x7f060036;
-        public static final int contact_fax=0x7f060038;
-        public static final int contact_phone=0x7f060037;
-        public static final int content_address=0x7f060039;
-        public static final int content_email=0x7f06003a;
-        public static final int content_fax=0x7f06003b;
-        public static final int content_phone=0x7f06003c;
-        public static final int downloading=0x7f06004c;
-        public static final int email_app_not_installed=0x7f060040;
-        public static final int email_subject=0x7f060043;
-        public static final int email_text=0x7f060044;
-        public static final int exit_error=0x7f06004f;
-        public static final int homepage=0x7f060045;
-        public static final int http_request_error=0x7f060051;
-        public static final int image_content_desc=0x7f06002f;
-        public static final int info_title=0x7f060050;
+        public static final int contact_email=0x7f060039;
+        public static final int contact_fax=0x7f06003b;
+        public static final int contact_phone=0x7f06003a;
+        public static final int content_address=0x7f06003c;
+        public static final int content_email=0x7f06003d;
+        public static final int content_fax=0x7f06003e;
+        public static final int content_phone=0x7f06003f;
+        public static final int downloading=0x7f06004f;
+        public static final int email_app_not_installed=0x7f060043;
+        public static final int email_subject=0x7f060046;
+        public static final int email_text=0x7f060047;
+        public static final int exit_error=0x7f060052;
+        public static final int homepage=0x7f060048;
+        public static final int http_request_error=0x7f060054;
+        public static final int image_content_desc=0x7f060032;
+        public static final int info_title=0x7f060053;
         /**  Content descriptions 
          */
-        public static final int intro_content_desc=0x7f06002d;
-        public static final int loading=0x7f06004d;
-        public static final int map_bus1_snippet=0x7f060028;
-        public static final int map_bus1_title=0x7f060027;
-        public static final int map_bus2_snippet=0x7f06002a;
-        public static final int map_bus2_title=0x7f060029;
+        public static final int intro_content_desc=0x7f060030;
+        public static final int loading=0x7f060050;
+        public static final int map_bus1_snippet=0x7f060029;
+        public static final int map_bus1_title=0x7f060028;
+        public static final int map_bus2_snippet=0x7f06002b;
+        public static final int map_bus2_title=0x7f06002a;
         public static final int map_content_desc=0x7f060024;
-        public static final int map_mtr_kowloontong_snippet=0x7f06002c;
-        public static final int map_mtr_kowloontong_title=0x7f06002b;
-        public static final int map_mtr_snippet=0x7f060026;
+        public static final int map_mtr_kowloontong_title=0x7f06002c;
+        public static final int map_mtr_kt_snippet_first=0x7f06002d;
+        public static final int map_mtr_kt_snippet_second=0x7f06002e;
+        public static final int map_mtr_snippet_first=0x7f060026;
+        public static final int map_mtr_snippet_second=0x7f060027;
         public static final int map_mtr_title=0x7f060025;
         public static final int map_school_address=0x7f060023;
         /**   
@@ -453,18 +460,19 @@ containing a value of this type.
     
          */
         public static final int map_school_title=0x7f060022;
-        public static final int menu_item_clear_disc_cache=0x7f060054;
-        public static final int menu_item_clear_memory_cache=0x7f060053;
-        public static final int menu_legalnotices=0x7f060055;
-        public static final int no_accessories=0x7f06004a;
-        public static final int no_album_error=0x7f060052;
-        public static final int no_data=0x7f060049;
-        public static final int no_internet_error=0x7f06004e;
-        public static final int no_news=0x7f06004b;
-        public static final int pagerTitleLeft=0x7f060034;
-        public static final int pagerTitleRight=0x7f060035;
-        public static final int phone_school=0x7f06003e;
-        public static final int send_email=0x7f06003d;
+        public static final int menu_item_clear_disc_cache=0x7f060057;
+        public static final int menu_item_clear_memory_cache=0x7f060056;
+        public static final int menu_legalnotices=0x7f060058;
+        public static final int no_accessories=0x7f06004d;
+        public static final int no_album_error=0x7f060055;
+        public static final int no_data=0x7f06004c;
+        public static final int no_internet_error=0x7f060051;
+        public static final int no_news=0x7f06004e;
+        public static final int pagerTitleLeft=0x7f060037;
+        public static final int pagerTitleRight=0x7f060038;
+        public static final int phone_school=0x7f060041;
+        public static final int reach=0x7f06002f;
+        public static final int send_email=0x7f060040;
         public static final int splash_production=0x7f060020;
         public static final int tab_contact=0x7f06001f;
         public static final int tab_gallery=0x7f06001b;
@@ -472,8 +480,8 @@ containing a value of this type.
         public static final int tab_map=0x7f06001e;
         public static final int tab_video=0x7f06001a;
         public static final int tab_website=0x7f06001d;
-        public static final int title_confirm_exit=0x7f060048;
-        public static final int viewer_not_installed=0x7f060042;
+        public static final int title_confirm_exit=0x7f06004b;
+        public static final int viewer_not_installed=0x7f060045;
     }
     public static final class style {
         /** 

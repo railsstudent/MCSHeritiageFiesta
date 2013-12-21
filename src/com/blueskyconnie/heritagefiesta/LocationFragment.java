@@ -1,5 +1,8 @@
 package com.blueskyconnie.heritagefiesta;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import android.app.AlertDialog;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
@@ -36,11 +39,26 @@ public class LocationFragment extends Fragment {
 	private static final LatLng MTR_BUS1_LATLNG = new LatLng(22.327244,114.182686);
 	private static final LatLng MTR_BUS2_LATLNG = new LatLng(22.32716,114.180594);
 	
+	private static final LatLng[] KOWLOON_TONG_ROUTE = {
+		MTR_KOWLOON_TONG_LATLNG
+		, new LatLng(22.337295,114.176442)
+		, new LatLng(22.33793,114.176592)
+		, new LatLng(22.33783,114.178931)
+		, new LatLng(22.338088,114.179038)
+		, new LatLng(22.338029,114.179274)
+		, new LatLng(22.330209,114.178738)
+		, PRIMARY_SECTION_LATLNG
+	};
+	
 	private static final int RQS_GooglePlayServices = 1;
+
+	private static final String PRINCE_EDWARD_MTR = "0";
+	private static final String KOWLOON_TONG_MTR = "1";
 	
 	private MapView mapView;
 	private GoogleMap map;	
-	
+	private Map<String, String[]> hmSnippet = new HashMap<String, String[]>();		
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -48,6 +66,17 @@ public class LocationFragment extends Fragment {
 		    setRetainInstance(true);
 			MapsInitializer.initialize(this.getActivity());
 			setHasOptionsMenu(true);
+			
+			String[] mtrArray =  { 
+					getString(R.string.map_mtr_snippet_first),  
+					getString(R.string.map_mtr_snippet_second)	
+			};
+			hmSnippet.put(PRINCE_EDWARD_MTR, mtrArray);
+			
+			mtrArray =  new String[2];
+			mtrArray[0] = getString(R.string.map_mtr_kt_snippet_first);
+			mtrArray[1] = getString(R.string.map_mtr_kt_snippet_second);
+			hmSnippet.put(KOWLOON_TONG_MTR, mtrArray);
 		 } catch (GooglePlayServicesNotAvailableException e) {
 		     e.printStackTrace();
 		 }
@@ -83,7 +112,7 @@ public class LocationFragment extends Fragment {
 
 					map.addMarker(new MarkerOptions().position(MTR_LATLNG)
 							.title(getString(R.string.map_mtr_title))
-							.snippet(getString(R.string.map_mtr_snippet))
+							.snippet(PRINCE_EDWARD_MTR)
 							.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin)));
 
 					map.addMarker(new MarkerOptions().position(MTR_BUS1_LATLNG)
@@ -98,7 +127,7 @@ public class LocationFragment extends Fragment {
 
 					map.addMarker(new MarkerOptions().position(MTR_KOWLOON_TONG_LATLNG)
 							.title(getString(R.string.map_mtr_kowloontong_title))
-							.snippet(getString(R.string.map_mtr_kowloontong_snippet))
+							.snippet(KOWLOON_TONG_MTR)
 							.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin)));
 					
 					map.setMyLocationEnabled(true);
@@ -116,6 +145,13 @@ public class LocationFragment extends Fragment {
 					lineOptions.add(MTR_LATLNG, PRIMARY_SECTION_LATLNG);
 					lineOptions.color(Color.RED);
 					map.addPolyline(lineOptions);
+
+					PolylineOptions kowloonTongLineOptions = new PolylineOptions();
+					kowloonTongLineOptions.color(Color.RED);
+					for (LatLng value : KOWLOON_TONG_ROUTE) {
+						kowloonTongLineOptions.add(value);
+					}
+					map.addPolyline(kowloonTongLineOptions);
 				}
 				mapView.onResume();
 			}
@@ -183,8 +219,18 @@ public class LocationFragment extends Fragment {
 				tvTitle.setText(marker_title);
 				tvSnippet.setText(marker_snippet);
 				return view;
+			} else if (hmSnippet.containsKey(marker_snippet)) {
+				View view = getActivity().getLayoutInflater().inflate(R.layout.layout_multi_transport_method_popup, null);
+				TextView tvTitle = (TextView) view.findViewById(R.id.tvTitle);
+				TextView tvSnippet1 = (TextView) view.findViewById(R.id.tvSnippet1);
+				TextView tvSnippet2 = (TextView) view.findViewById(R.id.tvSnippet2);
+				tvTitle.setText(marker_title);
+				String[] strArray = hmSnippet.get(marker_snippet);
+ 				tvSnippet1.setText(strArray[0]);
+				tvSnippet2.setText(strArray[1]);
+				return view;
 			} else {
-				View view = getActivity().getLayoutInflater().inflate(R.layout.layout_main_popup_no_image, null);
+				View view = getActivity().getLayoutInflater().inflate(R.layout.layout_simple_transport_popup, null);
 				TextView tvTitle = (TextView) view.findViewById(R.id.tvTitle);
 				TextView tvSnippet = (TextView) view.findViewById(R.id.tvSnippet);
 				tvTitle.setText(marker_title);

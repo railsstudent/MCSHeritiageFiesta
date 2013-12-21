@@ -27,13 +27,13 @@ public class MainActivity extends BaseFragmentActivity implements
 	 * 
 	 */
 	private static final int[] TAB_NAMES = { R.string.tab_introduction, R.string.tab_gallery, 
-		 R.string.tab_website, R.string.tab_map, R.string.tab_contact };
+		 R.string.tab_video, R.string.tab_website, R.string.tab_map, R.string.tab_contact };
 
-	private static final String[] TAB_TAGS = { "intro_tag", "gallery_tag", "website_tag", 
+	private static final String[] TAB_TAGS = { "intro_tag", "gallery_tag", "video_tag", "website_tag", 
 			"map_tag", "contact_tag" };
 	
 	private static final int[] TAB_ICONS = { R.drawable.ic_brochure, R.drawable.ic_gallery  
-		, R.drawable.ic_website, R.drawable.ic_location, R.drawable.ic_contact };
+		, R.drawable.ic_youtube, R.drawable.ic_website, R.drawable.ic_location, R.drawable.ic_contact };
 
 	private ActionBar actionBar;
 	private ViewPager viewPager;
@@ -47,7 +47,6 @@ public class MainActivity extends BaseFragmentActivity implements
 	protected void onCreate(Bundle savedBundle) {
 		super.onCreate(savedBundle);
 		
-		//requestWindowFeature(Window.FEATURE_PROGRESS);
 		setContentView(R.layout.activity_main);
 		actionBar = getActionBar();
 		
@@ -57,6 +56,7 @@ public class MainActivity extends BaseFragmentActivity implements
 		// initialize fragmentpageradapter
 		lstFragment.add(new IntroductionFragment());
 		lstFragment.add(new GalleryFragment());
+		lstFragment.add(new VideoFragment());
 		lstFragment.add(new WebViewFragment());
 		lstFragment.add(new LocationFragment());
 		lstFragment.add(new ContactFragment());
@@ -70,13 +70,10 @@ public class MainActivity extends BaseFragmentActivity implements
 		viewPager.setOnPageChangeListener(new OnPageChangeListener() {
 
 			@Override
-			public void onPageScrollStateChanged(int state) {
-			}
+			public void onPageScrollStateChanged(int state) {}
 
 			@Override
-			public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-				
-			}
+			public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
 
 			@Override
 			public void onPageSelected(int position) {
@@ -124,8 +121,7 @@ public class MainActivity extends BaseFragmentActivity implements
 	}
 	
 	@Override
-	public void onTabReselected(Tab tab, FragmentTransaction ft) {
-	}
+	public void onTabReselected(Tab tab, FragmentTransaction ft) {}
 
 	@Override
 	public void onTabSelected(Tab tab, FragmentTransaction ft) {
@@ -136,8 +132,7 @@ public class MainActivity extends BaseFragmentActivity implements
 	}
 
 	@Override
-	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
-	} 
+	public void onTabUnselected(Tab tab, FragmentTransaction ft) {} 
 
 	@Override
 	public void onBackPressed() {

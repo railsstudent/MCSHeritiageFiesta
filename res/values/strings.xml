@@ -19,13 +19,17 @@
     <string name="map_school_address">九龍塘窩打老道130號</string>
     <string name="map_content_desc">瑪利諾修院學校小學部</string>
     <string name="map_mtr_title">太子地鐵站A出口</string>
-    <string name="map_mtr_snippet">到達方法: 1) 轉乘的士直達學校入口 2) 步行30分鐘直達學校</string>
-    <string name="map_bus1_title">1A,6D,42 巴士站</string>
+    <string name="map_mtr_snippet_first">1) 轉乘的士直達學校入口</string>
+    <string name="map_mtr_snippet_second">2) 步行30分鐘直達學校</string>
+    
+    <string name="map_bus1_title">1A, 6D, 42 巴士站</string>
     <string name="map_bus1_snippet">步行約7&#8211;10分鐘</string>
-    <string name="map_bus2_title">1,7B,12A,113 巴士站</string>
+    <string name="map_bus2_title">1, 7B, 12A, 113 巴士站</string>
     <string name="map_bus2_snippet">步行約3&#8211;5分鐘</string>
     <string name="map_mtr_kowloontong_title">九龍塘地鐵站</string>
-    <string name="map_mtr_kowloontong_snippet">到達方法： 轉乘九巴 10, 281A, 281B, 281X, 81C, 81S, 87D或3C, 然後在九龍塘會下車</string>
+    <string name="map_mtr_kt_snippet_first">1) 九巴 10, 281A, 281B, 281X, 81C, 81S, 87D或3C, 然後在九龍塘會下車</string>
+    <string name="map_mtr_kt_snippet_second">2) 乘坐4分鐘的士直達學校入口</string>
+    <string name="reach"><ul>到達方法</ul></string>
     
     <!-- Content descriptions -->
     <string name="intro_content_desc">古蹟同樂日</string>
