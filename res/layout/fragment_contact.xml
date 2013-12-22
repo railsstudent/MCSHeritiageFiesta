@@ -103,7 +103,8 @@
                 android:textAppearance="@style/TextLargeBlack" />
         </TableRow>
 
-        <TableRow
+        <!-- 
+                <TableRow
             android:id="@+id/tableRow5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -127,6 +128,7 @@
                 android:drawableTop="@drawable/img_phone2"
                 android:text="@string/phone_school" />
         </TableRow>
+        -->
     </TableLayout>
 
 </ScrollView>

@@ -3,11 +3,13 @@
 
     <item
         android:id="@+id/item_clear_memory_cache"
-        android:showAsAction="never"
+        android:showAsAction="ifRoom|withText" 
+        android:orderInCategory="200"
         android:title="@string/menu_item_clear_memory_cache"/>
     <item
         android:id="@+id/item_clear_disc_cache"
-        android:showAsAction="never"
+        android:showAsAction="ifRoom|withText"
+        android:orderInCategory="210"
         android:title="@string/menu_item_clear_disc_cache"/>
 
 </menu>

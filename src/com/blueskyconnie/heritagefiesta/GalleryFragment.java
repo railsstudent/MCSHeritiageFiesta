@@ -19,6 +19,8 @@ import com.blueskyconnie.heritagefiesta.adapter.AlbumGridAdapter;
 import com.blueskyconnie.heritagefiesta.data.Album;
 import com.blueskyconnie.heritagefiesta.helper.AlertDialogHelper;
 import com.blueskyconnie.heritagefiesta.helper.ConnectionDetector;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 public class GalleryFragment extends Fragment {
 	
@@ -69,6 +71,8 @@ public class GalleryFragment extends Fragment {
 			categories.add(album.getCategory());
 			lstCatId.add(album.getCategoryId());
 		}
+		// ads:loadAdOnCreate="true"
+		//	       ads:testDevices="TEST_EMULATOR, 3BE2084011B4A10A"
 	}
 	
 	@Override
@@ -81,6 +85,13 @@ public class GalleryFragment extends Fragment {
 		gridView.setAdapter(adapter);
 		gridView.setOnItemClickListener(listener);
 		
+		// init configuration of adview
+		AdView adView = (AdView) rootView.findViewById(R.id.adView);
+		AdRequest adRequest = new AdRequest.Builder()
+								.addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+								.addTestDevice("3BE2084011B4A10A")
+								.build();
+		adView.loadAd(adRequest);
 		return rootView;
 	}
 

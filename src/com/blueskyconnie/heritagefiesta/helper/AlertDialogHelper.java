@@ -52,6 +52,7 @@ public final class AlertDialogHelper {
 		
 		AlertDialog.Builder builder = new AlertDialog.Builder(context);
 		builder.setTitle(R.string.app_name);
+		builder.setIcon(R.drawable.ic_launcher);
 		builder.setMessage(R.string.title_confirm_exit);
 		builder.setPositiveButton(R.string.cancel_exit, listener);
 		builder.setNegativeButton(R.string.confirm_exit, listener);

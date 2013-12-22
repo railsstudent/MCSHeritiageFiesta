@@ -3,6 +3,7 @@ package com.blueskyconnie.heritagefiesta.listener;
 import android.app.Activity;
 import android.widget.Toast;
 
+import com.blueskyconnie.heritagefiesta.helper.ConnectionDetector;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayer.OnInitializedListener;
@@ -13,10 +14,12 @@ public class YoutubePlayerInitializedListener implements OnInitializedListener {
 	
 	private Activity activity;
 	private String videoId;
+	private ConnectionDetector detector;
 	
 	public YoutubePlayerInitializedListener(Activity activity, String videoId) {
 		this.activity = activity;
 		this.videoId = videoId;
+		detector = new ConnectionDetector(activity);
 	}
 	
 	public void onInitializationFailure(YouTubePlayer.Provider provider, 
@@ -31,7 +34,9 @@ public class YoutubePlayerInitializedListener implements OnInitializedListener {
 	public void onInitializationSuccess(YouTubePlayer.Provider provider, 
 			YouTubePlayer player, boolean wasRestored) {
 		if (!wasRestored) {
-			player.cueVideo(videoId);
+			if (detector.isConnectingToInternet()) {
+				player.cueVideo(videoId);
+			}
 		}
 	}
 }

@@ -194,16 +194,19 @@ public class LocationFragment extends Fragment {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		if (item.getItemId() == R.id.menu_legalnotices) {
-			 String LicenseInfo = GooglePlayServicesUtil.getOpenSourceSoftwareLicenseInfo(
-				        getActivity());
-		     AlertDialog.Builder LicenseDialog = new AlertDialog.Builder(getActivity());
-		     LicenseDialog.setTitle(getString(R.string.menu_legalnotices));
-		     LicenseDialog.setMessage(LicenseInfo);
-		     LicenseDialog.show();
-		     return true;
+		switch (item.getItemId()) {
+			case R.id.menu_legalnotices:
+				 String LicenseInfo = GooglePlayServicesUtil.getOpenSourceSoftwareLicenseInfo(getActivity());
+			     AlertDialog.Builder LicenseDialog = new AlertDialog.Builder(getActivity());
+			     LicenseDialog.setTitle(getString(R.string.menu_legalnotices));
+			     LicenseDialog.setMessage(LicenseInfo);
+			     LicenseDialog.show();
+			     return true;
+			case R.id.menu_backtoschool:
+				map.moveCamera(CameraUpdateFactory.newLatLng(PRIMARY_SECTION_LATLNG));
+				return true;
 		}
-		return super.onOptionsItemSelected(item);
+		return super.onOptionsItemSelected(item); 
 	}
 	
 	private final class MyInfoWindowAdapter implements InfoWindowAdapter {

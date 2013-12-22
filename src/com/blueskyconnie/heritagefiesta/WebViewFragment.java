@@ -41,6 +41,7 @@ public class WebViewFragment extends Fragment implements OnClickListener {
 	private ImageButton btnOpenBrowser;
 	private String strHomepage;
 	private FrameLayout frameLayout;
+	private ConnectionDetector detector;
 
 	// http://www.lucazanini.eu/2013/android/how-to-save-the-state-of-a-webview-inside-a-fragment-of-an-action-bar/?lang=en
 
@@ -78,31 +79,33 @@ public class WebViewFragment extends Fragment implements OnClickListener {
 			@SuppressLint("DefaultLocale")
 			@Override
 			public boolean shouldOverrideUrlLoading(WebView view, String url) {
-				String tmpUrl = url.toUpperCase();
-				if (tmpUrl.endsWith("PDF")) {
-					try {
-  						 Uri selectedUri = Uri.parse(url);
-						 String mimeType = MimeTypeMap.getFileExtensionFromUrl(selectedUri.toString());
-						 Intent intentUrl = new Intent(Intent.ACTION_VIEW);
-						 intentUrl.setDataAndType(selectedUri, mimeType);
-						 startActivity(Intent.createChooser(intentUrl, getString(R.string.choose_viewer)));
-					} catch (ActivityNotFoundException e) {
-					    Toast.makeText(WebViewFragment.this.getActivity(),
-					    		getString(R.string.viewer_not_installed), Toast.LENGTH_SHORT).show();
+				if (detector.isConnectingToInternet()) {
+					String tmpUrl = url.toUpperCase();
+					if (tmpUrl.endsWith("PDF")) {
+						try {
+	  						 Uri selectedUri = Uri.parse(url);
+							 String mimeType = MimeTypeMap.getFileExtensionFromUrl(selectedUri.toString());
+							 Intent intentUrl = new Intent(Intent.ACTION_VIEW);
+							 intentUrl.setDataAndType(selectedUri, mimeType);
+							 startActivity(Intent.createChooser(intentUrl, getString(R.string.choose_viewer)));
+						} catch (ActivityNotFoundException e) {
+						    Toast.makeText(WebViewFragment.this.getActivity(),
+						    		getString(R.string.viewer_not_installed), Toast.LENGTH_SHORT).show();
+						}
+						return true;
+					} else if (!tmpUrl.endsWith("HTM")) {
+						view.loadUrl(url);
+						return true;
+					} else if (!tmpUrl.endsWith("PDF") && !tmpUrl.endsWith("HTM")) {
+						return super.shouldOverrideUrlLoading(view, url);
 					}
-					return true;
-				} else if (!tmpUrl.endsWith("HTM")) {
-					view.loadUrl(url);
-					return true;
-				} else if (!tmpUrl.endsWith("PDF") && !tmpUrl.endsWith("HTM")) {
-					return super.shouldOverrideUrlLoading(view, url);
 				}
 				return true;
 			}
 
 			@Override
 			public void onPageFinished(WebView view, String url) {
-				view.setVisibility(View.VISIBLE);
+//				view.setVisibility(View.VISIBLE);
 				final Animation fade = new AlphaAnimation(0.0f, 1.0f);
 		        fade.setDuration(200);
 		        view.startAnimation(fade);
@@ -118,7 +121,7 @@ public class WebViewFragment extends Fragment implements OnClickListener {
 				btnRefresh.setVisibility(View.INVISIBLE);
 				progressBar.setVisibility(View.VISIBLE);
 				webViewProgressBar.setVisibility(View.VISIBLE);
-				webView.setVisibility(View.GONE);
+				view.setVisibility(View.GONE);
 				updateActionView();
 			}
 		});
@@ -126,7 +129,7 @@ public class WebViewFragment extends Fragment implements OnClickListener {
 		webView.setWebChromeClient(new WebChromeClient() {
 			@Override
 			public void onProgressChanged(WebView view, int newProgress) {
-				if (view != null /*&& fragActivity != null*/) {
+				if (view != null) {
 					if (newProgress < 100 && webViewProgressBar.getVisibility() == View.GONE) {
 						webViewProgressBar.setVisibility(View.VISIBLE);
 					}
@@ -141,18 +144,7 @@ public class WebViewFragment extends Fragment implements OnClickListener {
 			}
 		});
 		frameLayout.addView(webView);
-	
-		ConnectionDetector detector = new ConnectionDetector(getActivity()); 
-		if (detector.isConnectingToInternet()) {
-			if (webViewBundle == null) {
-				webView.loadUrl(strHomepage);	
-			} else {
-				webView.restoreState(webViewBundle);
-			}
-		} else {
-			AlertDialogHelper.showNoInternetDialog(getActivity());
-		}
-		
+
 		progressBar = (ProgressBar) rootView.findViewById(R.id.loading1);
 		btnBack = (ImageButton) rootView.findViewById(R.id.web_view_btn_back);
 		btnForward = (ImageButton) rootView.findViewById(R.id.web_view_btn_forward);
@@ -163,6 +155,21 @@ public class WebViewFragment extends Fragment implements OnClickListener {
 		btnForward.setOnClickListener(this);
 		btnRefresh.setOnClickListener(this);
 		btnOpenBrowser.setOnClickListener(this);
+
+		detector = new ConnectionDetector(getActivity()); 
+		if (detector.isConnectingToInternet()) {
+			if (webViewBundle == null) {
+				webView.loadUrl(strHomepage);	
+			} else {
+				webView.restoreState(webViewBundle);
+			}
+			webViewProgressBar.setVisibility(View.VISIBLE);
+			progressBar.setVisibility(View.VISIBLE);
+		} else {
+			webViewProgressBar.setVisibility(View.GONE);
+			progressBar.setVisibility(View.GONE);
+			AlertDialogHelper.showNoInternetDialog(getActivity());
+		}
 		
 		updateActionView();
 		return rootView;

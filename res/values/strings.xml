@@ -43,13 +43,13 @@
     <string name="pagerTitleLeft">第</string>
     <string name="pagerTitleRight">張</string>
 
-    <!--  
     <string name="contact_email">con_leung10@yahoo.com</string>
-    <string name="contact_phone">+852 9160 0987</string>
-    -->
-    
+    <string name="contact_phone">+852 2742 5268</string>
+
+    <!-- 
     <string name="contact_email">mcsps@mcsps.edu.hk</string>
     <string name="contact_phone">+852 2336 0611</string>
+    -->
     <string name="contact_fax">+852 2336 3154</string>
     <string name="content_address">地址</string>
     <string name="content_email">電郵</string>
@@ -81,4 +81,5 @@
     <string name="menu_item_clear_memory_cache">清除內存圖像</string>
     <string name="menu_item_clear_disc_cache">清除外置卡圖像</string>
     <string name="menu_legalnotices">法律聲明</string>
+    <string name="menu_backtoschool">返回學校</string>
 </resources>

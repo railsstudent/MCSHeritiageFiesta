@@ -1,5 +1,7 @@
 package com.blueskyconnie.heritagefiesta;
 
+import android.app.ActionBar;
+import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -10,12 +12,20 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 public abstract class BaseFragmentActivity extends FragmentActivity {
 
 	protected ImageLoader imageLoader = ImageLoader.getInstance();
+	protected ActionBar actionBar;
 	
+	@Override
+	protected void onCreate(Bundle bundle) {
+		super.onCreate(bundle);
+		actionBar = getActionBar();
+		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+	}
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main_menu, menu);
-		return true;
+		return super.onCreateOptionsMenu(menu);
 	}
 	
 	@Override
@@ -31,7 +41,7 @@ public abstract class BaseFragmentActivity extends FragmentActivity {
 				Log.i("BaseActivity", "Clear disc cache of image loader.");
 				return true;
 			default:
-				return false;
+				return super.onOptionsItemSelected(item);
 		}
 	}
 }

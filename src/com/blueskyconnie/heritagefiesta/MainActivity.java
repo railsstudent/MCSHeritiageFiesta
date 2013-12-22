@@ -3,7 +3,6 @@ package com.blueskyconnie.heritagefiesta;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.ActionBar.TabListener;
 import android.app.FragmentTransaction;
@@ -35,7 +34,7 @@ public class MainActivity extends BaseFragmentActivity implements
 	private static final int[] TAB_ICONS = { R.drawable.ic_brochure, R.drawable.ic_gallery  
 		, R.drawable.ic_youtube, R.drawable.ic_website, R.drawable.ic_location, R.drawable.ic_contact };
 
-	private ActionBar actionBar;
+	//private ActionBar actionBar;
 	private ViewPager viewPager;
 	private TabspagerAdapter pageAdapter;
 	private List<Fragment> lstFragment = new ArrayList<Fragment>();
@@ -48,7 +47,7 @@ public class MainActivity extends BaseFragmentActivity implements
 		super.onCreate(savedBundle);
 		
 		setContentView(R.layout.activity_main);
-		actionBar = getActionBar();
+		//actionBar = getActionBar();
 		
 		// initialize viewpager
 		viewPager = (ViewPager) findViewById(R.id.pager);
@@ -62,7 +61,7 @@ public class MainActivity extends BaseFragmentActivity implements
 		lstFragment.add(new ContactFragment());
 		pageAdapter = new TabspagerAdapter(getSupportFragmentManager(), lstFragment);
 		viewPager.setAdapter(pageAdapter);
-		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+//		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 		
 		/**
 		 * on swiping the viewpager make respective tab selected
