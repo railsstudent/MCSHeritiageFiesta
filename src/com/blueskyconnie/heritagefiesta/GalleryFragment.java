@@ -87,8 +87,9 @@ public class GalleryFragment extends Fragment {
 		adView = (AdView) rootView.findViewById(R.id.adView);
 		AdRequest adRequest = new AdRequest.Builder()
 								.addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-								.addTestDevice("3BE2084011B4A10A")
 								.build();
+//								.addTestDevice("3BE2084011B4A10A")
+								
 		adView.loadAd(adRequest);
 		return rootView;
 	}
