@@ -105,7 +105,6 @@ public class WebViewFragment extends Fragment implements OnClickListener {
 
 			@Override
 			public void onPageFinished(WebView view, String url) {
-//				view.setVisibility(View.VISIBLE);
 				final Animation fade = new AlphaAnimation(0.0f, 1.0f);
 		        fade.setDuration(200);
 		        view.startAnimation(fade);

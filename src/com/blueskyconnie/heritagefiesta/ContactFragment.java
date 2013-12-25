@@ -20,9 +20,6 @@ import com.blueskyconnie.heritagefiesta.helper.ConnectionDetector;
 
 public class ContactFragment extends Fragment {
 
-//	private Button btnSendMail;
-//	private Button btnPhoneSchool;
-	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -34,15 +31,6 @@ public class ContactFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		return inflater.inflate(R.layout.fragment_contact, container, false);
-	
-		/*
-		btnSendMail = (Button) rootView.findViewById(R.id.btnSendMail);
-		btnPhoneSchool = (Button) rootView.findViewById(R.id.btnPhone);
-		OnClickListener listener = new MyOnClickListener();
-		btnSendMail.setOnClickListener(listener);
-		btnPhoneSchool.setOnClickListener(listener);
-		return rootView;
-		*/
 	}
 	
 	@Override
@@ -66,65 +54,71 @@ public class ContactFragment extends Fragment {
 					AlertDialogHelper.showNoInternetDialog(getActivity());
 					return false;
 				}
-				Intent itEmail = new Intent();
-				itEmail.setAction(Intent.ACTION_VIEW);
-				itEmail.setData(Uri.parse("mailto:" + getString(R.string.contact_email)));
-				itEmail.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.email_subject));
-				itEmail.putExtra(Intent.EXTRA_TEXT, getString(R.string.email_text));
-				try {
-					startActivity(Intent.createChooser(itEmail, getString(R.string.choose_email_app)));
-				} catch (ActivityNotFoundException ex) {
-					Toast.makeText(ContactFragment.this.getActivity(), 
-							getString(R.string.email_app_not_installed), Toast.LENGTH_SHORT).show();
-				}
+//				Intent itEmail = new Intent();
+//				itEmail.setAction(Intent.ACTION_VIEW);
+//				itEmail.setData(Uri.parse("mailto:" + getString(R.string.contact_email)));
+//				itEmail.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.email_subject));
+//				itEmail.putExtra(Intent.EXTRA_TEXT, getString(R.string.email_text));
+//				try {
+//					startActivity(Intent.createChooser(itEmail, getString(R.string.choose_email_app)));
+//				} catch (ActivityNotFoundException ex) {
+//					Toast.makeText(ContactFragment.this.getActivity(), 
+//							getString(R.string.email_app_not_installed), Toast.LENGTH_SHORT).show();
+//				}
+				createEmailIntent();
 				return true;
 			case R.id.menu_phone:
-				Intent itPhone = new Intent();
-				itPhone.setAction(Intent.ACTION_CALL);
-				String phone = getString(R.string.contact_phone).replace(" ", "");
-				Log.i("MyOnClickListener", "Call telephone number: " + phone);
-				itPhone.setData(Uri.parse("tel:" + phone));
-				startActivity(itPhone);
+//				Intent itPhone = new Intent();
+//				itPhone.setAction(Intent.ACTION_CALL);
+//				String phone = getString(R.string.contact_phone).replace(" ", "");
+//				Log.i("MyOnClickListener", "Call telephone number: " + phone);
+//				itPhone.setData(Uri.parse("tel:" + phone));
+//				startActivity(itPhone);
+				createPhoneIntent();
+				return true;
+			case R.id.menu_share:
+				createShareIntent();
 				return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
 
-/*
-	private final class MyOnClickListener implements
-		OnClickListener {
-		@Override
-		public void onClick(View view) {
-			
-			ConnectionDetector detector = new ConnectionDetector(getActivity());
-			if (!detector.isConnectingToInternet()) {
-				AlertDialogHelper.showNoInternetDialog(getActivity());
-			} else {
-				switch (view.getId()) {
-					case R.id.btnSendMail:
-						Intent itEmail = new Intent();
-						itEmail.setAction(Intent.ACTION_VIEW);
-						itEmail.setData(Uri.parse("mailto:" + getString(R.string.contact_email)));
-						itEmail.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.email_subject));
-						itEmail.putExtra(Intent.EXTRA_TEXT, getString(R.string.email_text));
-						try {
-							startActivity(Intent.createChooser(itEmail, getString(R.string.choose_email_app)));
-						} catch (ActivityNotFoundException ex) {
-							Toast.makeText(ContactFragment.this.getActivity(), 
-									getString(R.string.email_app_not_installed), Toast.LENGTH_SHORT).show();
-						}
-						break;
-					case R.id.btnPhone:
-						Intent itPhone = new Intent();
-						itPhone.setAction(Intent.ACTION_CALL);
-						String phone = getString(R.string.contact_phone).replace(" ", "");
-						Log.i("MyOnClickListener", "Call telephone number: " + phone);
-						itPhone.setData(Uri.parse("tel:" + phone));
-						startActivity(itPhone);
-						break;
-				}
-			}
+	private void createEmailIntent() {
+		
+		Intent itEmail = new Intent();
+		itEmail.setAction(Intent.ACTION_VIEW);
+		itEmail.setData(Uri.parse("mailto:" + getString(R.string.contact_email)));
+		itEmail.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.email_subject));
+		itEmail.putExtra(Intent.EXTRA_TEXT, getString(R.string.email_text));
+		try {
+			startActivity(Intent.createChooser(itEmail, getString(R.string.choose_app)));
+		} catch (ActivityNotFoundException ex) {
+			Toast.makeText(getActivity(), 
+					getString(R.string.app_not_found), Toast.LENGTH_SHORT)
+					.show();
 		}
 	}
-	*/
+	
+	private void createPhoneIntent() {
+		Intent itPhone = new Intent();
+		itPhone.setAction(Intent.ACTION_CALL);
+		String phone = getString(R.string.contact_phone).replace(" ", "");
+		Log.i("MyOnClickListener", "Call telephone number: " + phone);
+		itPhone.setData(Uri.parse("tel:" + phone));
+		startActivity(itPhone);
+	}
+	
+	private void createShareIntent() {
+		Intent itemSendShare = new Intent();
+		itemSendShare.setAction(Intent.ACTION_SEND);
+		itemSendShare.setType("text/plain");
+		itemSendShare.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_text));
+		try {
+			startActivity(Intent.createChooser(itemSendShare, getString(R.string.choose_app)));
+		} catch (ActivityNotFoundException ex) {
+			Toast.makeText(getActivity(), 
+					getString(R.string.app_not_found), Toast.LENGTH_SHORT)
+					.show();
+		}
+	}
 }

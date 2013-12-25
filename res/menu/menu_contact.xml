@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+<menu xmlns:android="http://schemas.android.com/apk/res/android"      
+    xmlns:myapp="http://schemas.android.com/apk/res-auto">
     
   <item
         android:id="@+id/menu_email"
@@ -13,4 +14,10 @@
         android:icon="@drawable/ic_phone2"
         android:showAsAction="ifRoom|withText"
         android:title="@string/phone_school"/>
+    <item
+        android:id="@+id/menu_share"
+        android:orderInCategory="130"
+        android:icon="@drawable/ic_share"
+        android:showAsAction="ifRoom|withText"
+        android:title="@string/share_website"/>
 </menu>

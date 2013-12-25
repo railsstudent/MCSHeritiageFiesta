@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/scrollview"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" >
+    android:layout_height="match_parent" 
+    android:background="@color/background_brown">
 
     <TableLayout
         android:id="@+id/tableLayout"
@@ -102,33 +104,5 @@
                 android:text="@string/contact_fax"
                 android:textAppearance="@style/TextLargeBlack" />
         </TableRow>
-
-        <!-- 
-                <TableRow
-            android:id="@+id/tableRow5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="30dp" >
-
-            <Button
-                android:id="@+id/btnSendMail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:drawablePadding="2dp"
-                android:drawableTop="@drawable/img_send_email"
-                android:text="@string/send_email" />
-
-            <Button
-                android:id="@+id/btnPhone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:drawablePadding="2dp"
-                android:drawableTop="@drawable/img_phone2"
-                android:text="@string/phone_school" />
-        </TableRow>
-        -->
     </TableLayout>
-
 </ScrollView>

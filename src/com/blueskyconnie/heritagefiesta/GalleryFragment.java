@@ -32,11 +32,11 @@ public class GalleryFragment extends Fragment {
 	private List<Integer> lstCatId = new ArrayList<Integer>();
 	private List<Album> lstAlbum = new ArrayList<Album>();
 	private SparseArray<List<String>> categoryUrlMap = new SparseArray<List<String>>();
+	private AdView adView;
 	
 	private AdapterView.OnItemClickListener listener = new AdapterView.OnItemClickListener() {
 		@Override
-		public void onItemClick(AdapterView<?> arg0, View view, int position,
-				long arg3) {
+		public void onItemClick(AdapterView<?> arg0, View view, int position, long arg3) {
 			
 			ConnectionDetector detector = new ConnectionDetector(GalleryFragment.this.getActivity());
 			if (!detector.isConnectingToInternet()) {
@@ -71,8 +71,6 @@ public class GalleryFragment extends Fragment {
 			categories.add(album.getCategory());
 			lstCatId.add(album.getCategoryId());
 		}
-		// ads:loadAdOnCreate="true"
-		//	       ads:testDevices="TEST_EMULATOR, 3BE2084011B4A10A"
 	}
 	
 	@Override
@@ -86,7 +84,7 @@ public class GalleryFragment extends Fragment {
 		gridView.setOnItemClickListener(listener);
 		
 		// init configuration of adview
-		AdView adView = (AdView) rootView.findViewById(R.id.adView);
+		adView = (AdView) rootView.findViewById(R.id.adView);
 		AdRequest adRequest = new AdRequest.Builder()
 								.addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
 								.addTestDevice("3BE2084011B4A10A")
@@ -107,5 +105,18 @@ public class GalleryFragment extends Fragment {
 	public void onResume() {
 		super.onResume();
 		getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+		adView.resume();
+	}
+
+	@Override
+	public void onDestroy() {
+		adView.destroy();
+		super.onDestroy();
+	}
+
+	@Override
+	public void onPause() {
+		super.onPause();
+		adView.pause();
 	}
 }
