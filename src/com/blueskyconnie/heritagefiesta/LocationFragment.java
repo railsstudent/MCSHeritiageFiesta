@@ -39,6 +39,18 @@ public class LocationFragment extends Fragment {
 	private static final LatLng MTR_BUS1_LATLNG = new LatLng(22.327244,114.182686);
 	private static final LatLng MTR_BUS2_LATLNG = new LatLng(22.32716,114.180594);
 	
+//	22.325306,114.169318
+	// 22.325802,114.178416
+	// new LatLng(22.32749,114.178535)
+	
+	private static final LatLng[] PRINCE_EDWARD_ROUTE = {
+		  MTR_LATLNG
+		, new LatLng(22.325306,114.169318)
+		, new LatLng(22.324155,114.169554)
+		, new LatLng(22.325783,114.178394)
+		, new LatLng(22.32749,114.178535)
+	};
+	
 	private static final LatLng[] KOWLOON_TONG_ROUTE = {
 		MTR_KOWLOON_TONG_LATLNG
 		, new LatLng(22.337295,114.176442)
@@ -47,9 +59,10 @@ public class LocationFragment extends Fragment {
 		, new LatLng(22.338088,114.179038)
 		, new LatLng(22.338029,114.179274)
 		, new LatLng(22.330209,114.178738)
-		, PRIMARY_SECTION_LATLNG
+		, new LatLng(22.329675,114.178714)
+		, new LatLng(22.32749,114.178535)
 	};
-	
+
 	private static final int RQS_GooglePlayServices = 1;
 
 	private static final String PRINCE_EDWARD_MTR = "0";
@@ -141,10 +154,12 @@ public class LocationFragment extends Fragment {
 					map.setInfoWindowAdapter(new MyInfoWindowAdapter());
 					
 					// add line
-					PolylineOptions lineOptions = new PolylineOptions();
-					lineOptions.add(MTR_LATLNG, PRIMARY_SECTION_LATLNG);
-					lineOptions.color(Color.RED);
-					map.addPolyline(lineOptions);
+					PolylineOptions princeEdwardLineOptions = new PolylineOptions();
+					princeEdwardLineOptions.color(Color.GREEN);
+					for (LatLng value: PRINCE_EDWARD_ROUTE) {
+						princeEdwardLineOptions.add(value);
+					}
+					map.addPolyline(princeEdwardLineOptions);
 
 					PolylineOptions kowloonTongLineOptions = new PolylineOptions();
 					kowloonTongLineOptions.color(Color.RED);

@@ -8,8 +8,6 @@ import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
@@ -111,12 +109,8 @@ public class ImagepagerAdapter extends PagerAdapter {
 			}
 
 			@Override
-			public void onLoadingComplete(String imageUri, View view,
-					Bitmap loadedImage) {
+			public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
 				spinner.setVisibility(Spinner.GONE);
-				Animation anim = AnimationUtils.loadAnimation(context, R.anim.fade_in);
-				imgView.setAnimation(anim);
-		        anim.start();
 			}
 
 			@Override

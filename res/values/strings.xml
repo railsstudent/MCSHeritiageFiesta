@@ -6,7 +6,7 @@
     <string name="tab_video">影片</string>
     <string name="tab_gallery">照片集</string>
     <string name="tab_introduction">簡介</string>
-    <string name="tab_website">學校網站</string>
+    <string name="tab_website">學校網址</string>
     <string name="tab_map">位置</string>
     <string name="tab_contact">聯絡</string>
     
@@ -55,7 +55,7 @@
     <string name="content_phone">電話</string>
     <string name="send_email">發送郵件</string>
     <string name="phone_school">即時致電</string>
-    <string name="share_website">分享</string>
+    <string name="share_website">分享學校網址</string>
     <string name="choose_app">選擇程式</string>
     <string name="app_not_found">沒有合適的應用程式。</string>
     <string name="choose_viewer">選擇瀏覽程式</string>
@@ -77,5 +77,6 @@
     <string name="menu_item_clear_disc_cache">清除外置卡圖像</string>
     <string name="menu_legalnotices">法律聲明</string>
     <string name="menu_backtoschool">返回學校</string>
+    <string name="share_subject">分享學校網址</string>
     <string name="share_text">請參觀學校網頁 &#8211; http://goo.gl/hzprmz.</string>
 </resources>
