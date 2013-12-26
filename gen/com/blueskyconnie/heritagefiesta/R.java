@@ -8,6 +8,9 @@
 package com.blueskyconnie.heritagefiesta;
 
 public final class R {
+    public static final class array {
+        public static final int category=0x7f090000;
+    }
     public static final class attr {
         /** 
     The size of the ad. It must be one of BANNER, FULL_BANNER, LEADERBOARD,
@@ -341,9 +344,9 @@ containing a value of this type.
         public static final int layout_simple_transport_popup=0x7f03000c;
     }
     public static final class menu {
-        public static final int main_menu=0x7f0a0000;
-        public static final int menu_contact=0x7f0a0001;
-        public static final int menu_location=0x7f0a0002;
+        public static final int main_menu=0x7f0b0000;
+        public static final int menu_contact=0x7f0b0001;
+        public static final int menu_location=0x7f0b0002;
     }
     public static final class string {
         public static final int album_content_desc=0x7f060032;
@@ -456,6 +459,10 @@ containing a value of this type.
     <string name="contact_email">con_leung10@yahoo.com</string>
     <string name="contact_phone">+852 2742 5268</string>
  
+ 
+    <string name="contact_email">con_leung10@yahoo.com</string>
+    <string name="contact_phone">+852 2742 5268</string>
+ 
          */
         public static final int contact_email=0x7f06003a;
         public static final int contact_fax=0x7f06003c;
@@ -472,6 +479,7 @@ containing a value of this type.
         public static final int image_content_desc=0x7f060033;
         public static final int info_title=0x7f060051;
         /**  Content descriptions 
+ Content descriptions 
          */
         public static final int intro_content_desc=0x7f060031;
         public static final int loading=0x7f06004e;
@@ -488,6 +496,9 @@ containing a value of this type.
         public static final int map_mtr_title=0x7f060026;
         public static final int map_school_address=0x7f060024;
         /**   
+    <string name="cms_url">http://192.168.1.138/mcs/</string>
+    
+  
     <string name="cms_url">http://192.168.1.138/mcs/</string>
     
          */
@@ -538,21 +549,21 @@ containing a value of this type.
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f090000;
+        public static final int AppBaseTheme=0x7f0a0000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f090001;
-        public static final int ButtonWebviewTheme=0x7f090009;
-        public static final int ImageButtonWebviewTheme=0x7f09000a;
-        public static final int TextLargeBlack=0x7f090007;
-        public static final int TextLargeBlue=0x7f090006;
-        public static final int TextLargeGreen=0x7f090002;
-        public static final int TextMediumSilver=0x7f090003;
-        public static final int TextSmallGreen=0x7f090004;
-        public static final int TextSmallSilver=0x7f090005;
-        public static final int TextSplashShadowBlue=0x7f090008;
-        public static final int WebviewTheme=0x7f09000b;
+        public static final int AppTheme=0x7f0a0001;
+        public static final int ButtonWebviewTheme=0x7f0a0009;
+        public static final int ImageButtonWebviewTheme=0x7f0a000a;
+        public static final int TextLargeBlack=0x7f0a0007;
+        public static final int TextLargeBlue=0x7f0a0006;
+        public static final int TextLargeGreen=0x7f0a0002;
+        public static final int TextMediumSilver=0x7f0a0003;
+        public static final int TextSmallGreen=0x7f0a0004;
+        public static final int TextSmallSilver=0x7f0a0005;
+        public static final int TextSplashShadowBlue=0x7f0a0008;
+        public static final int WebviewTheme=0x7f0a000b;
     }
     public static final class styleable {
         /** Attributes that can be used with a AdsAttrs.

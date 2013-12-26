@@ -6,7 +6,7 @@
     <string name="tab_video">影片</string>
     <string name="tab_gallery">照片集</string>
     <string name="tab_introduction">簡介</string>
-    <string name="tab_website">學校網址</string>
+    <string name="tab_website">古蹟網址</string>
     <string name="tab_map">位置</string>
     <string name="tab_contact">聯絡</string>
     
@@ -55,14 +55,14 @@
     <string name="content_phone">電話</string>
     <string name="send_email">發送郵件</string>
     <string name="phone_school">即時致電</string>
-    <string name="share_website">分享學校網址</string>
+    <string name="share_website">分享古蹟網頁</string>
     <string name="choose_app">選擇程式</string>
     <string name="app_not_found">沒有合適的應用程式。</string>
     <string name="choose_viewer">選擇瀏覽程式</string>
     <string name="viewer_not_installed">沒有發現合適的瀏覽程式，請去Google Play Store下載。</string>
     <string name="email_subject">查詢</string>
     <string name="email_text">查詢</string>
-    <string name="homepage">http://www.mcsps.edu.hk/index.html</string>
+    <string name="homepage">http://heritage.mcs.hk/index.html</string>
     
     <string name="confirm_exit">確認</string>
     <string name="cancel_exit">取消</string>
@@ -77,6 +77,17 @@
     <string name="menu_item_clear_disc_cache">清除外置卡圖像</string>
     <string name="menu_legalnotices">法律聲明</string>
     <string name="menu_backtoschool">返回學校</string>
-    <string name="share_subject">分享學校網址</string>
-    <string name="share_text">請參觀學校網頁 &#8211; http://goo.gl/hzprmz.</string>
+    <string name="share_subject">分享瑪利諾古蹟文物徑網頁</string>
+    <string name="share_text">請參觀瑪利諾古蹟文物徑網頁 &#8211; http://goo.gl/jbDDMF.</string>
+
+    <string-array name="category">
+    	<item>1:小冊子</item>    
+    	<item>2:窩打老道</item>    
+    	<item>3:美術室</item>    
+    	<item>4:課室</item>    
+    	<item>5:中庭</item>    
+    	<item>6:舊翼</item>    
+    	<item>7:修院</item> 
+    	<item>8:體育設施</item>   
+   	</string-array>
 </resources>

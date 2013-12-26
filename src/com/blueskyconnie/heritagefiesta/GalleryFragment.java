@@ -28,6 +28,7 @@ public class GalleryFragment extends Fragment {
 	
 	private GridView gridView ;
 	private boolean hasClickedItem = false;
+	private SparseArray<String> sparseCategories = null;
 	private List<String> categories = new ArrayList<String>();
 	private List<Integer> lstCatId = new ArrayList<Integer>();
 	private List<Album> lstAlbum = new ArrayList<Album>();
@@ -44,8 +45,8 @@ public class GalleryFragment extends Fragment {
 			} else {
 				if (!hasClickedItem) {
 					if (categories.size() > position) {
-						int category = lstCatId.get(position).intValue();
-						List<String> imageUrls = categoryUrlMap.get(category);
+						int categoryId = lstCatId.get(position).intValue();
+						List<String> imageUrls = categoryUrlMap.get(categoryId);
 						ArrayList<String> alImageUrls = new ArrayList<String> (imageUrls);
 						
 						Intent intent = new Intent(GalleryFragment.this.getActivity(), ImageViewPager.class);
@@ -64,34 +65,51 @@ public class GalleryFragment extends Fragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setRetainInstance(true);
-		MainActivity activity = (MainActivity) getActivity();
-		lstAlbum  = activity.getAlbums();
-		for (Album album : lstAlbum) {
-			categoryUrlMap.put(album.getCategoryId(), album.getImageUrl());
-			categories.add(album.getCategory());
-			lstCatId.add(album.getCategoryId());
-		}
+//		MainActivity activity = (MainActivity) getActivity();
+//		lstAlbum  = activity.getAlbums();
+//		for (Album album : lstAlbum) {
+//			categoryUrlMap.put(album.getCategoryId(), album.getImageUrl());
+//			categories.add(album.getCategory());
+//			lstCatId.add(album.getCategoryId());
+//		}
 	}
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
+		sparseCategories = parseStringArray(R.array.category);
+		for (int i = 0; i < sparseCategories.size(); i++) {
+			int key = sparseCategories.keyAt(i);
+			String category = sparseCategories.get(key, "");
+			categories.add(category);
+		}
 		View rootView = inflater.inflate(R.layout.fragment_gallery, container, false);
 		AlbumGridAdapter adapter = new AlbumGridAdapter(getActivity(), R.layout.album_row_grid, categories);
 		gridView = (GridView) rootView.findViewById(R.id.gridView);
 		gridView.setAdapter(adapter);
 		gridView.setOnItemClickListener(listener);
-		
+
 		// init configuration of adview
 		adView = (AdView) rootView.findViewById(R.id.adView);
 		AdRequest adRequest = new AdRequest.Builder()
 								.addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
 								.build();
 //								.addTestDevice("3BE2084011B4A10A")
-								
 		adView.loadAd(adRequest);
 		return rootView;
+	}
+	
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+		MainActivity activity = (MainActivity) getActivity();
+		lstAlbum  = activity.getAlbums();
+		for (Album album : lstAlbum) {
+			categoryUrlMap.put(album.getCategoryId(), album.getImageUrl());
+			//categories.add(album.getCategory());
+			lstCatId.add(album.getCategoryId());
+		}
 	}
 
 	@Override
@@ -119,5 +137,15 @@ public class GalleryFragment extends Fragment {
 	public void onPause() {
 		super.onPause();
 		adView.pause();
+	}
+	
+	private SparseArray<String> parseStringArray(int stringArrayResourceId) {
+	    String[] stringArray = getResources().getStringArray(stringArrayResourceId);
+	    SparseArray<String> outputArray = new SparseArray<String>(stringArray.length);
+	    for (String entry : stringArray) {
+	        String[] splitResult = entry.split(":", 2);
+	        outputArray.put(Integer.valueOf(splitResult[0]), splitResult[1]);
+	    }
+	    return outputArray;
 	}
 }

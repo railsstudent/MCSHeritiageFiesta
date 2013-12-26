@@ -1,6 +1,5 @@
 package com.blueskyconnie.heritagefiesta;
 
-import java.io.UnsupportedEncodingException;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
@@ -98,23 +97,24 @@ public class SplashActivity extends Activity {
 		private Album convertAlbum(JSONObject jsObj) throws JSONException {
 
 			Album album = new Album();
-			try {
+			//try {
 				int categoryId = jsObj.getInt("categoryId");
 				String category = jsObj.getString("category");
-				String chiCategory = new String(category.getBytes("ISO-8859-1"));
+				//String chiCategory = new String(category.getBytes("ISO-8859-1"));
 				ArrayList<String> alUrl = new ArrayList<String>();
 				JSONArray jsonUrls = jsObj.getJSONArray("urls");
 				for (int j = 0; j < jsonUrls.length(); j++) {
 					alUrl.add(cms_url + jsonUrls.getString(j));
 				}
 				album.setCategoryId(categoryId);
-				album.setCategory(chiCategory);
+				album.setCategory(category);
+				//album.setCategory(chiCategory);
 				album.setImageUrl(alUrl);
 				return album;
-			} catch (UnsupportedEncodingException e) {
-				e.printStackTrace();
-			}
-			return album;
+			//} catch (UnsupportedEncodingException e) {
+			//	e.printStackTrace();
+			//}
+			//return album;
 		}
 		
 		@Override
