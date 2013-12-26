@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.blueskyconnie.heritagefiesta"
-    android:versionCode="2"
+    android:versionCode="3"
     android:versionName="1.0.1" >
 
     <uses-sdk
@@ -32,15 +32,17 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme"
-        android:uiOptions="splitActionBarWhenNarrow">
+        android:theme="@style/AppTheme">
+<!--        android:uiOptions="splitActionBarWhenNarrow" -->
         
         <meta-data android:name="com.google.android.gms.version"
                android:value="@integer/google_play_services_version"/>
 
          <!-- To support below API Level 14 -->
-		 <meta-data android:name="android.support.UI_OPTIONS"
+         <!-- 
+          <meta-data android:name="android.support.UI_OPTIONS"
            	android:value="splitActionBarWhenNarrow" />
+        -->
         
         <activity
             android:name="com.blueskyconnie.heritagefiesta.SplashActivity"

@@ -46,7 +46,8 @@ public class ImageViewPager extends Activity {
 			Log.i("onCreate", "Restore position from savedInstanceState " + position); 
 			Log.i("onCreate", "Restore imageurls from savedInstanceState " + imageUrls.size()); 
 		}
-		ImagepagerAdapter adapter = new ImagepagerAdapter(this, R.layout.item_pager_image, imageUrls, imageLoader);
+		ImagepagerAdapter adapter = new ImagepagerAdapter(this,
+				R.layout.item_pager_image, imageUrls, imageLoader);
 		viewPager.setAdapter(adapter);
 		viewPager.setCurrentItem(position);
 		Log.i("onCreate", "end of ImageViewPager Activity"); 

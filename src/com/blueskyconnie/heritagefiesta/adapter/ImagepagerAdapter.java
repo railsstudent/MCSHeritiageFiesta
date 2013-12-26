@@ -8,6 +8,8 @@ import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
@@ -28,7 +30,8 @@ public class ImagepagerAdapter extends PagerAdapter {
 	private int resourceId;
 	private DisplayImageOptions options;
 	
-	public ImagepagerAdapter(Context context ,int resourceId, List<String> imageUrls, ImageLoader imageLoader) {
+	public ImagepagerAdapter(Context context ,int resourceId, 
+			List<String> imageUrls, ImageLoader imageLoader) {
 		this.context = context;
 		this.resourceId = resourceId;
 		this.imageUrls = imageUrls;
@@ -73,7 +76,7 @@ public class ImagepagerAdapter extends PagerAdapter {
 		
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View view = inflater.inflate(resourceId, null);
-		ImageView imgView = (ImageView) view.findViewById(R.id.albumImage);
+		final ImageView imgView = (ImageView) view.findViewById(R.id.albumImage);
 		final ProgressBar spinner = (ProgressBar) view.findViewById(R.id.imgLoading);
 		imageLoader.displayImage(imageUrls.get(position), imgView, options, new ImageLoadingListener() {
 
@@ -111,6 +114,9 @@ public class ImagepagerAdapter extends PagerAdapter {
 			public void onLoadingComplete(String imageUri, View view,
 					Bitmap loadedImage) {
 				spinner.setVisibility(Spinner.GONE);
+				Animation anim = AnimationUtils.loadAnimation(context, R.anim.fade_in);
+				imgView.setAnimation(anim);
+		        anim.start();
 			}
 
 			@Override
