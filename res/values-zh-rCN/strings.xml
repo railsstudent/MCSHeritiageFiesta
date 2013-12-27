@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">玛利诺古蹟周遊乐2013</string>
+    
+    <string name="tab_video">影片</string>
+    <string name="tab_gallery">照片集</string>
+    <string name="tab_introduction">简介</string>
+    <string name="tab_website">古迹网址</string>
+    <string name="tab_map">位置</string>
+    <string name="tab_contact">联络</string>
+    
+    <string name="splash_production">Connie Leung 诚意製作</string>
+    <string name="cms_url">http://103.11.100.49/~connie/mcs/</string>
+    <!--  
+    <string name="cms_url">http://192.168.1.138/mcs/</string>
+    -->
+    <string name="map_school_title">玛利诺修院学校\r\n小学部</string>
+    <string name="map_school_address">九龙塘窝打老道130号</string>
+    <string name="map_content_desc">玛利诺修院学校小学部</string>
+    <string name="map_mtr_title">太子地铁站A出口</string>
+    <string name="map_mtr_snippet_first">1) 转乘的士直达学校入口</string>
+    <string name="map_mtr_snippet_second">2) 步行30分钟直达学校</string>
+    
+    <string name="map_bus1_title">1A, 6D, 42 巴士站</string>
+    <string name="map_bus1_snippet">步行約7&#8211;10分钟</string>
+    <string name="map_bus2_title">1, 7B, 12A, 113 巴士站</string>
+    <string name="map_bus2_snippet">步行约3&#8211;5分钟</string>
+    <string name="map_mtr_kowloontong_title">九龙塘地铁站</string>
+    <string name="map_mtr_kt_snippet_first">1) 转乘九巴 10, 281A, 281B, 281X, 81C, 81S, 87D或3C, 然後在九龙塘会下车</string>
+    <string name="map_mtr_kt_snippet_second">2) 乘坐4分钟的士直达学校入口</string>
+    <string name="reach">到达方法</string>
+    
+    <!-- Content descriptions -->
+    <string name="intro_content_desc">古蹟同乐日</string>
+    <string name="album_content_desc">照片集</string>
+    <string name="image_content_desc">照片</string>
+    <string name="btn_back_desc">返回上一个网页</string>
+    <string name="btn_fwd_desc">返回下一个网页</string>
+    <string name="btn_reload_desc">重新载入网页</string>
+    <string name="btn_open_browser_desc">在浏览器中打开网页</string>
+
+    <string name="pagerTitleLeft">第</string>
+    <string name="pagerTitleRight">张</string>
+<!-- 
+    <string name="contact_email">con_leung10@yahoo.com</string>
+    <string name="contact_phone">+852 2742 5268</string>
+ -->
+    <string name="contact_email">mcsps@mcsps.edu.hk</string>
+    <string name="contact_phone">+852 2336 0611</string>
+    <string name="contact_fax">+852 2336 3154</string>
+    <string name="content_address">地址</string>
+    <string name="content_email">电邮</string>
+    <string name="content_fax">传真</string>
+    <string name="content_phone">电话</string>
+    <string name="send_email">发送邮件</string>
+    <string name="phone_school">即时致电</string>
+    <string name="share_website">分享古迹网页</string>
+    <string name="choose_app">选择程式</string>
+    <string name="app_not_found">没有合适的应用程式。</string>
+    <string name="choose_viewer">选择浏览程式</string>
+    <string name="viewer_not_installed">没有发现合适的浏览程式，请去Google Play Store下载。</string>
+    <string name="email_subject">查询</string>
+    <string name="email_text">查询</string>
+    <string name="homepage">http://heritage.mcs.hk/index.html</string>
+    
+    <string name="confirm_exit">确认</string>
+    <string name="cancel_exit">取消</string>
+    <string name="title_confirm_exit">确认离开？</string>
+    <string name="loading">载入&#8230;</string>
+    <string name="no_internet_error">互联网网路连接失败。</string>
+    <string name="exit_error">离开失败，请再试一次。</string>
+    <string name="info_title">资讯</string>
+    <string name="http_request_error">HTTP请求被拒绝，请稍後再回来。</string>
+    <string name="no_album_error">相簿暂时不存在。</string>
+    <string name="menu_item_clear_memory_cache">清除内存图像</string>
+    <string name="menu_item_clear_disc_cache">清除外置卡图像</string>
+    <string name="menu_legalnotices">法律声明</string>
+    <string name="menu_backtoschool">返回学校</string>
+    <string name="share_subject">分享玛利诺古蹟文物径网页</string>
+    <string name="share_text">请参观玛利诺古蹟文物径网页 &#8211; http://fqrct.com/t/fffdb3b.</string>
+   
+      <string-array name="category">
+    	<item>1:小册子</item>    
+    	<item>2:窝打老道</item>    
+    	<item>3:美术室</item>    
+    	<item>4:课室</item>    
+    	<item>5:中庭</item>    
+    	<item>6:旧翼</item>    
+    	<item>7:修院</item> 
+    	<item>8:体育设施</item>   
+   	</string-array>
+</resources>

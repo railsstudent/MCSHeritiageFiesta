@@ -29,7 +29,7 @@
     <string name="map_mtr_kowloontong_title">Kowloon Tong MTR station</string>
     <string name="map_mtr_kt_snippet_first">1) Get on KMB route 10, 281A, 281B, 281X, 81C, 81S, 87D or 3C and get off at Kowloon Tong Club.</string>
     <string name="map_mtr_kt_snippet_second">2) Take 4-minute taxi ride to school entrance.</string>
-    <string name="reach"><ul>Transportation</ul></string>
+    <string name="reach">Transportation</string>
     
     <!-- Content descriptions -->
     <string name="intro_content_desc">MCS Heritage Fiesta 2013</string>
@@ -78,7 +78,7 @@
     <string name="menu_legalnotices">Legal Notice</string>
     <string name="menu_backtoschool">Move To School</string>
     <string name="share_subject">Share Maryknoll Heritage</string>
-    <string name="share_text">Please visit webpage of Maryknoll Heritage &#8211; http://goo.gl/jbDDMF.</string>
+    <string name="share_text">Please visit webpage of Maryknoll Heritage &#8211; http://fqrct.com/t/fffdb3b.</string>
     <string-array name="category">
     	<item>1:Leaflet</item>    
     	<item>2:Waterloo\nRoad</item>    

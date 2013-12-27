@@ -463,6 +463,10 @@ containing a value of this type.
     <string name="contact_email">con_leung10@yahoo.com</string>
     <string name="contact_phone">+852 2742 5268</string>
  
+ 
+    <string name="contact_email">con_leung10@yahoo.com</string>
+    <string name="contact_phone">+852 2742 5268</string>
+ 
          */
         public static final int contact_email=0x7f06003a;
         public static final int contact_fax=0x7f06003c;
@@ -480,6 +484,7 @@ containing a value of this type.
         public static final int info_title=0x7f060051;
         /**  Content descriptions 
  Content descriptions 
+ Content descriptions 
          */
         public static final int intro_content_desc=0x7f060031;
         public static final int loading=0x7f06004e;
@@ -496,6 +501,9 @@ containing a value of this type.
         public static final int map_mtr_title=0x7f060026;
         public static final int map_school_address=0x7f060024;
         /**   
+    <string name="cms_url">http://192.168.1.138/mcs/</string>
+    
+  
     <string name="cms_url">http://192.168.1.138/mcs/</string>
     
   

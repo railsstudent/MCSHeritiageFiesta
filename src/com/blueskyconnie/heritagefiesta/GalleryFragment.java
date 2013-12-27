@@ -79,6 +79,7 @@ public class GalleryFragment extends Fragment {
 			Bundle savedInstanceState) {
 
 		sparseCategories = parseStringArray(R.array.category);
+		categories.clear();
 		for (int i = 0; i < sparseCategories.size(); i++) {
 			int key = sparseCategories.keyAt(i);
 			String category = sparseCategories.get(key, "");

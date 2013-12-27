@@ -27,9 +27,9 @@
     <string name="map_bus2_title">1, 7B, 12A, 113 巴士站</string>
     <string name="map_bus2_snippet">步行約3&#8211;5分鐘</string>
     <string name="map_mtr_kowloontong_title">九龍塘地鐵站</string>
-    <string name="map_mtr_kt_snippet_first">1) 九巴 10, 281A, 281B, 281X, 81C, 81S, 87D或3C, 然後在九龍塘會下車</string>
+    <string name="map_mtr_kt_snippet_first">1) 轉乘九巴 10, 281A, 281B, 281X, 81C, 81S, 87D或3C, 然後在九龍塘會下車</string>
     <string name="map_mtr_kt_snippet_second">2) 乘坐4分鐘的士直達學校入口</string>
-    <string name="reach"><ul>到達方法</ul></string>
+    <string name="reach">到達方法</string>
     
     <!-- Content descriptions -->
     <string name="intro_content_desc">古蹟同樂日</string>
@@ -78,7 +78,7 @@
     <string name="menu_legalnotices">法律聲明</string>
     <string name="menu_backtoschool">返回學校</string>
     <string name="share_subject">分享瑪利諾古蹟文物徑網頁</string>
-    <string name="share_text">請參觀瑪利諾古蹟文物徑網頁 &#8211; http://goo.gl/jbDDMF.</string>
+    <string name="share_text">請參觀瑪利諾古蹟文物徑網頁 &#8211; http://fqrct.com/t/fffdb3b.</string>
 
     <string-array name="category">
     	<item>1:小冊子</item>    
