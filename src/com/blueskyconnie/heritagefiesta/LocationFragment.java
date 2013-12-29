@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import android.app.AlertDialog;
-import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -38,10 +37,6 @@ public class LocationFragment extends Fragment {
 	private static final LatLng MTR_KOWLOON_TONG_LATLNG = new LatLng(22.337265,114.175928);
 	private static final LatLng MTR_BUS1_LATLNG = new LatLng(22.327244,114.182686);
 	private static final LatLng MTR_BUS2_LATLNG = new LatLng(22.32716,114.180594);
-	
-//	22.325306,114.169318
-	// 22.325802,114.178416
-	// new LatLng(22.32749,114.178535)
 	
 	private static final LatLng[] PRINCE_EDWARD_ROUTE = {
 		  MTR_LATLNG
@@ -121,7 +116,7 @@ public class LocationFragment extends Fragment {
 					map.addMarker(new MarkerOptions().position(PRIMARY_SECTION_LATLNG)
 							.title(getString(R.string.map_school_title))
 							.snippet(getString(R.string.map_school_address))
-							.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin)));
+							.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin_red)));
 
 					map.addMarker(new MarkerOptions().position(MTR_LATLNG)
 							.title(getString(R.string.map_mtr_title))
@@ -170,7 +165,7 @@ public class LocationFragment extends Fragment {
 				}
 				mapView.onResume();
 			}
-			getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+//			getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
 		} else {
 			GooglePlayServicesUtil.getErrorDialog(resultCode, getActivity(), RQS_GooglePlayServices).show();
 		}
@@ -182,7 +177,7 @@ public class LocationFragment extends Fragment {
 		if (mapView != null) {
 			mapView.onPause();
 		}
-		getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+//		getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 	}
 
 	@Override

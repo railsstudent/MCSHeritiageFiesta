@@ -1,6 +1,8 @@
 package com.blueskyconnie.heritagefiesta;
 
 import android.app.ActionBar;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
@@ -39,6 +41,13 @@ public abstract class BaseFragmentActivity extends FragmentActivity {
 			case R.id.item_clear_disc_cache:
 				imageLoader.clearDiscCache();
 				Log.i("BaseActivity", "Clear disc cache of image loader.");
+				return true;
+			case R.id.item_rate_myapp:
+				// Show rate me in google play store
+				Intent intent = new Intent(Intent.ACTION_VIEW, 
+						Uri.parse("market://details?id=" + getPackageName()));
+				startActivity(intent);
+				Log.i("BaseActivity", "Show Rate Me section of Google Play Store.");
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);

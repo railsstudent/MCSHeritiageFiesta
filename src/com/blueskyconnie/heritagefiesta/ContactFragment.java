@@ -2,10 +2,10 @@ package com.blueskyconnie.heritagefiesta;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.util.Linkify;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -13,6 +13,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blueskyconnie.heritagefiesta.helper.AlertDialogHelper;
@@ -20,25 +21,25 @@ import com.blueskyconnie.heritagefiesta.helper.ConnectionDetector;
 
 public class ContactFragment extends Fragment {
 
+	private ConnectionDetector detector;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setRetainInstance(true);
 		setHasOptionsMenu(true);
+		detector = new ConnectionDetector(getActivity());
 	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		return inflater.inflate(R.layout.fragment_contact, container, false);
+		View rootView =  inflater.inflate(R.layout.fragment_contact, container, false);
+		TextView tvPhone = (TextView) rootView.findViewById(R.id.tvPhone);
+		Linkify.addLinks(tvPhone, Linkify.PHONE_NUMBERS);
+		return rootView;
 	}
 	
-	@Override
-	public void onResume() {
-		super.onResume();
-		getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-	}
-
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		super.onCreateOptionsMenu(menu, inflater);
@@ -49,7 +50,7 @@ public class ContactFragment extends Fragment {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 			case R.id.menu_email:
-				ConnectionDetector detector = new ConnectionDetector(getActivity());
+				//ConnectionDetector detector = new ConnectionDetector(getActivity());
 				if (!detector.isConnectingToInternet()) {
 					AlertDialogHelper.showNoInternetDialog(getActivity());
 					return false;
@@ -60,6 +61,10 @@ public class ContactFragment extends Fragment {
 				createPhoneIntent();
 				return true;
 			case R.id.menu_share:
+				if (!detector.isConnectingToInternet()) {
+					AlertDialogHelper.showNoInternetDialog(getActivity());
+					return false;
+				}
 				createShareIntent();
 				return true;
 		}

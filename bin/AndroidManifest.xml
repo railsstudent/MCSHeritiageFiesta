@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.blueskyconnie.heritagefiesta"
-    android:versionCode="4"
-    android:versionName="1.0.2" >
+    android:versionCode="5"
+    android:versionName="1.0.3" >
 
     <uses-sdk
         android:minSdkVersion="11"
@@ -46,7 +46,8 @@
         
         <activity
             android:name="com.blueskyconnie.heritagefiesta.SplashActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -57,11 +58,13 @@
             android:value="AIzaSyASS3OSaZyNQGs0ndEtIgutYKTac1GIi_M" />
 
         <activity android:name="com.blueskyconnie.heritagefiesta.MainActivity"
-            android:configChanges="orientation" >
+            android:screenOrientation="portrait" >
+            <!-- android:configChanges="orientation" -->
         </activity>
 
-        <activity android:name="com.blueskyconnie.heritagefiesta.ImageViewPager" 
-            android:configChanges="orientation">
+        <activity android:name="com.blueskyconnie.heritagefiesta.ImageViewPager"
+            android:screenOrientation="portrait">
+         <!--  android:configChanges="orientation" --> 
         </activity>
         
         <activity android:name="com.google.android.gms.ads.AdActivity"

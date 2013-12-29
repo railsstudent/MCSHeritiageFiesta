@@ -3,7 +3,6 @@ package com.blueskyconnie.heritagefiesta;
 import java.util.ArrayList;
 
 import android.app.Activity;
-import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.view.PagerTitleStrip;
@@ -38,7 +37,7 @@ public class ImageViewPager extends Activity {
 		// 004fff
 		pageTitle.setTextColor(Color.rgb(0, 4*15 + 15, 16*15 + 15));
 		if (savedInstanceState == null) {
-			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+//			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 			if (getIntent() != null)  {
 				imageUrls = getIntent().getStringArrayListExtra("urls");
 				Log.i("onCreate", "Initialize viewPager's adapter."); 

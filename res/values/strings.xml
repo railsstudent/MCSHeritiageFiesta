@@ -45,14 +45,19 @@
 <!-- 
     <string name="contact_email">con_leung10@yahoo.com</string>
     <string name="contact_phone">+852 2742 5268</string>
- -->
+-->
+
     <string name="contact_email">mcsps@mcsps.edu.hk</string>
     <string name="contact_phone">+852 2336 0611</string>
     <string name="contact_fax">+852 2336 3154</string>
+    <string name="contact_website">http://www.mcsps.edu.hk/</string>
+    
     <string name="content_address">地址</string>
     <string name="content_email">電郵</string>
     <string name="content_fax">傳真</string>
     <string name="content_phone">電話</string>
+    <string name="content_website">學校網址</string>
+    
     <string name="send_email">發送郵件</string>
     <string name="phone_school">即時致電</string>
     <string name="share_website">分享古蹟網頁</string>
@@ -75,6 +80,7 @@
     <string name="no_album_error">相簿暫時不存在。</string>
     <string name="menu_item_clear_memory_cache">清除內存圖像</string>
     <string name="menu_item_clear_disc_cache">清除外置卡圖像</string>
+    <string name="menu_item_rate_myapp">給我評分</string>
     <string name="menu_legalnotices">法律聲明</string>
     <string name="menu_backtoschool">返回學校</string>
     <string name="share_subject">分享瑪利諾古蹟文物徑網頁</string>

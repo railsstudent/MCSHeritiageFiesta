@@ -11,5 +11,9 @@
         android:showAsAction="never"
         android:orderInCategory="210"
         android:title="@string/menu_item_clear_disc_cache"/>
-
+    <item
+        android:id="@+id/item_rate_myapp"
+        android:showAsAction="never"
+        android:orderInCategory="300"
+        android:title="@string/menu_item_rate_myapp"/>
 </menu>

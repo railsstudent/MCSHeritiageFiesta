@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.SparseArray;
@@ -65,13 +64,6 @@ public class GalleryFragment extends Fragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setRetainInstance(true);
-//		MainActivity activity = (MainActivity) getActivity();
-//		lstAlbum  = activity.getAlbums();
-//		for (Album album : lstAlbum) {
-//			categoryUrlMap.put(album.getCategoryId(), album.getImageUrl());
-//			categories.add(album.getCategory());
-//			lstCatId.add(album.getCategoryId());
-//		}
 	}
 	
 	@Override
@@ -108,7 +100,6 @@ public class GalleryFragment extends Fragment {
 		lstAlbum  = activity.getAlbums();
 		for (Album album : lstAlbum) {
 			categoryUrlMap.put(album.getCategoryId(), album.getImageUrl());
-			//categories.add(album.getCategory());
 			lstCatId.add(album.getCategoryId());
 		}
 	}
@@ -124,7 +115,7 @@ public class GalleryFragment extends Fragment {
 	@Override
 	public void onResume() {
 		super.onResume();
-		getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+//		getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		adView.resume();
 	}
 

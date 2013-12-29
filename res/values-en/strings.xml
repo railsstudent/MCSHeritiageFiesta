@@ -11,7 +11,6 @@
     <string name="tab_contact">Contact</string>
     
     <string name="splash_production">Produced by Connie Leung</string>
-    <string name="cms_url">http://103.11.100.49/~connie/mcs/</string>
     <!--  
     <string name="cms_url">http://192.168.1.138/mcs/</string>
     -->
@@ -42,17 +41,13 @@
     
     <string name="pagerTitleLeft">Page&#8211;</string>
     <string name="pagerTitleRight"></string>
-<!-- 
-    <string name="contact_email">con_leung10@yahoo.com</string>
-    <string name="contact_phone">+852 2742 5268</string>
- -->
-    <string name="contact_email">mcsps@mcsps.edu.hk</string>
-    <string name="contact_phone">+852 2336 0611</string>
-    <string name="contact_fax">+852 2336 3154</string>
+
     <string name="content_address">Address</string>
     <string name="content_email">Email Address</string>
     <string name="content_fax">Fax Number</string>
     <string name="content_phone">Phone Number</string>
+    <string name="content_website">School website</string>
+    
     <string name="send_email">Send Email</string>
     <string name="phone_school">Make Phone Call</string>
     <string name="share_website">Share Heritage Trail Website</string>
@@ -75,6 +70,7 @@
     <string name="no_album_error">Album does not exist.</string>
     <string name="menu_item_clear_memory_cache">Clear Photos From Memory</string>
     <string name="menu_item_clear_disc_cache">Clear Photos From SD Card</string>
+    <string name="menu_item_rate_myapp">Rate Me</string>
     <string name="menu_legalnotices">Legal Notice</string>
     <string name="menu_backtoschool">Move To School</string>
     <string name="share_subject">Share Maryknoll Heritage</string>

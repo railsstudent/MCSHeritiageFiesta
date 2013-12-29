@@ -10,7 +10,6 @@
     <string name="tab_contact">联络</string>
     
     <string name="splash_production">Connie Leung 诚意製作</string>
-    <string name="cms_url">http://103.11.100.49/~connie/mcs/</string>
     <!--  
     <string name="cms_url">http://192.168.1.138/mcs/</string>
     -->
@@ -41,17 +40,13 @@
 
     <string name="pagerTitleLeft">第</string>
     <string name="pagerTitleRight">张</string>
-<!-- 
-    <string name="contact_email">con_leung10@yahoo.com</string>
-    <string name="contact_phone">+852 2742 5268</string>
- -->
-    <string name="contact_email">mcsps@mcsps.edu.hk</string>
-    <string name="contact_phone">+852 2336 0611</string>
-    <string name="contact_fax">+852 2336 3154</string>
+
     <string name="content_address">地址</string>
     <string name="content_email">电邮</string>
     <string name="content_fax">传真</string>
     <string name="content_phone">电话</string>
+    <string name="content_website">学校网址</string>
+    
     <string name="send_email">发送邮件</string>
     <string name="phone_school">即时致电</string>
     <string name="share_website">分享古迹网页</string>
@@ -74,6 +69,7 @@
     <string name="no_album_error">相簿暂时不存在。</string>
     <string name="menu_item_clear_memory_cache">清除内存图像</string>
     <string name="menu_item_clear_disc_cache">清除外置卡图像</string>
+    <string name="menu_item_rate_myapp">给我评分</string>
     <string name="menu_legalnotices">法律声明</string>
     <string name="menu_backtoschool">返回学校</string>
     <string name="share_subject">分享玛利诺古蹟文物径网页</string>

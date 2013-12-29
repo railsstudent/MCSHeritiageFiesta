@@ -24,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:contentDescription="@string/content_address"
-                android:src="@drawable/img_globe" />
+                android:src="@drawable/img_school" />
 
             <TextView
                 android:id="@+id/tvAddress"
@@ -34,8 +34,32 @@
                 android:textAppearance="@style/TextLargeBlack" />
         </TableRow>
 
-        <TableRow
+         <TableRow
             android:id="@+id/tableRow2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:paddingBottom="2dp" >
+
+            <ImageView
+                android:id="@+id/imgWebsite"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/content_website"
+                android:src="@drawable/img_globe" />
+
+            <TextView
+                android:id="@+id/tvWebsite"
+                android:layout_width="0dp"
+                android:layout_weight="5"
+                android:text="@string/contact_website"
+                android:autoLink="web"
+                android:textAppearance="@style/TextMediumBlack" />
+        </TableRow>
+        
+        <TableRow
+            android:id="@+id/tableRow3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
@@ -54,11 +78,12 @@
                 android:layout_width="0dp"
                 android:layout_weight="5"
                 android:text="@string/contact_email"
+                android:autoLink="email"
                 android:textAppearance="@style/TextLargeBlack" />
         </TableRow>
 
         <TableRow
-            android:id="@+id/tableRow3"
+            android:id="@+id/tableRow4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
@@ -81,7 +106,7 @@
         </TableRow>
 
         <TableRow
-            android:id="@+id/tableRow4"
+            android:id="@+id/tableRow5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
