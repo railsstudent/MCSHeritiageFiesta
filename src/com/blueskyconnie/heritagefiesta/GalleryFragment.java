@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.SparseArray;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 
 import com.blueskyconnie.heritagefiesta.adapter.AlbumGridAdapter;
 import com.blueskyconnie.heritagefiesta.data.Album;
+import com.blueskyconnie.heritagefiesta.data.GalleryItem;
 import com.blueskyconnie.heritagefiesta.helper.AlertDialogHelper;
 import com.blueskyconnie.heritagefiesta.helper.ConnectionDetector;
 import com.google.android.gms.ads.AdRequest;
@@ -33,6 +35,8 @@ public class GalleryFragment extends Fragment {
 	private List<Album> lstAlbum = new ArrayList<Album>();
 	private SparseArray<List<String>> categoryUrlMap = new SparseArray<List<String>>();
 	private AdView adView;
+	private TypedArray albumIcons;
+	private List<GalleryItem> lstGalleryItem;
 	
 	private AdapterView.OnItemClickListener listener = new AdapterView.OnItemClickListener() {
 		@Override
@@ -47,7 +51,8 @@ public class GalleryFragment extends Fragment {
 						int categoryId = lstCatId.get(position).intValue();
 						List<String> imageUrls = categoryUrlMap.get(categoryId);
 						ArrayList<String> alImageUrls = new ArrayList<String> (imageUrls);
-						
+						hasClickedItem = true;
+							
 						Intent intent = new Intent(GalleryFragment.this.getActivity(), ImageViewPager.class);
 						intent.putStringArrayListExtra("urls", alImageUrls);
 						startActivityForResult(intent, GALLERY_REQUEST_CODE);
@@ -77,8 +82,17 @@ public class GalleryFragment extends Fragment {
 			String category = sparseCategories.get(key, "");
 			categories.add(category);
 		}
+		
+		lstGalleryItem = new ArrayList<GalleryItem>();
+		albumIcons = getResources().obtainTypedArray(R.array.gallery_icons);
+		for (int i = 0; i < categories.size(); i++) {
+			lstGalleryItem.add(new GalleryItem(categories.get(i), albumIcons.getResourceId(i, -1)));
+		}
+		albumIcons.recycle();
+		
 		View rootView = inflater.inflate(R.layout.fragment_gallery, container, false);
-		AlbumGridAdapter adapter = new AlbumGridAdapter(getActivity(), R.layout.album_row_grid, categories);
+//		AlbumGridAdapter adapter = new AlbumGridAdapter(getActivity(), R.layout.album_row_grid, categories);
+		AlbumGridAdapter adapter = new AlbumGridAdapter(getActivity(), R.layout.album_row_grid, lstGalleryItem);
 		gridView = (GridView) rootView.findViewById(R.id.gridView);
 		gridView.setAdapter(adapter);
 		gridView.setOnItemClickListener(listener);

@@ -7,17 +7,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.blueskyconnie.heritagefiesta.R;
+import com.blueskyconnie.heritagefiesta.data.GalleryItem;
 
-public class AlbumGridAdapter extends ArrayAdapter<String> {
+public class AlbumGridAdapter extends ArrayAdapter<GalleryItem> {
 
-	private List<String> categories;
+	private List<GalleryItem> categories;
 	private int resource;
 	private Context context;
 	
-	public AlbumGridAdapter(Context context, int resource, List<String> categories) {
+//	public AlbumGridAdapter(Context context, int resource, List<String> categories) {
+//		super(context, resource, categories);
+//		this.context = context;
+//		this.resource = resource;
+//		this.categories = categories;
+//	}
+
+	public AlbumGridAdapter(Context context, int resource, List<GalleryItem> categories) {
 		super(context, resource, categories);
 		this.context = context;
 		this.resource = resource;
@@ -30,7 +39,7 @@ public class AlbumGridAdapter extends ArrayAdapter<String> {
 	}
 
 	@Override
-	public String getItem(int position) {
+	public GalleryItem getItem(int position) {
 		if (position >= 0 && position < getCount()) {
 			return categories.get(position);
 		}
@@ -39,7 +48,7 @@ public class AlbumGridAdapter extends ArrayAdapter<String> {
 
 	@Override
 	public long getItemId(int position) {
-		String val = getItem(position);
+		GalleryItem val = getItem(position);
 		return val == null ? -1 : val.hashCode();
 	}
 
@@ -52,17 +61,20 @@ public class AlbumGridAdapter extends ArrayAdapter<String> {
 			view = inflater.inflate(this.resource, null);
 			holder = new AlbumHolder();
 			holder.tvName = (TextView) view.findViewById(R.id.tvAlbumName);
+			holder.imgView = (ImageView) view.findViewById(R.id.imgAlbum);
 			view.setTag(holder);
 		} else {
 			holder = (AlbumHolder) view.getTag();
 		}
 		
-		String albumName = getItem(position);
-		holder.tvName.setText(albumName);
+		GalleryItem galleryItem = getItem(position);
+		holder.tvName.setText(galleryItem.getCategory());
+		holder.imgView.setImageResource(galleryItem.getResourceId());
 		return view;
 	}
 	
 	private static class AlbumHolder {
 		TextView tvName;
+		ImageView imgView;
 	}
 }

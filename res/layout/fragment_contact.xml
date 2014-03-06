@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/scrollview"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:background="@color/bgrdColor" >
 
     <TableLayout
         android:id="@+id/tableLayout"
@@ -16,7 +17,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:paddingBottom="2dp" >
+            android:paddingBottom="4dp"
+            android:paddingTop="2dp" >
 
             <ImageView
                 android:id="@+id/imgAddress"
@@ -39,7 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:paddingBottom="2dp" >
+            android:paddingBottom="4dp" >
 
             <ImageView
                 android:id="@+id/imgWebsite"
@@ -63,7 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:paddingBottom="2dp" >
+            android:paddingBottom="4dp" >
 
             <ImageView
                 android:id="@+id/imgEmail"

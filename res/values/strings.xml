@@ -96,4 +96,16 @@
     	<item>7:修院</item> 
     	<item>8:體育設施</item>   
    	</string-array>
+   	
+    <array name="gallery_icons">
+        <item>@drawable/album_leaflet</item>
+        <item>@drawable/album_waterloo</item>
+        <item>@drawable/album_artroom</item>
+        <item>@drawable/album_classroom</item>
+        <item>@drawable/album_courtyard</item>
+        <item>@drawable/album_oldwing</item>
+        <item>@drawable/album_convent</item>
+        <item>@drawable/album_facility</item>
+    </array>
+    
 </resources>
