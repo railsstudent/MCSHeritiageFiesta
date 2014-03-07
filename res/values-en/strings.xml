@@ -39,7 +39,7 @@
     <string name="btn_reload_desc">Reload webpage</string>
     <string name="btn_open_browser_desc">Open webpage in browser</string>
     
-    <string name="pagerTitleLeft">Page&#8211;</string>
+    <string name="pagerTitleLeft">Page&#32;&#32;</string>
     <string name="pagerTitleRight"></string>
 
     <string name="content_address">Address</string>
