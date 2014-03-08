@@ -1,5 +1,6 @@
 package com.blueskyconnie.heritagefiesta.helper;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -11,7 +12,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 
 public final class AlertDialogHelper {
 
-	public static void showNoInternetDialog(Context context) {
+	public static void showNoInternetDialog(final Context context) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(context);
 		builder.setTitle(context.getString(R.string.info_title));
 		builder.setIcon(android.R.drawable.ic_dialog_alert);
@@ -20,6 +21,10 @@ public final class AlertDialogHelper {
 			new DialogInterface.OnClickListener() {
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
+					// mod by Connie Leung, 2014-03-08. Close current app
+					if (context instanceof Activity) {
+						((Activity) context).finish();
+					}
 				}
 			});
 		AlertDialog alertDialog = builder.create();

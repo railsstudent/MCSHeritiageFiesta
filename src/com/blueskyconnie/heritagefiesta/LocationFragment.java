@@ -7,6 +7,7 @@ import android.app.AlertDialog;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -15,6 +16,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.directions.route.Routing;
+import com.directions.route.RoutingListener;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -32,31 +35,33 @@ import com.google.android.gms.maps.model.PolylineOptions;
 
 public class LocationFragment extends Fragment {
 
+	private static final String TAG = LocationFragment.class.getSimpleName();
+	
 	private static final LatLng PRIMARY_SECTION_LATLNG = new LatLng(22.327365,114.179094);
-	private static final LatLng MTR_LATLNG = new LatLng(22.325068,114.168403);
+	private static final LatLng MTR_PRINCE_EDWARD_LATLNG = new LatLng(22.325068,114.168403);
 	private static final LatLng MTR_KOWLOON_TONG_LATLNG = new LatLng(22.337265,114.175928);
 	private static final LatLng MTR_BUS1_LATLNG = new LatLng(22.327244,114.182686);
 	private static final LatLng MTR_BUS2_LATLNG = new LatLng(22.32716,114.180594);
 	
-	private static final LatLng[] PRINCE_EDWARD_ROUTE = {
-		  MTR_LATLNG
-		, new LatLng(22.325306,114.169318)
-		, new LatLng(22.324155,114.169554)
-		, new LatLng(22.325783,114.178394)
-		, new LatLng(22.32749,114.178535)
-	};
+//	private static final LatLng[] PRINCE_EDWARD_ROUTE = {
+//		  MTR_PRINCE_EDWARD_LATLNG
+//		, new LatLng(22.325306,114.169318)
+//		, new LatLng(22.324155,114.169554)
+//		, new LatLng(22.325783,114.178394)
+//		, new LatLng(22.32749,114.178535)
+//	};
 	
-	private static final LatLng[] KOWLOON_TONG_ROUTE = {
-		MTR_KOWLOON_TONG_LATLNG
-		, new LatLng(22.337295,114.176442)
-		, new LatLng(22.33793,114.176592)
-		, new LatLng(22.33783,114.178931)
-		, new LatLng(22.338088,114.179038)
-		, new LatLng(22.338029,114.179274)
-		, new LatLng(22.330209,114.178738)
-		, new LatLng(22.329675,114.178714)
-		, new LatLng(22.32749,114.178535)
-	};
+//	private static final LatLng[] KOWLOON_TONG_ROUTE = {
+//		MTR_KOWLOON_TONG_LATLNG
+//		, new LatLng(22.337295,114.176442)
+//		, new LatLng(22.33793,114.176592)
+//		, new LatLng(22.33783,114.178931)
+//		, new LatLng(22.338088,114.179038)
+//		, new LatLng(22.338029,114.179274)
+//		, new LatLng(22.330209,114.178738)
+//		, new LatLng(22.329675,114.178714)
+//		, new LatLng(22.32749,114.178535)
+//	};
 
 	private static final int RQS_GooglePlayServices = 1;
 
@@ -87,6 +92,7 @@ public class LocationFragment extends Fragment {
 			hmSnippet.put(KOWLOON_TONG_MTR, mtrArray);
 		 } catch (GooglePlayServicesNotAvailableException e) {
 		     e.printStackTrace();
+		     Log.e(TAG, e.getMessage());
 		 }
 	}
 	
@@ -118,7 +124,7 @@ public class LocationFragment extends Fragment {
 							.snippet(getString(R.string.map_school_address))
 							.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin_red)));
 
-					map.addMarker(new MarkerOptions().position(MTR_LATLNG)
+					map.addMarker(new MarkerOptions().position(MTR_PRINCE_EDWARD_LATLNG)
 							.title(getString(R.string.map_mtr_title))
 							.snippet(PRINCE_EDWARD_MTR)
 							.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin)));
@@ -148,20 +154,31 @@ public class LocationFragment extends Fragment {
 					});
 					map.setInfoWindowAdapter(new MyInfoWindowAdapter());
 					
-					// add line
-					PolylineOptions princeEdwardLineOptions = new PolylineOptions();
-					princeEdwardLineOptions.color(Color.GREEN);
-					for (LatLng value: PRINCE_EDWARD_ROUTE) {
-						princeEdwardLineOptions.add(value);
-					}
-					map.addPolyline(princeEdwardLineOptions);
+					// mod by Connie Leung, 2014-03-07. Add route
+					Routing routePE = new Routing(Routing.TravelMode.WALKING);
+					routePE.registerListener(
+							new SchoolRoutingListener(Color.GREEN));
+					routePE.execute(MTR_PRINCE_EDWARD_LATLNG, PRIMARY_SECTION_LATLNG);
 
-					PolylineOptions kowloonTongLineOptions = new PolylineOptions();
-					kowloonTongLineOptions.color(Color.RED);
-					for (LatLng value : KOWLOON_TONG_ROUTE) {
-						kowloonTongLineOptions.add(value);
-					}
-					map.addPolyline(kowloonTongLineOptions);
+					Routing routeKowlTong = new Routing(Routing.TravelMode.WALKING);
+					routeKowlTong.registerListener(new SchoolRoutingListener(Color.RED));
+					routeKowlTong.execute(MTR_KOWLOON_TONG_LATLNG, PRIMARY_SECTION_LATLNG);
+					// end 2014-03-07
+					
+					// add line
+//					PolylineOptions princeEdwardLineOptions = new PolylineOptions();
+//					princeEdwardLineOptions.color(Color.GREEN);
+//					for (LatLng value: PRINCE_EDWARD_ROUTE) {
+//						princeEdwardLineOptions.add(value);
+//					}
+//					map.addPolyline(princeEdwardLineOptions);
+
+//					PolylineOptions kowloonTongLineOptions = new PolylineOptions();
+//					kowloonTongLineOptions.color(Color.RED);
+//					for (LatLng value : KOWLOON_TONG_ROUTE) {
+//						kowloonTongLineOptions.add(value);
+//					}
+//					map.addPolyline(kowloonTongLineOptions);
 				}
 				mapView.onResume();
 			}
@@ -256,5 +273,32 @@ public class LocationFragment extends Fragment {
 		public View getInfoWindow(Marker marker) {
 			return null;
 		}
+	}
+	
+	private final class SchoolRoutingListener implements RoutingListener {
+
+		private int colorId;
+		
+		public SchoolRoutingListener(int colorId) {
+			this.colorId = colorId;
+		}
+		
+		@Override
+		public void onRoutingFailure() {
+		}
+
+		@Override
+		public void onRoutingStart() {
+		}
+
+		@Override
+		public void onRoutingSuccess(PolylineOptions mPolyOptions) {
+			 PolylineOptions polyoptions = new PolylineOptions();
+		     polyoptions.color(colorId);
+		     polyoptions.width(5);
+		     polyoptions.addAll(mPolyOptions.getPoints());
+		     map.addPolyline(polyoptions);
+		}
+		
 	}
 }

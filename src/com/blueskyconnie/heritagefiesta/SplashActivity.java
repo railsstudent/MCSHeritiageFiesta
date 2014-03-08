@@ -170,10 +170,12 @@ public class SplashActivity extends Activity {
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
 
-					ArrayList<Album> albums = new ArrayList<Album>();
-					Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-					intent.putParcelableArrayListExtra(MainActivity.ALBUMS, albums);
-					startActivity(intent);
+					// close the app. mod by Connie Leung, 2014-03-08 begins
+//					ArrayList<Album> albums = new ArrayList<Album>();
+//					Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+//					intent.putParcelableArrayListExtra(MainActivity.ALBUMS, albums);
+//					startActivity(intent);
+					// end 2014-03-08
 					finish();
 				}
 			});

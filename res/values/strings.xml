@@ -73,7 +73,7 @@
     <string name="cancel_exit">取消</string>
     <string name="title_confirm_exit">確認離開？</string>
     <string name="loading">載入&#8230;</string>
-    <string name="no_internet_error">互聯網網路連接失敗。</string>
+    <string name="no_internet_error">互聯網網路連接失敗。關閉應用程式。</string>
     <string name="exit_error">離開失敗，請再試一次。</string>
     <string name="info_title">資訊</string>
     <string name="http_request_error">HTTP請求被拒絕，請稍後再回來。</string>

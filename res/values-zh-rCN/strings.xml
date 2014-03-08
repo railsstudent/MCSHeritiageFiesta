@@ -62,7 +62,7 @@
     <string name="cancel_exit">取消</string>
     <string name="title_confirm_exit">确认离开？</string>
     <string name="loading">载入&#8230;</string>
-    <string name="no_internet_error">互联网网路连接失败。</string>
+    <string name="no_internet_error">互联网网路连接失败。关闭应用程序。</string>
     <string name="exit_error">离开失败，请再试一次。</string>
     <string name="info_title">资讯</string>
     <string name="http_request_error">HTTP请求被拒绝，请稍後再回来。</string>

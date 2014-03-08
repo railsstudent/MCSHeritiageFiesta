@@ -5,7 +5,7 @@ build/
 *.apk
 *.ap_
 
-.classpath
-.project
+*.classpath
+*.project
 proguard*
 

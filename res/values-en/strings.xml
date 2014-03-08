@@ -63,7 +63,7 @@
     <string name="cancel_exit">Cancel</string>
     <string name="title_confirm_exit">Confirm Exit?</string>
     <string name="loading">Loading</string>
-    <string name="no_internet_error">No Internet connection.</string>
+    <string name="no_internet_error">No Internet connection. Close Application.</string>
     <string name="exit_error">Exit failure, please try again.</string>
     <string name="info_title">Information</string>
     <string name="http_request_error">HTTP Request denied, please come back at later time.</string>
