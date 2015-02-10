@@ -47,7 +47,7 @@ public class GalleryFragment extends Fragment {
 				AlertDialogHelper.showNoInternetDialog(getActivity());
 			} else {
 				if (!hasClickedItem) {
-					if (categories.size() > position) {
+					if (categories.size() > position && position < lstCatId.size()) {
 						int categoryId = lstCatId.get(position).intValue();
 						List<String> imageUrls = categoryUrlMap.get(categoryId);
 						ArrayList<String> alImageUrls = new ArrayList<String> (imageUrls);

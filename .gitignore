@@ -1,6 +1,7 @@
 *.class 
 bin/
 gen/
+libs/
 build/
 *.apk
 *.ap_

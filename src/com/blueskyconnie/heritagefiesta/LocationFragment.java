@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.directions.route.Route;
 import com.directions.route.Routing;
 import com.directions.route.RoutingListener;
 import com.google.android.gms.common.ConnectionResult;
@@ -292,7 +293,7 @@ public class LocationFragment extends Fragment {
 		}
 
 		@Override
-		public void onRoutingSuccess(PolylineOptions mPolyOptions) {
+		public void onRoutingSuccess(PolylineOptions mPolyOptions, Route route) {
 			 PolylineOptions polyoptions = new PolylineOptions();
 		     polyoptions.color(colorId);
 		     polyoptions.width(5);
